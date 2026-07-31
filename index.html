@@ -42,6 +42,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         select.city-select {
@@ -53,6 +54,18 @@
             font-size: 1rem;
             outline: none;
             cursor: pointer;
+        }
+
+        .audio-activate-btn {
+            background: var(--gold-color);
+            color: #0a1128;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
 
         .container { max-width: 760px; margin: 0 auto; padding: 1rem; }
@@ -178,6 +191,28 @@
             width: 100%;
         }
 
+        .audio-player-box {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gold-color);
+            text-align: center;
+        }
+
+        .audio-player-box select {
+            background: var(--card-inner);
+            color: var(--gold-color);
+            border: 1px solid var(--gold-color);
+            padding: 8px;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .audio-player-box audio { width: 100%; outline: none; }
+
         .reader-text {
             font-family: 'Amiri', serif;
             font-size: 1.6rem;
@@ -219,28 +254,33 @@
     <header>
         <h1 class="logo-title">المنتظر الحقيقي</h1>
         <div class="location-box">
-            <i class="fa-solid fa-location-dot" style="color: var(--gold-color);"></i>
-            <span>المحافظة:</span>
-            <select id="citySelect" class="city-select" onchange="fetchPrayerTimes()">
-                <option value="Al Qadisiyyah" selected>الديوانية</option>
-                <option value="Najaf">النجف الأشرف</option>
-                <option value="Karbala">كربلاء المقدسة</option>
-                <option value="Baghdad">بغداد</option>
-                <option value="Basra">البصرة</option>
-                <option value="Babil">بابل (الحلة)</option>
-                <option value="Dhi Qar">ذي قار (الناصرية)</option>
-                <option value="Maysan">ميسان (العمارة)</option>
-                <option value="Wasit">واسط (الكوت)</option>
-                <option value="Muthanna">المثنى (السماوة)</option>
-                <option value="Diyala">ديالى (بعقوبة)</option>
-                <option value="Saladin">صلاح الدين (تكريت)</option>
-                <option value="Kirkuk">كركوك</option>
-                <option value="Nineveh">نينوى (الموصل)</option>
-                <option value="Anbar">الأنبار (الرمادي)</option>
-                <option value="Erbil">أربيل</option>
-                <option value="Sulaymaniyah">السليمانية</option>
-                <option value="Duhok">دهوك</option>
-            </select>
+            <div>
+                <i class="fa-solid fa-location-dot" style="color: var(--gold-color);"></i>
+                <span>المحافظة:</span>
+                <select id="citySelect" class="city-select" onchange="fetchPrayerTimes()">
+                    <option value="Al Qadisiyyah" selected>الديوانية</option>
+                    <option value="Najaf">النجف الأشرف</option>
+                    <option value="Karbala">كربلاء المقدسة</option>
+                    <option value="Baghdad">بغداد</option>
+                    <option value="Basra">البصرة</option>
+                    <option value="Babil">بابل (الحلة)</option>
+                    <option value="Dhi Qar">ذي قار (الناصرية)</option>
+                    <option value="Maysan">ميسان (العمارة)</option>
+                    <option value="Wasit">واسط (الكوت)</option>
+                    <option value="Muthanna">المثنى (السماوة)</option>
+                    <option value="Diyala">ديالى (بعقوبة)</option>
+                    <option value="Saladin">صلاح الدين (تكريت)</option>
+                    <option value="Kirkuk">كركوك</option>
+                    <option value="Nineveh">نينوى (الموصل)</option>
+                    <option value="Anbar">الأنبار (الرمادي)</option>
+                    <option value="Erbil">أربيل</option>
+                    <option value="Sulaymaniyah">السليمانية</option>
+                    <option value="Duhok">دهوك</option>
+                </select>
+            </div>
+            <div>
+                <button class="audio-activate-btn" onclick="enableAudioAlerts()"><i class="fa-solid fa-volume-high"></i> تفعيل تنبيهات الأذان</button>
+            </div>
         </div>
     </header>
 
@@ -258,6 +298,14 @@
                 <div class="prayer-box"><div class="prayer-name">العصر</div><div class="prayer-time" id="asr">--:--</div></div>
                 <div class="prayer-box"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghrib">--:--</div></div>
                 <div class="prayer-box"><div class="prayer-name">العشاء</div><div class="prayer-time" id="isha">--:--</div></div>
+            </div>
+            <div style="margin-top: 10px; text-align: center;">
+                <label style="font-size: 0.85rem; color: var(--text-secondary);">اختر صوت المؤذن للأذان التلقائي:</label>
+                <select id="adhanVoiceSelect" class="city-select" style="margin-top: 5px; width: 100%;">
+                    <option value="https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3">أذان العتبة الحسينية المقدسة (مثال)</option>
+                    <option value="https://ia800300.us.archive.org/15/items/Adhan_Shia_Turkey/Adhan.mp3">الأذان الشيعي التركي</option>
+                    <option value="https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3">الشيخ عبد الباسط عبد الصمد</option>
+                </select>
             </div>
         </div>
 
@@ -306,13 +354,22 @@
         </div>
     </div>
 
-    <!-- قارئ النص الكامل -->
+    <!-- قارئ النص الكامل مع المشغل الصوتي المدمج -->
     <div id="fullscreenReader" class="fullscreen-reader">
         <div class="fullscreen-header">
             <div style="color: var(--gold-color); font-family: 'Amiri', serif; font-size: 1.4rem;" id="readerTitle">العنوان</div>
             <button onclick="closeFullscreen()" style="background:none; border:none; color:#fff; font-size: 1.6rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="fullscreen-content">
+            <div class="audio-player-box">
+                <label style="font-size: 0.9rem; color: var(--gold-color); display: block; margin-bottom: 5px;">اختر القارئ / المؤدي الصوتي:</label>
+                <select id="audioSourceSelect" onchange="changeAudioSource()">
+                    <!-- يتم تعبئتها ديناميكياً أو برمجياً حسب نوع المحتوى -->
+                </select>
+                <audio id="activeAudioPlayer" controls preload="none">
+                    متصفحك لا يدعم مشغل الصوت.
+                </audio>
+            </div>
             <div id="readerText" class="reader-text"></div>
         </div>
     </div>
@@ -325,54 +382,64 @@
     </nav>
 
     <script>
+        // خيارات القراء العامة (يمكنك تعديل الروابط والأسماء بكل حرية)
+        const recitersOptions = [
+            { name: "الشيخ عبد الباسط عبد الصمد (مجود)", url: "https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3" },
+            { name: "قراء عراقيون (تلاوة عراقية مباركة)", url: "https://server8.mp3quran.net/shur/001.mp3" },
+            { name: "باسم الكربلائي (للأدعية والزيارات)", url: "https://www.example.com/basim_sample.mp3" },
+            { name: "أبا ذر الحلواجي (للأدعية والزيارات)", url: "https://www.example.com/halwachi_sample.mp3" },
+            { name: "قارئ إنجليزي (English Recitation)", url: "https://www.example.com/english_quran.mp3" },
+            { name: "قارئ فارسي (تلاوة إيرانية)", url: "https://www.example.com/farsi_quran.mp3" }
+        ];
+
         const localDuasData = [
-            { title: "دعاء العهد", category: "أدعية زمن الغيبة", content: "" },
-            { title: "دعاء كميل بن زياد", category: "أدعية مشهورة", content: "" },
-            { title: "دعاء التوسل", category: "أدعية الأيام", content: "" },
-            { title: "زيارة عاشوراء", category: "الزيارات المباركة", content: "" },
-            { title: "زيارة آل ياسين", category: "الزيارات المباركة", content: "" },
-            { title: "دعاء الفرج (الهي عَظُم البلاء)", category: "أدعية زمن الغيبة", content: "" },
-            { title: "دعاء الندبة", category: "أدعية زمن الغيبة", content: "" },
-            { title: "دعاء التوبة (الإمام السجاد)", category: "الصحيفة السجادية", content: "" },
-            { title: "دعاء مكارم الأخلاق", category: "الصحيفة السجادية", content: "" },
-            { title: "دعاء ابو حمزة الثمالي", category: "أدعية شهر رمضان", content: "" },
-            { title: "دعاء الإفتتاح", category: "أدعية شهر رمضان", content: "" },
-            { title: "دعاء السحور", category: "أدعية شهر رمضان", content: "" },
-            { title: "زيارة الإمام الحسين (ع) في يوم عرفة", category: "الزيارات المباركة", content: "" },
-            { title: "زيارة الأربعين", category: "الزيارات المباركة", content: "" },
-            { title: "زيارة أمين الله", category: "الزيارات المطلقة", content: "" },
-            { title: "زيارة الجامعة الكبيرة", category: "الزيارات المباركة", content: "" },
-            { title: "دعاء المشلول", category: "أدعية مستجابة", content: "" },
-            { title: "دعاء الجوشن الكبير", category: "أدعية القدر", content: "" },
-            { title: "دعاء الصباح للإمام علي (ع)", category: "أدعية الأيام", content: "" },
-            { title: "دعاء السمات", category: "أدعية العشيات", content: "" }
+            { title: "دعاء العهد", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
+            { title: "دعاء كميل بن زياد", category: "أدعية مشهورة", content: "", audioList: recitersOptions },
+            { title: "دعاء التوسل", category: "أدعية الأيام", content: "", audioList: recitersOptions },
+            { title: "زيارة عاشوراء", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
+            { title: "زيارة آل ياسين", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
+            { title: "دعاء الفرج (الهي عَظُم البلاء)", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
+            { title: "دعاء الندبة", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
+            { title: "دعاء التوبة (الإمام السجاد)", category: "الصحيفة السجادية", content: "", audioList: recitersOptions },
+            { title: "دعاء مكارم الأخلاق", category: "الصحيفة السجادية", content: "", audioList: recitersOptions },
+            { title: "دعاء ابو حمزة الثمالي", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
+            { title: "دعاء الإفتتاح", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
+            { title: "دعاء السحور", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام الحسين (ع) في يوم عرفة", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
+            { title: "زيارة الأربعين", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
+            { title: "زيارة أمين الله", category: "الزيارات المطلقة", content: "", audioList: recitersOptions },
+            { title: "زيارة الجامعة الكبيرة", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
+            { title: "دعاء المشلول", category: "أدعية مستجابة", content: "", audioList: recitersOptions },
+            { title: "دعاء الجوشن الكبير", category: "أدعية القدر", content: "", audioList: recitersOptions },
+            { title: "دعاء الصباح للإمام علي (ع)", category: "أدعية الأيام", content: "", audioList: recitersOptions },
+            { title: "دعاء السمات", category: "أدعية العشيات", content: "", audioList: recitersOptions }
         ];
 
         const masomeenData = [
-            { title: "زيارة النبي محمد صلى الله عليه وآله وسلم", category: "المعصوم الأول", content: "" },
-            { title: "زيارة الصديقة الطاهرة فاطمة الزهراء عليها السلام", category: "المعصوم الثاني", content: "" },
-            { title: "زيارة الإمام علي بن أبي طالب عليه السلام", category: "المعصوم الثالث", content: "" },
-            { title: "زيارة الإمام الحسن المجتبى عليه السلام", category: "المعصوم الرابع", content: "" },
-            { title: "زيارة الإمام الحسين بن علي عليهما السلام", category: "المعصوم الخامس", content: "" },
-            { title: "زيارة الإمام علي بن الحسين زين العابدين عليه السلام", category: "المعصوم السادس", content: "" },
-            { title: "زيارة الإمام محمد بن علي الباقر عليه السلام", category: "المعصوم السابع", content: "" },
-            { title: "زيارة الإمام جعفر بن محمد الصادق عليه السلام", category: "المعصوم الثامن", content: "" },
-            { title: "زيارة الإمام موسى بن جعفر الكظم عليه السلام", category: "المعصوم التاسع", content: "" },
-            { title: "زيارة الإمام علي بن موسى الرضا عليه السلام", category: "المعصوم العاشر", content: "" },
-            { title: "زيارة الإمام محمد بن علي الجواد عليه السلام", category: "المعصوم الحادي عشر", content: "" },
-            { title: "زيارة الإمام علي بن محمد الهادي عليه السلام", category: "المعصوم الثاني عشر", content: "" },
-            { title: "زيارة الإمام الحسن بن علي العسكري عليه السلام", category: "المعصوم الثالث عشر", content: "" },
-            { title: "زيارة الإمام الحجة بن الحسن المنتظر المهدي عجل الله فرجه", category: "المعصوم الرابع عشر", content: "" }
+            { title: "زيارة النبي محمد صلى الله عليه وآله وسلم", category: "المعصوم الأول", content: "", audioList: recitersOptions },
+            { title: "زيارة الصديقة الطاهرة فاطمة الزهراء عليها السلام", category: "المعصوم الثاني", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام علي بن أبي طالب عليه السلام", category: "المعصوم الثالث", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام الحسن المجتبى عليه السلام", category: "المعصوم الرابع", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام الحسين بن علي عليهما السلام", category: "المعصوم الخامس", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام علي بن الحسين زين العابدين عليه السلام", category: "المعصوم السادس", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام محمد بن علي الباقر عليه السلام", category: "المعصوم السابع", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام جعفر بن محمد الصادق عليه السلام", category: "المعصوم الثامن", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام موسى بن جعفر الكظم عليه السلام", category: "المعصوم التاسع", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام علي بن موسى الرضا عليه السلام", category: "المعصوم العاشر", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام محمد بن علي الجواد عليه السلام", category: "المعصوم الحادي عشر", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام علي بن محمد الهادي عليه السلام", category: "المعصوم الثاني عشر", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام الحسن بن علي العسكري عليه السلام", category: "المعصوم الثالث عشر", content: "", audioList: recitersOptions },
+            { title: "زيارة الإمام الحجة بن الحسن المنتظر المهدي عجل الله فرجه", category: "المعصوم الرابع عشر", content: "", audioList: recitersOptions }
         ];
 
         const taqibatData = [
-            { title: "تعقيب صلاة الفجر", category: "التعقيبات اليومية", content: "" },
-            { title: "تعقيب صلاة الظهر", category: "التعقيبات اليومية", content: "" },
-            { title: "تعقيب صلاة العصر", category: "التعقيبات اليومية", content: "" },
-            { title: "تعقيب صلاة المغرب", category: "التعقيبات اليومية", content: "" },
-            { title: "تعقيب صلاة العشاء", category: "التعقيبات اليومية", content: "" },
-            { title: "تسبيح الزهراء عليها السلام", category: "تعقيبات عامة", content: "" },
-            { title: "دعاء بعد كل فريضة", category: "تعقيبات عامة", content: "" }
+            { title: "تعقيب صلاة الفجر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
+            { title: "تعقيب صلاة الظهر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
+            { title: "تعقيب صلاة العصر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
+            { title: "تعقيب صلاة المغرب", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
+            { title: "تعقيب صلاة العشاء", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
+            { title: "تسبيح الزهراء عليها السلام", category: "تعقيبات عامة", content: "", audioList: recitersOptions },
+            { title: "دعاء بعد كل فريضة", category: "تعقيبات عامة", content: "", audioList: recitersOptions }
         ];
 
         function renderList(items, containerId, openFunc) {
@@ -397,26 +464,49 @@
             container.innerHTML = html;
         }
 
-        function openDuaItem(index) {
-            document.getElementById('readerTitle').innerText = localDuasData[index].title;
-            document.getElementById('readerText').innerText = localDuasData[index].content;
+        function setupAudioPlayer(audioList) {
+            const select = document.getElementById('audioSourceSelect');
+            const player = document.getElementById('activeAudioPlayer');
+            select.innerHTML = '';
+            
+            if(!audioList || audioList.length === 0) {
+                select.innerHTML = `<option>لا توجد ملفات صوتية متاحة</option>`;
+                player.src = '';
+                return;
+            }
+
+            audioList.forEach((audio, idx) => {
+                const opt = document.createElement('option');
+                opt.value = audio.url;
+                opt.innerText = audio.name;
+                select.appendChild(opt);
+            });
+
+            player.src = audioList[0].url;
+            player.load();
+        }
+
+        function changeAudioSource() {
+            const select = document.getElementById('audioSourceSelect');
+            const player = document.getElementById('activeAudioPlayer');
+            player.src = select.value;
+            player.load();
+        }
+
+        function openItemGeneric(item) {
+            document.getElementById('readerTitle').innerText = item.title;
+            document.getElementById('readerText').innerText = item.content;
+            setupAudioPlayer(item.audioList);
             document.getElementById('fullscreenReader').classList.add('active');
         }
 
-        function openMasomeenItem(index) {
-            document.getElementById('readerTitle').innerText = masomeenData[index].title;
-            document.getElementById('readerText').innerText = masomeenData[index].content;
-            document.getElementById('fullscreenReader').classList.add('active');
-        }
-
-        function openTaqibatItem(index) {
-            document.getElementById('readerTitle').innerText = taqibatData[index].title;
-            document.getElementById('readerText').innerText = taqibatData[index].content;
-            document.getElementById('fullscreenReader').classList.add('active');
-        }
+        function openDuaItem(index) { openItemGeneric(localDuasData[index]); }
+        function openMasomeenItem(index) { openItemGeneric(masomeenData[index]); }
+        function openTaqibatItem(index) { openItemGeneric(taqibatData[index]); }
 
         function closeFullscreen() {
             document.getElementById('fullscreenReader').classList.remove('active');
+            document.getElementById('activeAudioPlayer').pause();
         }
 
         function showTab(sectionId, btn) {
@@ -446,6 +536,63 @@
 
         function filterQuran() {}
 
+        let audioAlertsEnabled = false;
+        function enableAudioAlerts() {
+            audioAlertsEnabled = true;
+            alert("تم تفعيل تنبيهات الأذان بنجاح! سيتم تشغيل الأذان تلقائياً عند دخول وقت الصلاة.");
+        }
+
         async function fetchPrayerTimes() {
-            const city = docum
-            
+            const city = document.getElementById('citySelect').value;
+            try {
+                const res = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=Iraq&method=4`);
+                const data = await res.json();
+                if(data && data.code === 200) {
+                    const timings = data.data.timings;
+                    document.getElementById('fajr').innerText = timings.Fajr;
+                    document.getElementById('sunrise').innerText = timings.Sunrise;
+                    document.getElementById('dhuhr').innerText = timings.Dhuhr;
+                    document.getElementById('asr').innerText = timings.Asr;
+                    document.getElementById('maghrib').innerText = timings.Maghrib;
+                    document.getElementById('isha').innerText = timings.Isha;
+
+                    if(audioAlertsEnabled) {
+                        checkPrayerTimeAlerts(timings);
+                    }
+                }
+            } catch(e) {
+                console.log("خطأ في جلب الأوقات");
+            }
+        }
+
+        function checkPrayerTimeAlerts(timings) {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+
+            const prayerKeys = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+            prayerKeys.forEach(pKey => {
+                if(timings[pKey] === currentTime) {
+                    playAdhanAudio();
+                }
+            });
+        }
+
+        function playAdhanAudio() {
+            const adhanSelect = document.getElementById('adhanVoiceSelect');
+            const adhanPlayer = new Audio(adhanSelect.value);
+            adhanPlayer.play().catch(err => console.log("مانع التشغيل التلقائي متوقف"));
+        }
+
+        // فحص الأوقات كل دقيقة
+        setInterval(fetchPrayerTimes, 60000);
+
+        // تشغيل أولي عند تحميل الصفحة
+        renderList(localDuasData, 'duaListContainer', 'openDuaItem');
+        renderList(masomeenData, 'masomeenListContainer', 'openMasomeenItem');
+        renderList(taqibatData, 'taqibatListContainer', 'openTaqibatItem');
+        fetchPrayerTimes();
+    </script>
+</body>
+</html>
