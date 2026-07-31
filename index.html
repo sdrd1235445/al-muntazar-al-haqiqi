@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة المنتظر الحقيقي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,33 +21,22 @@
 
         body {
             background-color: var(--bg-primary);
-            /* خلفية زخرفية إسلامية مريحة جداً للعين */
-            background-image: radial-gradient(#1c2541 1px, transparent 1px), radial-gradient(#1c2541 1px, #0a1128 1px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
             color: var(--text-primary);
             padding-bottom: 90px;
+            min-height: 100vh;
         }
 
         header {
             background: linear-gradient(135deg, #064e3b, #0a1128);
-            padding: 2.5rem 1rem 1.5rem;
+            padding: 1.5rem 1rem;
             text-align: center;
             border-bottom: 3px solid var(--gold-color);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
 
-        .logo-title {
-            font-family: 'Amiri', serif;
-            font-size: 2.4rem;
-            color: var(--gold-color);
-            text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-        }
+        .logo-title { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--gold-color); }
 
-        .subtitle { font-size: 0.95rem; color: #e2e8f0; margin-top: 5px; }
-
-        .location-select-box {
-            margin-top: 15px;
+        .location-box {
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -58,20 +47,20 @@
             background: var(--card-bg);
             color: var(--gold-color);
             border: 1px solid var(--gold-color);
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             outline: none;
+            cursor: pointer;
         }
 
-        .container { max-width: 680px; margin: 0 auto; padding: 1rem; }
+        .container { max-width: 760px; margin: 0 auto; padding: 1rem; }
 
         .card {
             background-color: var(--card-bg);
             border-radius: 16px;
             padding: 1.2rem;
             margin-bottom: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
         }
 
@@ -97,11 +86,10 @@
             background: var(--card-inner);
             padding: 10px;
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .prayer-name { font-size: 0.8rem; color: var(--text-secondary); }
-        .prayer-time { font-weight: bold; color: var(--accent-color); font-size: 1rem; margin-top: 4px; }
+        .prayer-name { font-size: 0.85rem; color: var(--text-secondary); }
+        .prayer-time { font-weight: bold; color: var(--accent-color); font-size: 1.1rem; margin-top: 4px; }
 
         .quick-nav {
             display: grid;
@@ -112,73 +100,94 @@
 
         .nav-button {
             background: var(--card-bg);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-            padding: 0.85rem;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 1rem;
             border-radius: 12px;
             color: var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
             cursor: pointer;
+            font-size: 1rem;
         }
 
-        .nav-button i { color: var(--gold-color); }
-
-        .content-section { display: none; }
-        .active-section { display: block; }
-
-        .hadith-quote {
-            background: rgba(251, 191, 36, 0.08);
-            border-right: 4px solid var(--gold-color);
-            padding: 10px 14px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-            color: #fef08a;
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
-        }
-
-        .dua-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.3rem;
-            line-height: 2.4;
-            text-align: justify;
-            color: #f8fafc;
+        .search-box {
+            width: 100%;
+            padding: 12px;
             background: var(--card-inner);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             max-height: 450px;
             overflow-y: auto;
         }
 
-        .dua-selector {
-            width: 100%;
-            padding: 10px;
-            background: var(--card-inner);
-            color: var(--gold-color);
-            border: 1px solid var(--gold-color);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        /* القرآن الكريم API */
-        .quran-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .quran-controls select {
-            flex: 1;
-            padding: 10px;
+        .list-btn {
             background: var(--card-inner);
             color: var(--text-primary);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 14px;
+            border-radius: 10px;
+            text-align: right;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bismillah-header {
+            text-align: center;
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--gold-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .fullscreen-reader {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #070c1e;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .fullscreen-reader.active { display: flex; }
+
+        .fullscreen-header {
+            background: #0d162d;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold-color);
+        }
+
+        .fullscreen-content {
+            flex: 1;
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .reader-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            line-height: 2.4;
+            text-align: justify;
         }
 
         nav.bottom-bar {
@@ -187,13 +196,13 @@
             background: #070d19;
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 12px 0;
             border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .tab-item {
             color: var(--text-secondary);
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -202,38 +211,50 @@
         }
 
         .tab-item.active { color: var(--gold-color); }
+        .content-section { display: none; }
+        .active-section { display: block; }
     </style>
 </head>
 <body>
 
     <header>
         <h1 class="logo-title">المنتظر الحقيقي</h1>
-        <p class="subtitle">زادك الروحي واليومي لاستقبال صاحب الزمان (عج)</p>
-        
-        <!-- اختيار المحافظة لتحديد الأذان بدقة -->
-        <div class="location-select-box">
+        <div class="location-box">
             <i class="fa-solid fa-location-dot" style="color: var(--gold-color);"></i>
-            <span style="font-size: 0.85rem;">اختر المحافظة:</span>
+            <span>المحافظة:</span>
+            <!-- المحافظات الـ 18 كاملة ومربوطة بمصادر الأذان المباشرة -->
             <select id="citySelect" class="city-select" onchange="fetchPrayerTimes()">
+                <option value="Al Qadisiyyah">الديوانية</option>
                 <option value="Najaf">النجف الأشرف</option>
                 <option value="Karbala">كربلاء المقدسة</option>
                 <option value="Baghdad">بغداد</option>
-                <option value="Al Qadisiyyah">الديوانية / القادسية</option>
                 <option value="Basra">البصرة</option>
+                <option value="Babil">بابل (الحلة)</option>
+                <option value="Dhi Qar">ذي قار (الناصرية)</option>
+                <option value="Maysan">ميسان (العمارة)</option>
+                <option value="Wasit">واسط (الكوت)</option>
+                <option value="Muthanna">المثنى (السماوة)</option>
+                <option value="Diyala">ديالى (بعقوبة)</option>
+                <option value="Saladin">صلاح الدين (تكريت)</option>
+                <option value="Kirkuk">كركوك</option>
+                <option value="Nineveh">نينوى (الموصل)</option>
+                <option value="Anbar">الأنبار (الرمادي)</option>
                 <option value="Erbil">أربيل</option>
+                <option value="Sulaymaniyah">السليمانية</option>
+                <option value="Duhok">دهوك</option>
             </select>
         </div>
     </header>
 
     <div class="container">
 
-        <!-- مواقيت الصلاة -->
+        <!-- مواقيت الصلاة والأذان المباشرة لجميع المحافظات -->
         <div class="card">
             <div class="card-title">
                 <i class="fa-solid fa-kaaba"></i>
-                <span>مواقيت الصلاة والأذان اليومية</span>
+                <span>مواقيت الصلاة والأذان المباشرة</span>
             </div>
-            <div class="prayer-grid" id="prayerGrid">
+            <div class="prayer-grid">
                 <div class="prayer-box"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajr">--:--</div></div>
                 <div class="prayer-box"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunrise">--:--</div></div>
                 <div class="prayer-box"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhr">--:--</div></div>
@@ -243,109 +264,116 @@
             </div>
         </div>
 
-        <!-- التنقل السريع -->
         <div class="quick-nav">
-            <button class="nav-button" onclick="showTab('duasSection')"><i class="fa-solid fa-scroll"></i> الأعيان والأدعية الكاملة</button>
-            <button class="nav-button" onclick="showTab('quranSection')"><i class="fa-solid fa-book-quran"></i> القرآن الكريم كاملاً</button>
-            <button class="nav-button" onclick="showTab('nightPrayer')"><i class="fa-solid fa-moon"></i> صلاة الليل وفوائدها</button>
-            <button class="nav-button" onclick="showTab('benefitsSection')"><i class="fa-solid fa-quote-right"></i> فوائد كل عمل ورواياته</button>
+            <button class="nav-button" onclick="showTab('duasSection')"><i class="fa-solid fa-scroll"></i> موسوعة الأدعية (ربط برنامج)</button>
+            <button class="nav-button" onclick="showTab('quranSection')"><i class="fa-solid fa-book-quran"></i> المصحف الشريف كاملاً</button>
         </div>
 
-        <!-- قسم الأدعية والزيارات الشامل -->
+        <!-- قسم الأدعية المربوطة ببرنامج وقاعدة بيانات سحابية -->
         <div id="duasSection" class="card content-section active-section">
-            <div class="card-title"><i class="fa-solid fa-scroll"></i> <span>الأدعية والزيارات المباركة (النصوص الكاملة)</span></div>
-            
-            <select id="duaSelect" class="dua-selector" onchange="changeDua()">
-                <option value="ahd">دعاء العهد (كاملاً)</option>
-                <option value="faraj">دعاء الفرج (إلهي عظم البلاء)</option>
-                <option value="kumayl">دعاء كميل بن زياد</option>
-                <option value="sabah">دعاء الصباح للأمير (ع)</option>
-                <option value="yasin">زيارة آل ياسين</option>
-                <option value="ashura">زيارة عاشوراء</option>
-            </select>
-
-            <div id="duaBenefitBox" class="hadith-quote"></div>
-            <div id="duaDisplay" class="dua-text"></div>
+            <div class="card-title"><i class="fa-solid fa-scroll"></i> <span>الأدعية والزيارات (من برنامج سحابي)</span></div>
+            <input type="text" id="duaSearch" class="search-box" placeholder="ابحث عن دعاء أو زيارة..." onkeyup="filterDuas()">
+            <div class="item-list" id="duaListContainer">
+                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري جلب الأدعية من البرنامج...</div>
+            </div>
         </div>
 
-        <!-- قسم القرآن الكريم كاملاً عبر API -->
+        <!-- قسم المصحف الشريف -->
         <div id="quranSection" class="card content-section">
-            <div class="card-title"><i class="fa-solid fa-book-quran"></i> <span>المصحف الشريف كاملاً (114 سورة)</span></div>
-            
-            <div class="quran-controls">
-                <select id="surahSelect" onchange="loadSurah()">
-                    <option value="">جاري تحميل قائمة السور...</option>
-                </select>
+            <div class="card-title"><i class="fa-solid fa-book-quran"></i> <span>المصحف الشريف (114 سورة)</span></div>
+            <input type="text" id="quranSearch" class="search-box" placeholder="ابحث عن سورة..." onkeyup="filterQuran()">
+            <div class="item-list" id="quranListContainer">
+                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري جلب سور القرآن...</div>
             </div>
-
-            <div id="quranDisplay" class="dua-text" style="font-size: 1.4rem;">اختر السورة لمطالعتها بالكامل...</div>
-        </div>
-
-        <!-- صلاة الليل -->
-        <div id="nightPrayer" class="card content-section">
-            <div class="card-title"><i class="fa-solid fa-moon"></i> <span>تفاصيل صلاة الليل وقضاء الحوائج</span></div>
-            <div class="hadith-quote">عن الصادق (ع): «صلاة الليل تبيّض الوجه، وتذهب بالهم، وتجلب الرزق».</div>
-            <div class="dua-text" style="font-size: 1rem; font-family: 'Tajawal';">
-                <strong>طريقة الصلاة التفصيلية:</strong><br>
-                1. <strong>نافلة الليل:</strong> 8 ركعات (تُصلى ركعتين ركعتين كصلاة الصبح).<br>
-                2. <strong>صلاة الشفع:</strong> ركعتان (الأولى بالفاتحة والناس، والثانية بالفاتحة والفلق).<br>
-                3. <strong>صلاة الوتر:</strong> ركعة واحدة (الفاتحة والتوحيد 3 مرات، ثم القنوت والاستغفار 70 مرة، والدعاء لـ 40 مؤمناً).
-            </div>
-        </div>
-
-        <!-- فوائد الأعمال والروايات -->
-        <div id="benefitsSection" class="card content-section">
-            <div class="card-title"><i class="fa-solid fa-quote-right"></i> <span>أسرار وفوائد الأعمال العبادية</span></div>
-            <div class="hadith-quote"><strong>فضل دعاء العهد:</strong> من دعا به 40 صباحاً كان من أنصار القائم (عج).</div>
-            <div class="hadith-quote"><strong>فضل النوافل اليومية:</strong> «ما يزال عبدي يتقرب إليّ بالنوافل حتى أحبه...».</div>
-            <div class="hadith-quote"><strong>فضل زيارة عاشوراء:</strong> ضمان قضاء الحوائج وغفران الذنوب ورفع الدرجات.</div>
         </div>
 
     </div>
 
+    <!-- شاشة القراءة الكاملة -->
+    <div id="fullscreenReader" class="fullscreen-reader">
+        <div class="fullscreen-header">
+            <div style="color: var(--gold-color); font-family: 'Amiri', serif; font-size: 1.4rem;" id="readerTitle">العنوان</div>
+            <button onclick="closeFullscreen()" style="background:none; border:none; color:#fff; font-size: 1.6rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="fullscreen-content">
+            <div id="bismillahHeader" class="bismillah-header" style="display:none;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div id="readerText" class="reader-text"></div>
+        </div>
+    </div>
+
     <nav class="bottom-bar">
-        <div class="tab-item active" onclick="showTab('duasSection')"><i class="fa-solid fa-house"></i>الرئيسية</div>
-        <div class="tab-item" onclick="showTab('quranSection')"><i class="fa-solid fa-book-quran"></i>القرآن</div>
-        <div class="tab-item" onclick="showTab('duasSection')"><i class="fa-solid fa-scroll"></i>الأدعية</div>
-        <div class="tab-item" onclick="showTab('benefitsSection')"><i class="fa-solid fa-quote-right"></i>الفوائد</div>
+        <div class="tab-item active" onclick="showTab('duasSection')"><i class="fa-solid fa-scroll"></i>الأدعية والزيارات</div>
+        <div class="tab-item" onclick="showTab('quranSection')"><i class="fa-solid fa-book-quran"></i>القرآن الكريم</div>
     </nav>
 
     <script>
-        // بيانات الأدعية والفوائد
-        const duaData = {
-            ahd: {
-                benefit: "روي عن الإمام الصادق (ع): من دعا إلى الله أربعين صباحاً بهذا العهد كان من أنصار قائمنا.",
-                text: "اَللَّهُمَّ رَبَّ النُّورِ الْعَظِيمِ، وَرَبَّ الْكُرْسِيِّ الرَّفِيعِ، وَرَبَّ الْبَحْرِ الْمَسْجُورِ، وَمُنْزِلَ التَّوْرَاةِ وَالْإِنْجِيلِ وَالزَّبُورِ، وَرَبَّ الظِّلِّ وَالْحَرُورِ، وَمُنْزِلَ الْقُرْآنِ الْعَظِيمِ... (كامل النص)"
-            },
-            faraj: {
-                benefit: "دعاء مستجاب عند الشدائد والأزمات للتعجيل بفرج صاحب الزمان (عج).",
-                text: "إِلَهِي عَظُمَ الْبَلاءُ، وَبَرِحَ الْخَفَاءُ، وَانْكَشَفَ الْغِطَاءُ، وَانْقَطَعَ الرَّجَاءُ، وَضَاقَتِ الأَرْضُ، وَمُنِعَتِ السَّمَاءُ..."
-            },
-            kumayl: {
-                benefit: "روي عن أمير المؤمنين (ع): يقي من شر الأعداء، ويفتح أبواب الرزق، ويغفر الذنوب.",
-                text: "اَللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ، وَبِقُوَّتِكَ الَّتِي قَهَرْتَ بِهَا كُلَّ شَيْءٍ..."
-            },
-            sabah: {
-                benefit: "يُقرأ بعد فجر كل يوم لطلب البركة والرزق والحفظ الإلهي.",
-                text: "اللَّهُمَّ يَا مَنْ دَلَعَ لِسَانَ الصَّبَاحِ بِنُطْقِ تَبَلُّجِهِ، وَسَرَّحَ قِطَعَ اللَّيْلِ الْمُظْلِمِ بِإِتْلاَمِ دَجِيجِهِ..."
-            },
-            yasin: {
-                benefit: "زيارة مأثورة منسوبة للإمام المهدي (عج) لربط القلوب بوصل صاحب العصر.",
-                text: "سَلامٌ عَلَى آلِ يس، السَّلامُ عَلَيْكَ يَا دَاعِيَ اللَّهِ وَرَبَّانِيَّ آيَاتِهِ..."
-            },
-            ashura: {
-                benefit: "من داوم عليها ضمنت له الملائكة الحفظ وقضاء الحوائج ونيل الشفاعة.",
-                text: "السَّلامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ، السَّلامُ عَلَيْكَ يَا بْنَ رَسُولِ اللَّهِ..."
-            }
-        };
+        // ربط برنامج الأدعية عبر قاعدة بيانات سحابية متكاملة
+        let loadedDuas = [];
 
-        function changeDua() {
-            const selected = document.getElementById('duaSelect').value;
-            document.getElementById('duaBenefitBox').innerText = duaData[selected].benefit;
-            document.getElementById('duaDisplay').innerText = duaData[selected].text;
+        function fetchDuasFromAPI() {
+            fetch('https://raw.githubusercontent.com/islamic-dos/islamic-database/main/duas.json')
+                .then(res => res.json())
+                .then(data => {
+                    loadedDuas = data;
+                    renderDuas(loadedDuas);
+                })
+                .catch(() => {
+                    // مصدر احتياطي شامل للبرنامج
+                    fetch('https://api.hisnmuslim.com/api/ar/husn.json')
+                        .then(res => res.json())
+                        .then(data => {
+                            let keys = Object.keys(data);
+                            loadedDuas = keys.map(k => ({
+                                title: data[k][0].CATEGORY,
+                                text: data[k].map(i => i.ARABIC_TEXT).join('\n\n')
+                            }));
+                            renderDuas(loadedDuas);
+                        });
+                });
         }
 
-        // جلب أوقات الصلاة حسب المحافظة المختارة
+        function renderDuas(duas) {
+            const container = document.getElementById('duaListContainer');
+            let html = '';
+            duas.forEach((d, idx) => {
+                html += `<div class="list-btn" onclick="openDuaDetail(${idx})">
+                    <span>${d.title || d.category}</span>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function filterDuas() {
+            const q = document.getElementById('duaSearch').value.toLowerCase();
+            const filtered = loadedDuas.filter(d => (d.title || d.category || '').toLowerCase().includes(q));
+            renderDuas(filtered);
+        }
+
+        function openDuaDetail(idx) {
+            const item = loadedDuas[idx];
+            if(item) {
+                document.getElementById('bismillahHeader').style.display = 'none';
+                openFullscreen(item.title || item.category, item.text || item.arabic_text);
+            }
+        }
+
+        function openFullscreen(title, text) {
+            document.getElementById('readerTitle').innerText = title;
+            document.getElementById('readerText').innerText = text;
+            document.getElementById('fullscreenReader').classList.add('active');
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenReader').classList.remove('active');
+        }
+
+        function showTab(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(id).classList.add('active-section');
+        }
+
+        // جلب أوقات الصلاة المباشرة لجميع المحافظات الـ 18
         function fetchPrayerTimes() {
             const city = document.getElementById('citySelect').value;
             fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=Iraq&method=7`)
@@ -361,41 +389,68 @@
                 });
         }
 
-        // جلب قائمة السور القرآنية كاملاً
-        function loadQuranList() {
+        // جلب المصحف وفصل البسملة تماماً
+        let quranSurahs = [];
+        function fetchQuranList() {
             fetch('https://api.alquran.cloud/v1/surah')
                 .then(res => res.json())
                 .then(data => {
-                    let html = '<option value="">-- اختر السورة --</option>';
-                    data.data.forEach(s => {
-                        html += `<option value="${s.number}">${s.number}. ${s.name} (${s.englishNameTranslation})</option>`;
-                    });
-                    document.getElementById('surahSelect').innerHTML = html;
+                    quranSurahs = data.data;
+                    renderQuran(quranSurahs);
                 });
         }
 
-        function loadSurah() {
-            const num = document.getElementById('surahSelect').value;
-            if(!num) return;
-            document.getElementById('quranDisplay').innerText = "جاري تحميل السورة المباركة...";
-            fetch(`https://api.alquran.cloud/v1/surah/${num}`)
+        function renderQuran(surahs) {
+            const container = document.getElementById('quranListContainer');
+            let html = '';
+            surahs.forEach(s => {
+                html += `<div class="list-btn" onclick="openSurah(${s.number}, '${s.name}')">
+                    <span>${s.number}. سورة ${s.name} (${s.numberOfAyahs} آية)</span>
+                    <i class="fa-solid fa-book-open"></i>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function filterQuran() {
+            const q = document.getElementById('quranSearch').value.toLowerCase();
+            const filtered = quranSurahs.filter(s => s.name.includes(q) || s.number.toString() === q);
+            renderQuran(filtered);
+        }
+
+        function openSurah(num, name) {
+            document.getElementById('readerTitle').innerText = `سورة ${name}`;
+            document.getElementById('readerText').innerText = "جاري تحميل السورة المباركة...";
+            document.getElementById('fullscreenReader').classList.add('active');
+
+            fetch(`https://api.alquran.cloud/v1/surah/${num}/quran-uthmani`)
                 .then(res => res.json())
                 .then(data => {
-                    let text = data.data.ayahs.map(a => a.text).join(' ۝ ');
-                    document.getElementById('quranDisplay').innerText = text;
+                    let ayahs = data.data.ayahs;
+                    let text = "";
+
+                    if (num !== 1 && num !== 9) {
+                        document.getElementById('bismillahHeader').style.display = 'block';
+                        let firstAyah = ayahs[0].text.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "").trim();
+                        text += firstAyah + " ﴿١﴾ ";
+                        for (let i = 1; i < ayahs.length; i++) {
+                            text += ayahs[i].text + ` ﴿${i + 1}﴾ `;
+                        }
+                    } else {
+                        document.getElementById('bismillahHeader').style.display = 'none';
+                        for (let i = 0; i < ayahs.length; i++) {
+                            text += ayahs[i].text + ` ﴿${i + 1}﴾ `;
+                        }
+                    }
+
+                    document.getElementById('readerText').innerText = text;
                 });
         }
 
-        function showTab(id) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section'));
-            document.getElementById(id).classList.add('active-section');
-        }
-
-        // التشغيل الأولي
         window.onload = function() {
             fetchPrayerTimes();
-            changeDua();
-            loadQuranList();
+            fetchDuasFromAPI();
+            fetchQuranList();
         };
     </script>
 </body>
