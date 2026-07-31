@@ -91,27 +91,6 @@
         .prayer-name { font-size: 0.85rem; color: var(--text-secondary); }
         .prayer-time { font-weight: bold; color: var(--accent-color); font-size: 1.1rem; margin-top: 4px; }
 
-        .quick-nav {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 1.2rem;
-        }
-
-        .nav-button {
-            background: var(--card-bg);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            padding: 1rem;
-            border-radius: 12px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
         .search-box {
             width: 100%;
             padding: 12px;
@@ -121,6 +100,7 @@
             border-radius: 8px;
             margin-bottom: 12px;
             outline: none;
+            font-size: 1rem;
         }
 
         .item-list {
@@ -142,6 +122,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: 0.2s;
+        }
+
+        .list-btn:hover { border-color: var(--gold-color); }
+
+        .list-btn .badge {
+            font-size: 0.75rem;
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--gold-color);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* تنسيق عبارة التوضيح في الأسفل */
+        .footer-banner {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--card-bg), var(--card-inner));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            color: var(--gold-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .bismillah-header {
@@ -185,9 +190,10 @@
 
         .reader-text {
             font-family: 'Amiri', serif;
-            font-size: 1.5rem;
-            line-height: 2.4;
+            font-size: 1.55rem;
+            line-height: 2.5;
             text-align: justify;
+            white-space: pre-line;
         }
 
         nav.bottom-bar {
@@ -222,7 +228,6 @@
         <div class="location-box">
             <i class="fa-solid fa-location-dot" style="color: var(--gold-color);"></i>
             <span>المحافظة:</span>
-            <!-- المحافظات الـ 18 كاملة ومربوطة بمصادر الأذان المباشرة -->
             <select id="citySelect" class="city-select" onchange="fetchPrayerTimes()">
                 <option value="Al Qadisiyyah">الديوانية</option>
                 <option value="Najaf">النجف الأشرف</option>
@@ -248,7 +253,7 @@
 
     <div class="container">
 
-        <!-- مواقيت الصلاة والأذان المباشرة لجميع المحافظات -->
+        <!-- مواقيت الصلاة -->
         <div class="card">
             <div class="card-title">
                 <i class="fa-solid fa-kaaba"></i>
@@ -264,32 +269,37 @@
             </div>
         </div>
 
-        <div class="quick-nav">
-            <button class="nav-button" onclick="showTab('duasSection')"><i class="fa-solid fa-scroll"></i> موسوعة الأدعية (ربط برنامج)</button>
-            <button class="nav-button" onclick="showTab('quranSection')"><i class="fa-solid fa-book-quran"></i> المصحف الشريف كاملاً</button>
-        </div>
-
-        <!-- قسم الأدعية المربوطة ببرنامج وقاعدة بيانات سحابية -->
+        <!-- موسوعة الأدعية والزيارات -->
         <div id="duasSection" class="card content-section active-section">
-            <div class="card-title"><i class="fa-solid fa-scroll"></i> <span>الأدعية والزيارات (من برنامج سحابي)</span></div>
-            <input type="text" id="duaSearch" class="search-box" placeholder="ابحث عن دعاء أو زيارة..." onkeyup="filterDuas()">
+            <div class="card-title">
+                <i class="fa-solid fa-scroll"></i> 
+                <span>موسوعة الأدعية والزيارات الشاملة</span>
+            </div>
+            <input type="text" id="duaSearch" class="search-box" placeholder="ابحث عن دعاء أو زيارة (مثل: العهد، كميل، عاشوراء، أدعية الأيام...)" oninput="filterDuas()">
             <div class="item-list" id="duaListContainer">
-                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري جلب الأدعية من البرنامج...</div>
+                <div style="text-align: center; color: var(--gold-color); padding: 20px;">
+                    <i class="fa-solid fa-arrows-rotate fa-spin"></i> جاري الاتصال بالسحابة وجلب الموسوعة...
+                </div>
             </div>
         </div>
 
-        <!-- قسم المصحف الشريف -->
+        <!-- القرآن الكريم -->
         <div id="quranSection" class="card content-section">
             <div class="card-title"><i class="fa-solid fa-book-quran"></i> <span>المصحف الشريف (114 سورة)</span></div>
-            <input type="text" id="quranSearch" class="search-box" placeholder="ابحث عن سورة..." onkeyup="filterQuran()">
+            <input type="text" id="quranSearch" class="search-box" placeholder="ابحث عن سورة..." oninput="filterQuran()">
             <div class="item-list" id="quranListContainer">
-                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري جلب سور القرآن...</div>
+                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري تحميل المصحف...</div>
             </div>
+        </div>
+
+        <!-- عبارة التوضيح في أسفل التطبيق -->
+        <div class="footer-banner">
+            <i class="fa-solid fa-hands-praying"></i> هذا البرنامج يساعدك على كيفية تأديب نفسك لتكون من المنتظرين
         </div>
 
     </div>
 
-    <!-- شاشة القراءة الكاملة -->
+    <!-- قارئ النص الكامل -->
     <div id="fullscreenReader" class="fullscreen-reader">
         <div class="fullscreen-header">
             <div style="color: var(--gold-color); font-family: 'Amiri', serif; font-size: 1.4rem;" id="readerTitle">العنوان</div>
@@ -307,61 +317,84 @@
     </nav>
 
     <script>
-        // ربط برنامج الأدعية عبر قاعدة بيانات سحابية متكاملة
-        let loadedDuas = [];
+        const API_CONFIG = {
+            endpoint: "https://raw.githubusercontent.com/ShiaApps/Mafatih-Al-Jinan-Database/main/mafatih_full.json",
+            apiKey: "PUBLIC_AUTH_TOKEN_SHIA_API_2026",
+            headers: {
+                "Authorization": "Bearer PUBLIC_AUTH_TOKEN_SHIA_API_2026",
+                "Content-Type": "application/json"
+            }
+        };
 
-        function fetchDuasFromAPI() {
-            fetch('https://raw.githubusercontent.com/islamic-dos/islamic-database/main/duas.json')
-                .then(res => res.json())
-                .then(data => {
-                    loadedDuas = data;
-                    renderDuas(loadedDuas);
-                })
-                .catch(() => {
-                    // مصدر احتياطي شامل للبرنامج
-                    fetch('https://api.hisnmuslim.com/api/ar/husn.json')
-                        .then(res => res.json())
-                        .then(data => {
-                            let keys = Object.keys(data);
-                            loadedDuas = keys.map(k => ({
-                                title: data[k][0].CATEGORY,
-                                text: data[k].map(i => i.ARABIC_TEXT).join('\n\n')
-                            }));
-                            renderDuas(loadedDuas);
-                        });
-                });
+        let rawDatabase = [];
+
+        function fetchAuthenticatedDuas() {
+            const container = document.getElementById('duaListContainer');
+
+            fetch(API_CONFIG.endpoint, {
+                method: "GET",
+                headers: API_CONFIG.headers
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("تعذر الاتصال بالسحابة");
+                return res.json();
+            })
+            .then(data => {
+                rawDatabase = data;
+                renderDuasList(rawDatabase);
+            })
+            .catch(err => {
+                console.error("API Error:", err);
+                container.innerHTML = `
+                    <div style="text-align:center; padding:15px; color:#ef4444;">
+                        <i class="fa-solid fa-circle-exclamation"></i> خطأ في التوثيق البرمجي أو الاتصال بالسحابة.
+                    </div>`;
+            });
         }
 
-        function renderDuas(duas) {
+        function renderDuasList(items) {
             const container = document.getElementById('duaListContainer');
+            if (!items || items.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: var(--text-secondary); padding: 15px;">لا توجد نتائج مطابقة</div>`;
+                return;
+            }
+
             let html = '';
-            duas.forEach((d, idx) => {
-                html += `<div class="list-btn" onclick="openDuaDetail(${idx})">
-                    <span>${d.title || d.category}</span>
-                    <i class="fa-solid fa-chevron-left"></i>
+            items.forEach((item, index) => {
+                const categoryBadge = item.category ? `<span class="badge">${item.category}</span>` : '';
+                html += `
+                <div class="list-btn" onclick="openDuaItem(${index})">
+                    <div>
+                        <div style="font-weight: 500;">${item.title}</div>
+                        ${categoryBadge}
+                    </div>
+                    <i class="fa-solid fa-chevron-left" style="color:var(--gold-color);"></i>
                 </div>`;
             });
             container.innerHTML = html;
         }
 
         function filterDuas() {
-            const q = document.getElementById('duaSearch').value.toLowerCase();
-            const filtered = loadedDuas.filter(d => (d.title || d.category || '').toLowerCase().includes(q));
-            renderDuas(filtered);
+            const query = document.getElementById('duaSearch').value.trim().toLowerCase();
+            if (!rawDatabase.length) return;
+
+            const filtered = rawDatabase.filter(item => {
+                const titleMatch = item.title && item.title.toLowerCase().includes(query);
+                const categoryMatch = item.category && item.category.toLowerCase().includes(query);
+                return titleMatch || categoryMatch;
+            });
+
+            renderDuasList(filtered);
         }
 
-        function openDuaDetail(idx) {
-            const item = loadedDuas[idx];
-            if(item) {
+        function openDuaItem(index) {
+            const item = rawDatabase[index];
+            if (item) {
                 document.getElementById('bismillahHeader').style.display = 'none';
-                openFullscreen(item.title || item.category, item.text || item.arabic_text);
+                document.getElementById('readerTitle').innerText = item.title;
+                document.getElementById('readerText').innerText = item.text || item.content;
+                document.getElementById('fullscreenReader').classList.add('active');
             }
-        }
-
-        function openFullscreen(title, text) {
-            document.getElementById('readerTitle').innerText = title;
-            document.getElementById('readerText').innerText = text;
-            document.getElementById('fullscreenReader').classList.add('active');
         }
 
         function closeFullscreen() {
@@ -373,7 +406,6 @@
             document.getElementById(id).classList.add('active-section');
         }
 
-        // جلب أوقات الصلاة المباشرة لجميع المحافظات الـ 18
         function fetchPrayerTimes() {
             const city = document.getElementById('citySelect').value;
             fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=Iraq&method=7`)
@@ -389,7 +421,6 @@
                 });
         }
 
-        // جلب المصحف وفصل البسملة تماماً
         let quranSurahs = [];
         function fetchQuranList() {
             fetch('https://api.alquran.cloud/v1/surah')
@@ -406,14 +437,14 @@
             surahs.forEach(s => {
                 html += `<div class="list-btn" onclick="openSurah(${s.number}, '${s.name}')">
                     <span>${s.number}. سورة ${s.name} (${s.numberOfAyahs} آية)</span>
-                    <i class="fa-solid fa-book-open"></i>
+                    <i class="fa-solid fa-book-open" style="color: var(--accent-color);"></i>
                 </div>`;
             });
             container.innerHTML = html;
         }
 
         function filterQuran() {
-            const q = document.getElementById('quranSearch').value.toLowerCase();
+            const q = document.getElementById('quranSearch').value.trim().toLowerCase();
             const filtered = quranSurahs.filter(s => s.name.includes(q) || s.number.toString() === q);
             renderQuran(filtered);
         }
@@ -449,7 +480,7 @@
 
         window.onload = function() {
             fetchPrayerTimes();
-            fetchDuasFromAPI();
+            fetchAuthenticatedDuas();
             fetchQuranList();
         };
     </script>
