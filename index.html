@@ -243,7 +243,7 @@
             }
         }
 
-        function loadSupplicationText() {
+        
             let key = document.getElementById('suppSelect').value;
             let container = document.getElementById('suppContainer');
             if(!key) return;
@@ -438,38 +438,47 @@
             e.preventDefault();
             alert("لتثبيت التطبيق على هاتفك:\n1. افتح قائمة المتصفح.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home screen).");
             
-        function loadSupplicationText() {
-            let key = document.getElementById('suppSelect').value;
-            if(!key) return;
-            document.getElementById('ziyaratSelect').value = "";
-            document.getElementById('taqyeebSelect').value = "";
-            renderText(key);
-        }
+         function loadSupplicationText() {
+    let key = document.getElementById('suppSelect').value;
+    let container = document.getElementById('suppContainer');
+    document.getElementById('ziyaratSelect').value = "";
+    document.getElementById('taqyeebSelect').value = "";
+    if (!key) return;
+    
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 450px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من المعرف الصحيح.</div>`;
+    }
+}
 
-        function loadZiyaratText() {
-            let key = document.getElementById('ziyaratSelect').value;
-            if(!key) return;
-            document.getElementById('suppSelect').value = "";
-            document.getElementById('taqyeebSelect').value = "";
-            renderText(key);
-        }
+function loadZiyaratText() {
+    let key = document.getElementById('ziyaratSelect').value;
+    let container = document.getElementById('suppContainer');
+    document.getElementById('suppSelect').value = "";
+    document.getElementById('taqyeebSelect').value = "";
+    if (!key) return;
+    
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 450px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من المعرف الصحيح.</div>`;
+    }
+}
 
-        function loadTaqyeebText() {
-            let key = document.getElementById('taqyeebSelect').value;
-            if(!key) return;
-            document.getElementById('suppSelect').value = "";
-            document.getElementById('ziyaratSelect').value = "";
-            renderText(key);
+function loadTaqyeebText() {
+    let key = document.getElementById('taqyeebSelect').value;
+    let container = document.getElementById('suppContainer');
+    document.getElementById('suppSelect').value = "";
+    document.getElementById('ziyaratSelect').value = "";
+    if (!key) return;
+    
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 450px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من المعرف الصحيح.</div>`;
+    }
         }
-
-        function renderText(key) {
-            let container = document.getElementById('suppContainer');
-            if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
-                container.innerHTML = `<div style="padding: 10px;">${suppTexts[key]}</div>`;
-            } else {
-                container.innerHTML = `<div style="color: #b91c1c; padding: 10px;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من إضافته بالمعرف الصحيح (${key}).</div>`;
-            }
-                }
         });
     </script>
 
