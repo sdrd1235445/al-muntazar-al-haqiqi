@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <!-- قسم الأدعية والزيارات (مدمج داخلياً لمنع خطأ 404) -->
+        <!-- قسم الأدعية والزيارات المرتبط بملف data.js -->
         <div id="supplications-section" class="section-box hidden-tab">
             <h2><i class="fas fa-book-open"></i> مكتبة الأدعية والزيارات والتعقيبات</h2>
             <select id="suppSelect" class="supp-select" onchange="loadSupplicationText()">
@@ -81,7 +81,7 @@
                 <option value="alameen">التعقيبات المختارة بعد الصلوات</option>
             </select>
             <div class="supp-display" id="suppContainer">
-                اختر دعاءً أو زيارة من القائمة أعلاه لعرض النص المبارك هنا...
+                اختر دعاءً أو زيارة من القائمة أعلاه لعرض النص المبارك من ملف البيانات...
             </div>
             <button class="btn" style="margin-top: 15px;" onclick="switchTab('home')"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
         </div>
@@ -173,8 +173,10 @@
         </div>
     </div>
 
+    <!-- ربط ملف البيانات الخارجي الخاص بك -->
+    <script src="data.js"></script>
+
     <script>
-        // التبديل بين الواجهات بدون صفحات خارجية لمنع خطأ 404
         function switchTab(tab) {
             const homeSec = document.getElementById('home-section');
             const suppSec = document.getElementById('supplications-section');
@@ -196,23 +198,21 @@
             }
         }
 
-        // النصوص للأدعية والزيارات
-        const suppTexts = {
-            "ahad": "اللهم رب النور العظيم، ورب الكرسي الرفيع، ورب البحر المسجور... (دعاء العهد الشريف عن الإمام الصادق عليه السلام).",
-            "kumail": "اللهم إني أسألك برحمتك التي وسعت كل شيء وبقوتك التي قهرت بها كل شيء... (دعاء كميل بن زياد المبارك).",
-            "tawasul": "اللهم إني أسألك وأتوجه إليك بنبيك نبي الرحمة محمد صلى الله عليه وآله... (دعاء التوسل بالأئمة الأطهار عليهم السلام).",
-            "ashura": "السلام عليك يا أبا عبد الله، السلام عليك يا بن رسول الله... (زيارة عاشوراء المباركة).",
-            "alameen": "التسبيح بعد الصلوات: تسبيح الزهراء عليها السلام (34 تكبيرة، 33 تحميدة، 33 تسبيحة) والاستغفار والدعاء بتعجيل الفرج."
-        };
-
+        // دالة لعرض الأدعية مستمدة من ملف data.js (تأكد أن متغير suppTexts معرف داخل data.js)
         function loadSupplicationText() {
             let key = document.getElementById('suppSelect').value;
             let container = document.getElementById('suppContainer');
             if(!key) return;
-            container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+            
+            // التحقق من وجود المتجر في ملف data.js الخارجي
+            if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+                container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+            } else {
+                container.innerHTML = `<div style="text-align: justify; line-height: 2.2; padding: 10px; color: #b91c1c;">عذراً، لم يتم العثور على نص الدعاء في ملف data.js. تأكد من إضافة مصفوفة suppTexts هناك.</div>`;
+            }
         }
 
-        // 1. التقويم الهجري حصراً
+        // التقويم الهجري حصراً وبشكل مؤكد
         async function updateHijriCalendar() {
             try {
                 const now = new Date();
@@ -228,15 +228,30 @@
                     document.getElementById('current-date-display').innerHTML = 
                         `<i class="fas fa-calendar-alt"></i> التاريخ الهجري: ${h.day} ${h.month.ar} ${h.year} هـ`;
                 } else {
-                    document.getElementById('current-date-display').innerHTML = `<i class="fas fa-calendar-alt"></i> التقويم الهجري (تعذر الجلب مؤقتاً)`;
+                    fetchHijriFromTimings();
                 }
             } catch (e) {
+                fetchHijriFromTimings();
+            }
+        }
+
+        async function fetchHijriFromTimings() {
+            try {
+                let response = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=Baghdad&country=Iraq&method=4`);
+                let data = await response.json();
+                if(data.code === 200) {
+                    let h = data.data.date.hijri;
+                    document.getElementById('current-date-display').innerHTML = 
+                        `<i class="fas fa-calendar-alt"></i> التاريخ الهجري: ${h.day} ${h.month.ar} ${h.year} هـ`;
+                } else {
+                    document.getElementById('current-date-display').innerHTML = `<i class="fas fa-calendar-alt"></i> التقويم الهجري`;
+                }
+            } catch(err) {
                 document.getElementById('current-date-display').innerHTML = `<i class="fas fa-calendar-alt"></i> التقويم الهجري`;
             }
         }
         updateHijriCalendar();
 
-        // 2. مواقيت الصلاة المباشرة لجميع المحافظات الـ 18
         async function fetchLivePrayerTimes() {
             const city = document.getElementById('governorateSelect').value;
             const grid = document.getElementById('prayerTimesGrid');
@@ -262,7 +277,6 @@
         }
         fetchLivePrayerTimes();
 
-        // 3. المسبحة الإلكترونية
         let tasbeehCount = localStorage.getItem('tasbeeh_count') ? parseInt(localStorage.getItem('tasbeeh_count')) : 0;
         document.getElementById('tasbeehCount').innerText = tasbeehCount;
 
@@ -278,7 +292,6 @@
             localStorage.setItem('tasbeeh_count', tasbeehCount);
         }
 
-        // 4. التحديات اليومية
         const challengesList = [
             "قراءة سورة الملك قبل النوم مع الاستغفار 70 مرة.",
             "إهداء ركعتين لصاحب الأمر والزمان الإمام المهدي (عج).",
@@ -320,7 +333,6 @@
         }
         setupDailyChallenge();
 
-        // 5. القرآن الكريم السحابي
         async function loadSurahsList() {
             try {
                 let response = await fetch('https://api.alquran.cloud/v1/surah');
