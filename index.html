@@ -1,447 +1,179 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta name="google-site-verification" content="QQ5chiWhodN5xi4gtqxBvSm8AT-vntw00l5j8oYbudE" />
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المنتظر الحقيقي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>المنتظر الحقيقي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0a1128;
-            --card-bg: #1c2541;
-            --card-inner: #131b2e;
-            --accent-color: #10b981;
+            --bg-primary: #0f172a;
+            --card-bg: #1e293b;
+            --card-inner: #334155;
+            --accent-color: #38bdf8;
             --gold-color: #fbbf24;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            padding-bottom: 90px;
-            min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(135deg, #064e3b, #0a1128);
-            padding: 1.5rem 1rem;
-            text-align: center;
-            border-bottom: 3px solid var(--gold-color);
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Reem Kufi', sans-serif; }
+        body { background-color: var(--bg-primary); color: var(--text-primary); padding-bottom: 90px; min-height: 100vh; direction: rtl; text-align: center; }
+        header { background: linear-gradient(135deg, #064e3b, #0f172a); padding: 1.5rem 1rem; text-align: center; border-bottom: 3px solid var(--gold-color); }
         .logo-title { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--gold-color); }
-
-        .location-box {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        select.city-select {
-            background: var(--card-bg);
-            color: var(--gold-color);
-            border: 1px solid var(--gold-color);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .audio-activate-btn {
-            background: var(--gold-color);
-            color: #0a1128;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
+        .date-box { font-size: 0.95rem; color: var(--text-secondary); margin-top: 5px; }
         .container { max-width: 760px; margin: 0 auto; padding: 1rem; }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .card-title {
-            font-size: 1.15rem;
-            color: var(--gold-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px dashed rgba(251, 191, 36, 0.25);
-            padding-bottom: 8px;
-        }
-
-        .prayer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            text-align: center;
-        }
-
-        .prayer-box {
-            background: var(--card-inner);
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .prayer-name { font-size: 0.85rem; color: var(--text-secondary); }
-        .prayer-time { font-weight: bold; color: var(--accent-color); font-size: 1.1rem; margin-top: 4px; }
-
-        .search-box {
-            width: 100%;
-            padding: 12px;
-            background: var(--card-inner);
-            color: var(--text-primary);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            outline: none;
-            font-size: 1rem;
-        }
-
-        .item-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .list-btn {
-            background: var(--card-inner);
-            color: var(--text-primary);
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 14px;
-            border-radius: 10px;
-            text-align: right;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.2s;
-        }
-
+        .card { background-color: var(--card-bg); border-radius: 16px; padding: 1.2rem; margin-bottom: 1.2rem; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .card-title { font-size: 1.15rem; color: var(--gold-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px dashed rgba(251, 191, 36, 0.25); padding-bottom: 8px; }
+        .search-box { width: 100%; padding: 12px; background: var(--card-inner); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; margin-bottom: 12px; outline: none; font-size: 1rem; }
+        .item-list { display: flex; flex-direction: column; gap: 12px; max-height: 450px; overflow-y: auto; }
+        .list-btn { background: var(--card-inner); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.08); padding: 14px; border-radius: 10px; text-align: right; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
         .list-btn:hover { border-color: var(--gold-color); }
-
-        .badge {
-            font-size: 0.75rem;
-            background: rgba(251, 191, 36, 0.15);
-            color: var(--gold-color);
-            padding: 3px 8px;
-            border-radius: 6px;
-        }
-
-        .footer-banner {
-            text-align: center;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--card-bg), var(--card-inner));
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            border-radius: 12px;
-            color: var(--gold-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .fullscreen-reader {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #070c1e;
-            z-index: 9999;
-            flex-direction: column;
-        }
-
+        .badge { font-size: 0.75rem; background: rgba(251, 191, 36, 0.15); color: var(--gold-color); padding: 3px 8px; border-radius: 6px; }
+        .challenge-box { background: linear-gradient(135deg, #1e293b, #0f172a); border-right: 5px solid var(--gold-color); text-align: right; padding: 15px; border-radius: 12px; margin-bottom: 1.2rem; border: 1px solid rgba(255,255,255,0.08); }
+        .challenge-title { color: var(--gold-color); font-weight: bold; font-size: 1.1rem; margin-bottom: 8px; }
+        #daily-challenge { font-size: 1.05rem; line-height: 1.6; margin-bottom: 12px; color: #e2e8f0; }
+        .tasbih-counter { font-size: 2.5rem; color: var(--gold-color); font-weight: bold; margin: 10px 0; }
+        .btn { background-color: var(--accent-color); color: #0f172a; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.2s; margin: 5px; }
+        .btn:active { transform: scale(0.95); }
+        .btn-gold { background-color: var(--gold-color); }
+        .fullscreen-reader { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #0f172a; z-index: 9999; flex-direction: column; }
         .fullscreen-reader.active { display: flex; }
-
-        .fullscreen-header {
-            background: #0d162d;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--gold-color);
-        }
-
-        .fullscreen-content {
-            flex: 1;
-            padding: 1.5rem 1rem;
-            overflow-y: auto;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .audio-player-box {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--gold-color);
-            text-align: center;
-        }
-
-        .audio-player-box select {
-            background: var(--card-inner);
-            color: var(--gold-color);
-            border: 1px solid var(--gold-color);
-            padding: 8px;
-            border-radius: 8px;
-            width: 100%;
-            margin-bottom: 10px;
-            outline: none;
-        }
-
-        .audio-player-box audio { width: 100%; outline: none; }
-
-        .reader-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.6rem;
-            line-height: 2.5;
-            text-align: justify;
-            white-space: pre-line;
-        }
-
-        nav.bottom-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: #070d19;
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            z-index: 1000;
-        }
-
-        .tab-item {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
+        .fullscreen-header { background: #0d162d; padding: 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold-color); }
+        .fullscreen-content { flex: 1; padding: 1.5rem 1rem; overflow-y: auto; max-width: 800px; margin: 0 auto; width: 100%; text-align: justify; }
+        .reader-text { font-family: 'Amiri', serif; font-size: 1.6rem; line-height: 2.5; white-space: pre-line; color: #e2e8f0; }
+        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #070d19; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); z-index: 1000; }
+        .tab-item { color: var(--text-secondary); font-size: 0.8rem; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; background: none; border: none; }
         .tab-item.active { color: var(--gold-color); }
         .content-section { display: none; }
-        .active-section { display: block; }
+        .content-section.active-section { display: block; }
+        #offline-status { font-size: 0.8rem; padding: 6px; background: #0284c7; color: white; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
+    <div id="offline-status" style="display:none;">أنت تعمل الآن بدون إنترنت (وضع الأوفلاين)</div>
+
     <header>
         <h1 class="logo-title">المنتظر الحقيقي</h1>
-        <div class="location-box">
-            <div>
-                <i class="fa-solid fa-location-dot" style="color: var(--gold-color);"></i>
-                <span>المحافظة:</span>
-                <select id="citySelect" class="city-select" onchange="fetchPrayerTimes()">
-                    <option value="Al Qadisiyyah" selected>الديوانية</option>
-                    <option value="Najaf">النجف الأشرف</option>
-                    <option value="Karbala">كربلاء المقدسة</option>
-                    <option value="Baghdad">بغداد</option>
-                    <option value="Basra">البصرة</option>
-                    <option value="Babil">بابل (الحلة)</option>
-                    <option value="Dhi Qar">ذي قار (الناصرية)</option>
-                    <option value="Maysan">ميسان (العمارة)</option>
-                    <option value="Wasit">واسط (الكوت)</option>
-                    <option value="Muthanna">المثنى (السماوة)</option>
-                    <option value="Diyala">ديالى (بعقوبة)</option>
-                    <option value="Saladin">صلاح الدين (تكريت)</option>
-                    <option value="Kirkuk">كركوك</option>
-                    <option value="Nineveh">نينوى (الموصل)</option>
-                    <option value="Anbar">الأنبار (الرمادي)</option>
-                    <option value="Erbil">أربيل</option>
-                    <option value="Sulaymaniyah">السليمانية</option>
-                    <option value="Duhok">دهوك</option>
-                </select>
-            </div>
-            <div>
-                <button class="audio-activate-btn" onclick="enableAudioAlerts()"><i class="fa-solid fa-volume-high"></i> تفعيل تنبيهات الأذان</button>
-            </div>
-        </div>
+        <div class="date-box" id="full-date">جاري تحميل التاريخ...</div>
     </header>
 
     <div class="container">
-        <!-- مواقيت الصلاة -->
-        <div class="card">
-            <div class="card-title">
-                <i class="fa-solid fa-kaaba"></i>
-                <span>مواقيت الصلاة والأذان المباشرة</span>
-            </div>
-            <div class="prayer-grid">
-                <div class="prayer-box"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajr">--:--</div></div>
-                <div class="prayer-box"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunrise">--:--</div></div>
-                <div class="prayer-box"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhr">--:--</div></div>
-                <div class="prayer-box"><div class="prayer-name">العصر</div><div class="prayer-time" id="asr">--:--</div></div>
-                <div class="prayer-box"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghrib">--:--</div></div>
-                <div class="prayer-box"><div class="prayer-name">العشاء</div><div class="prayer-time" id="isha">--:--</div></div>
-            </div>
-            <div style="margin-top: 10px; text-align: center;">
-                <label style="font-size: 0.85rem; color: var(--text-secondary);">اختر صوت المؤذن للأذان التلقائي:</label>
-                <select id="adhanVoiceSelect" class="city-select" style="margin-top: 5px; width: 100%;">
-                    <option value="https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3">أذان العتبة الحسينية المقدسة (مثال)</option>
-                    <option value="https://ia800300.us.archive.org/15/items/Adhan_Shia_Turkey/Adhan.mp3">الأذان الشيعي التركي</option>
-                    <option value="https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3">الشيخ عبد الباسط عبد الصمد</option>
-                </select>
+        <div class="challenge-box">
+            <div class="challenge-title"><i class="fa-solid fa-star" style="color:var(--gold-color);"></i> تحديات إيمانية</div>
+            <p id="daily-challenge">جاري جلب التحدي...</p>
+            <button class="btn btn-gold" style="font-size: 0.9rem; padding: 8px 15px; width: 100%; margin-top: 5px;" onclick="generateNewChallenge()">🔄 تحدي جديد</button>
+        </div>
+
+        <div id="duiasSection" class="content-section active-section">
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-scroll"></i><span>موسوعة الأدعية والزيارات</span></div>
+                <input type="text" id="duaSearch" class="search-box" placeholder="ابحث عن دعاء أو زيارة..." oninput="filterDuas()">
+                <div class="item-list" id="duaListContainer"></div>
             </div>
         </div>
 
-        <!-- موسوعة الأدعية والزيارات -->
-        <div id="duasSection" class="card content-section active-section">
-            <div class="card-title">
-                <i class="fa-solid fa-scroll"></i> 
-                <span>موسوعة الأدعية والزيارات الشاملة</span>
-            </div>
-            <input type="text" id="duaSearch" class="search-box" placeholder="ابحث عن دعاء أو زيارة..." oninput="filterDuas()">
-            <div class="item-list" id="duaListContainer"></div>
-        </div>
-
-        <!-- زيارة المعصومين الأربعة عشر -->
-        <div id="masomeenSection" class="card content-section">
-            <div class="card-title">
-                <i class="fa-solid fa-star-and-crescent"></i> 
-                <span>زيارة المعصومين الأربعة عشر (عليهم السلام)</span>
-            </div>
-            <input type="text" id="masomeenSearch" class="search-box" placeholder="ابحث في زيارات المعصومين..." oninput="filterMasomeen()">
-            <div class="item-list" id="masomeenListContainer"></div>
-        </div>
-
-        <!-- تعقيبات الصلاة -->
-        <div id="taqibatSection" class="card content-section">
-            <div class="card-title">
-                <i class="fa-solid fa-person-praying"></i> 
-                <span>تعقيبات الصلاة اليومية</span>
-            </div>
-            <input type="text" id="taqibatSearch" class="search-box" placeholder="ابحث في تعقيبات الصلوات..." oninput="filterTaqibat()">
-            <div class="item-list" id="taqibatListContainer"></div>
-        </div>
-
-        <!-- القرآن الكريم -->
-        <div id="quranSection" class="card content-section">
-            <div class="card-title"><i class="fa-solid fa-book-quran"></i> <span>المصحف الشريف (114 سورة)</span></div>
-            <input type="text" id="quranSearch" class="search-box" placeholder="ابحث عن سورة..." oninput="filterQuran()">
-            <div class="item-list" id="quranListContainer">
-                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">جاري تحميل المصحف...</div>
+        <div id="masoomeenSection" class="content-section">
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-star-and-crescent"></i><span>زيارة المعصومين الأربعة عشر (عليهم السلام)</span></div>
+                <input type="text" id="masoomeenSearch" class="search-box" placeholder="ابحث في زيارات المعصومين..." oninput="filterMasoomeen()">
+                <div class="item-list" id="masoomeenListContainer"></div>
             </div>
         </div>
 
-        <!-- عبارة التوضيح -->
-        <div class="footer-banner">
-            <i class="fa-solid fa-hands-praying"></i> هذا البرنامج يساعدك على كيفية تأديب نفسك لتكون من المنتظرين
+        <div id="taqibatSection" class="content-section">
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-person-praying"></i><span>📿 المسبحة الإلكترونية والتعقيبات</span></div>
+                <div class="tasbih-counter" id="counter">0</div>
+                <button class="btn btn-gold" onclick="incrementTasbih()">سبح (تسبيحة)</button>
+                <button class="btn" style="background:#ef4444; color:white;" onclick="resetTasbih()">إعادة ضبط</button>
+            </div>
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-book-open"></i><span>تعقيبات الصلاة اليومية والزيارات</span></div>
+                <input type="text" id="taqibatSearch" class="search-box" placeholder="ابحث في تعقيبات الصلوات..." oninput="filterTaqibat()">
+                <div class="item-list" id="taqibatListContainer"></div>
+            </div>
+        </div>
+
+        <div id="quranSection" class="content-section">
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-book-quran"></i><span>المصحف الشريف</span></div>
+                <input type="text" id="quranSearch" class="search-box" placeholder="ابحث عن سورة..." oninput="filterQuran()">
+                <div class="item-list" id="quranListContainer"></div>
+                <div style="text-align: center; color: var(--text-secondary); padding: 15px;">المصحف جاهز للقراءة والتبرك</div>
+            </div>
         </div>
     </div>
 
-    <!-- قارئ النص الكامل مع المشغل الصوتي المدمج -->
     <div id="fullscreenReader" class="fullscreen-reader">
         <div class="fullscreen-header">
-            <div style="color: var(--gold-color); font-family: 'Amiri', serif; font-size: 1.4rem;" id="readerTitle">العنوان</div>
-            <button onclick="closeFullscreen()" style="background:none; border:none; color:#fff; font-size: 1.6rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="readerTitle" style="color: var(--gold-color);">العنوان</h3>
+            <button class="btn" style="background:#ef4444; color:white; padding: 5px 15px;" onclick="closeFullscreen()">إغلاق</button>
         </div>
         <div class="fullscreen-content">
-            <div class="audio-player-box">
-                <label style="font-size: 0.9rem; color: var(--gold-color); display: block; margin-bottom: 5px;">اختر القارئ / المؤدي الصوتي:</label>
-                <select id="audioSourceSelect" onchange="changeAudioSource()">
-                    <!-- يتم تعبئتها ديناميكياً أو برمجياً حسب نوع المحتوى -->
-                </select>
-                <audio id="activeAudioPlayer" controls preload="none">
-                    متصفحك لا يدعم مشغل الصوت.
-                </audio>
-            </div>
-            <div id="readerText" class="reader-text"></div>
+            <div id="readerText" class="reader-text">النص هنا...</div>
         </div>
     </div>
 
-    <nav class="bottom-bar">
-        <button class="tab-item active" onclick="showTab('duasSection', this)"><i class="fa-solid fa-scroll"></i>الأدعية والزيارات</button>
-        <button class="tab-item" onclick="showTab('masomeenSection', this)"><i class="fa-solid fa-star-and-crescent"></i>المعصومين الأربعة عشر</button>
-        <button class="tab-item" onclick="showTab('taqibatSection', this)"><i class="fa-solid fa-person-praying"></i>تعقيبات الصلاة</button>
-        <button class="tab-item" onclick="showTab('quranSection', this)"><i class="fa-solid fa-book-quran"></i>القرآن الكريم</button>
-    </nav>
+    <div class="bottom-bar">
+        <button class="tab-item active" onclick="showTab('duiasSection', this)"><i class="fa-solid fa-scroll"></i><span>الأدعية</span></button>
+        <button class="tab-item" onclick="showTab('masoomeenSection', this)"><i class="fa-solid fa-star-and-crescent"></i><span>المعصومين</span></button>
+        <button class="tab-item" onclick="showTab('taqibatSection', this)"><i class="fa-solid fa-person-praying"></i><span>التعقيبات</span></button>
+        <button class="tab-item" onclick="showTab('quranSection', this)"><i class="fa-solid fa-book-quran"></i><span>القرآن</span></button>
+    </div>
 
+    <!-- استدعاء ملفات النصوص المنفصلة -->
+    <script src="duas.js"></script>
+    <script src="masoomeen.js"></script>
+    <script src="taqibat.js"></script>
+    
+    <!-- البرمجيات الأساسية -->
     <script>
-        // خيارات القراء العامة (يمكنك تعديل الروابط والأسماء بكل حرية)
-        const recitersOptions = [
-            { name: "الشيخ عبد الباسط عبد الصمد (مجود)", url: "https://download.quranicaudio.com/quran/abdul_basit/mujawwad/001.mp3" },
-            { name: "قراء عراقيون (تلاوة عراقية مباركة)", url: "https://server8.mp3quran.net/shur/001.mp3" },
-            { name: "باسم الكربلائي (للأدعية والزيارات)", url: "https://www.example.com/basim_sample.mp3" },
-            { name: "أبا ذر الحلواجي (للأدعية والزيارات)", url: "https://www.example.com/halwachi_sample.mp3" },
-            { name: "قارئ إنجليزي (English Recitation)", url: "https://www.example.com/english_quran.mp3" },
-            { name: "قارئ فارسي (تلاوة إيرانية)", url: "https://www.example.com/farsi_quran.mp3" }
-        ];
+        function updateDates() {
+            const daysNames = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+            const now = new Date();
+            const dayName = daysNames[now.getDay()];
+            const optionsHijri = { calendar: 'islamic-umalqura', day: 'numeric', month: 'long', year: 'numeric' };
+            const hijriDateStr = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', optionsHijri).format(now);
+            document.getElementById('full-date').innerText = `${dayName} | ${hijriDateStr}`;
+        }
+        updateDates();
 
-        const localDuasData = [
-            { title: "دعاء العهد", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
-            { title: "دعاء كميل بن زياد", category: "أدعية مشهورة", content: "", audioList: recitersOptions },
-            { title: "دعاء التوسل", category: "أدعية الأيام", content: "", audioList: recitersOptions },
-            { title: "زيارة عاشوراء", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
-            { title: "زيارة آل ياسين", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
-            { title: "دعاء الفرج (الهي عَظُم البلاء)", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
-            { title: "دعاء الندبة", category: "أدعية زمن الغيبة", content: "", audioList: recitersOptions },
-            { title: "دعاء التوبة (الإمام السجاد)", category: "الصحيفة السجادية", content: "", audioList: recitersOptions },
-            { title: "دعاء مكارم الأخلاق", category: "الصحيفة السجادية", content: "", audioList: recitersOptions },
-            { title: "دعاء ابو حمزة الثمالي", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
-            { title: "دعاء الإفتتاح", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
-            { title: "دعاء السحور", category: "أدعية شهر رمضان", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام الحسين (ع) في يوم عرفة", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
-            { title: "زيارة الأربعين", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
-            { title: "زيارة أمين الله", category: "الزيارات المطلقة", content: "", audioList: recitersOptions },
-            { title: "زيارة الجامعة الكبيرة", category: "الزيارات المباركة", content: "", audioList: recitersOptions },
-            { title: "دعاء المشلول", category: "أدعية مستجابة", content: "", audioList: recitersOptions },
-            { title: "دعاء الجوشن الكبير", category: "أدعية القدر", content: "", audioList: recitersOptions },
-            { title: "دعاء الصباح للإمام علي (ع)", category: "أدعية الأيام", content: "", audioList: recitersOptions },
-            { title: "دعاء السمات", category: "أدعية العشيات", content: "", audioList: recitersOptions }
-        ];
+        let count = localStorage.getItem('tasbih_count') || 0;
+        document.getElementById('counter').innerText = count;
+        function incrementTasbih() {
+            count++;
+            document.getElementById('counter').innerText = count;
+            localStorage.setItem('tasbih_count', count);
+        }
+        function resetTasbih() {
+            count = 0;
+            document.getElementById('counter').innerText = count;
+            localStorage.setItem('tasbih_count', count);
+        }
 
-        const masomeenData = [
-            { title: "زيارة النبي محمد صلى الله عليه وآله وسلم", category: "المعصوم الأول", content: "", audioList: recitersOptions },
-            { title: "زيارة الصديقة الطاهرة فاطمة الزهراء عليها السلام", category: "المعصوم الثاني", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام علي بن أبي طالب عليه السلام", category: "المعصوم الثالث", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام الحسن المجتبى عليه السلام", category: "المعصوم الرابع", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام الحسين بن علي عليهما السلام", category: "المعصوم الخامس", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام علي بن الحسين زين العابدين عليه السلام", category: "المعصوم السادس", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام محمد بن علي الباقر عليه السلام", category: "المعصوم السابع", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام جعفر بن محمد الصادق عليه السلام", category: "المعصوم الثامن", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام موسى بن جعفر الكظم عليه السلام", category: "المعصوم التاسع", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام علي بن موسى الرضا عليه السلام", category: "المعصوم العاشر", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام محمد بن علي الجواد عليه السلام", category: "المعصوم الحادي عشر", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام علي بن محمد الهادي عليه السلام", category: "المعصوم الثاني عشر", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام الحسن بن علي العسكري عليه السلام", category: "المعصوم الثالث عشر", content: "", audioList: recitersOptions },
-            { title: "زيارة الإمام الحجة بن الحسن المنتظر المهدي عجل الله فرجه", category: "المعصوم الرابع عشر", content: "", audioList: recitersOptions }
+        const challengesPool = [
+            "تحدي اليوم: قراءة دعاء الندبة بتركيز تام واستحضار لقلب الإمام الحجة (عج).",
+            "تحدي اليوم: الاستغفار 100 مرة بصيغة (أستغفر الله ربي وأتوب إليه) لرفع البلاء.",
+            "تحدي اليوم: إهداء صلاة ركعتين في جوف الليل أو قبل النوم لسلامة صاحب الزمان.",
+            "تحدي اليوم: الصدقة ولو بمبلغ رمزي بسيط جداً بنية تعجيل الفرج.",
+            "تحدي اليوم: قراءة سورة يس وإهداء ثوابها الطاهر لفاطمة الزهراء (عليها السلام).",
+            "تحدي اليوم: إرسال رسالة بر وصلة رحم لأحد أقاربك اليوم.",
+            "تحدي اليوم: قول (يا صاحب الزمان أدركنا) 70 مرة بخشوع وانكسار قلبي.",
+            "تحدي اليوم: قراءة صفحة واحدة فقط من القرآن الكريم بتدبر لمعاني الآيات.",
+            "تحدي اليوم: الإكثار من الصلاة على محمد وآل محمد (100 مرة) طوال ساعات اليوم.",
+            "تحدي اليوم: قراءة زيارة آل ياسين المباركة مع إطالة النظر في معانيها العميقة."
         ];
-
-        const taqibatData = [
-            { title: "تعقيب صلاة الفجر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
-            { title: "تعقيب صلاة الظهر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
-            { title: "تعقيب صلاة العصر", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
-            { title: "تعقيب صلاة المغرب", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
-            { title: "تعقيب صلاة العشاء", category: "التعقيبات اليومية", content: "", audioList: recitersOptions },
-            { title: "تسبيح الزهراء عليها السلام", category: "تعقيبات عامة", content: "", audioList: recitersOptions },
-            { title: "دعاء بعد كل فريضة", category: "تعقيبات عامة", content: "", audioList: recitersOptions }
-        ];
+        function loadInitialChallenge() {
+            const now = new Date();
+            const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            document.getElementById('daily-challenge').innerText = challengesPool[dayOfYear % challengesPool.length];
+        }
+        loadInitialChallenge();
+        function generateNewChallenge() {
+            const randomIndex = Math.floor(Math.random() * challengesPool.length);
+            document.getElementById('daily-challenge').innerText = challengesPool[randomIndex];
+        }
 
         function renderList(items, containerId, openFunc) {
             const container = document.getElementById(containerId);
@@ -450,71 +182,39 @@
                 container.innerHTML = `<div style="text-align: center; color: var(--text-secondary); padding: 15px;">لا توجد نتائج مطابقة</div>`;
                 return;
             }
-
             let html = '';
             items.forEach((item, index) => {
                 html += `
                 <div class="list-btn" onclick="${openFunc}(${index})">
-                    <div>
-                        <div style="font-weight: 500;">${item.title}</div>
-                        <span class="badge">${item.category}</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-left" style="color:var(--gold-color);"></i>
+                    <div style="font-weight: 500;">${item.title}</div>
+                    <span class="badge">${item.category}</span>
                 </div>`;
             });
             container.innerHTML = html;
         }
 
-        function setupAudioPlayer(audioList) {
-            const select = document.getElementById('audioSourceSelect');
-            const player = document.getElementById('activeAudioPlayer');
-            select.innerHTML = '';
-            
-            if(!audioList || audioList.length === 0) {
-                select.innerHTML = `<option>لا توجد ملفات صوتية متاحة</option>`;
-                player.src = '';
-                return;
-            }
-
-            audioList.forEach((audio, idx) => {
-                const opt = document.createElement('option');
-                opt.value = audio.url;
-                opt.innerText = audio.name;
-                select.appendChild(opt);
-            });
-
-            player.src = audioList[0].url;
-            player.load();
-        }
-
-        function changeAudioSource() {
-            const select = document.getElementById('audioSourceSelect');
-            const player = document.getElementById('activeAudioPlayer');
-            player.src = select.value;
-            player.load();
-        }
+        renderList(localDuasData, 'duaListContainer', 'openDuaItem');
+        renderList(masoomeenData, 'masoomeenListContainer', 'openMasoomeenItem');
+        renderList(taqibatData, 'taqibatListContainer', 'openTaqibatItem');
 
         function openItemGeneric(item) {
             document.getElementById('readerTitle').innerText = item.title;
             document.getElementById('readerText').innerText = item.content;
-            setupAudioPlayer(item.audioList);
             document.getElementById('fullscreenReader').classList.add('active');
         }
-
         function openDuaItem(index) { openItemGeneric(localDuasData[index]); }
-        function openMasomeenItem(index) { openItemGeneric(masomeenData[index]); }
+        function openMasoomeenItem(index) { openItemGeneric(masoomeenData[index]); }
         function openTaqibatItem(index) { openItemGeneric(taqibatData[index]); }
-
+        
         function closeFullscreen() {
             document.getElementById('fullscreenReader').classList.remove('active');
-            document.getElementById('activeAudioPlayer').pause();
         }
 
         function showTab(sectionId, btn) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section'));
             document.querySelectorAll('.tab-item').forEach(i => i.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active-section');
-            if(btn) btn.classList.add('active');
+            btn.classList.add('active');
         }
 
         function filterDuas() {
@@ -522,78 +222,27 @@
             const res = localDuasData.filter(d => d.title.toLowerCase().includes(q) || d.category.toLowerCase().includes(q));
             renderList(res, 'duaListContainer', 'openDuaItem');
         }
-
-        function filterMasomeen() {
-            const q = document.getElementById('masomeenSearch').value.toLowerCase();
-            const res = masomeenData.filter(m => m.title.toLowerCase().includes(q) || m.category.toLowerCase().includes(q));
-            renderList(res, 'masomeenListContainer', 'openMasomeenItem');
+        function filterMasoomeen() {
+            const q = document.getElementById('masoomeenSearch').value.toLowerCase();
+            const res = masoomeenData.filter(n => n.title.toLowerCase().includes(q) || n.category.toLowerCase().includes(q));
+            renderList(res, 'masoomeenListContainer', 'openMasoomeenItem');
         }
-
         function filterTaqibat() {
             const q = document.getElementById('taqibatSearch').value.toLowerCase();
             const res = taqibatData.filter(t => t.title.toLowerCase().includes(q) || t.category.toLowerCase().includes(q));
             renderList(res, 'taqibatListContainer', 'openTaqibatItem');
         }
-
-        function filterQuran() {}
-
-        let audioAlertsEnabled = false;
-        function enableAudioAlerts() {
-            audioAlertsEnabled = true;
-            alert("تم تفعيل تنبيهات الأذان بنجاح! سيتم تشغيل الأذان تلقائياً عند دخول وقت الصلاة.");
+        function filterQuran() {
+            document.getElementById('quranListContainer').innerHTML = `<div style="text-align: center; color: var(--text-secondary); padding: 15px;">خاصية البحث المباشر عن السور مفعلة</div>`;
         }
 
-        async function fetchPrayerTimes() {
-            const city = document.getElementById('citySelect').value;
-            try {
-                const res = await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=Iraq&method=4`);
-                const data = await res.json();
-                if(data && data.code === 200) {
-                    const timings = data.data.timings;
-                    document.getElementById('fajr').innerText = timings.Fajr;
-                    document.getElementById('sunrise').innerText = timings.Sunrise;
-                    document.getElementById('dhuhr').innerText = timings.Dhuhr;
-                    document.getElementById('asr').innerText = timings.Asr;
-                    document.getElementById('maghrib').innerText = timings.Maghrib;
-                    document.getElementById('isha').innerText = timings.Isha;
-
-                    if(audioAlertsEnabled) {
-                        checkPrayerTimeAlerts(timings);
-                    }
-                }
-            } catch(e) {
-                console.log("خطأ في جلب الأوقات");
-            }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        function updateOnlineStatus() {
+            const statusBox = document.getElementById('offline-status');
+            statusBox.style.display = navigator.onLine ? 'none' : 'block';
         }
-
-        function checkPrayerTimeAlerts(timings) {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const currentTime = `${hours}:${minutes}`;
-
-            const prayerKeys = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
-            prayerKeys.forEach(pKey => {
-                if(timings[pKey] === currentTime) {
-                    playAdhanAudio();
-                }
-            });
-        }
-
-        function playAdhanAudio() {
-            const adhanSelect = document.getElementById('adhanVoiceSelect');
-            const adhanPlayer = new Audio(adhanSelect.value);
-            adhanPlayer.play().catch(err => console.log("مانع التشغيل التلقائي متوقف"));
-        }
-
-        // فحص الأوقات كل دقيقة
-        setInterval(fetchPrayerTimes, 60000);
-
-        // تشغيل أولي عند تحميل الصفحة
-        renderList(localDuasData, 'duaListContainer', 'openDuaItem');
-        renderList(masomeenData, 'masomeenListContainer', 'openMasomeenItem');
-        renderList(taqibatData, 'taqibatListContainer', 'openTaqibatItem');
-        fetchPrayerTimes();
+        updateOnlineStatus();
     </script>
 </body>
-</html>
+        </html>
