@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <!-- قسم الأدعية والزيارات المرتبط بملف data.js -->
+        <!-- قسم الأدعية والزيارات -->
         <div id="supplications-section" class="section-box hidden-tab">
             <h2><i class="fas fa-book-open"></i> مكتبة الأدعية والزيارات والتعقيبات</h2>
             <select id="suppSelect" class="supp-select" onchange="loadSupplicationText()">
@@ -81,7 +81,7 @@
                 <option value="alameen">التعقيبات المختارة بعد الصلوات</option>
             </select>
             <div class="supp-display" id="suppContainer">
-                اختر دعاءً أو زيارة من القائمة أعلاه لعرض النص المبارك من ملف البيانات...
+                اختر دعاءً أو زيارة من القائمة أعلاه لعرض النص المبارك من ملف البيانات الخارجي...
             </div>
             <button class="btn" style="margin-top: 15px;" onclick="switchTab('home')"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
         </div>
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <!-- مواقيت الصلاة المباشرة للمحافظات الـ 18 -->
+            <!-- مواقيت الصلاة للمحافظات الـ 18 -->
             <div class="section-box" id="prayers-section">
                 <h2><i class="fas fa-mosque"></i> مواقيت الصلاة المباشرة في المحافظات العراقية</h2>
                 <select id="governorateSelect" class="prayer-select" onchange="fetchLivePrayerTimes()">
@@ -132,8 +132,8 @@
                 <div class="prayer-times-grid" id="prayerTimesGrid">
                     <div class="prayer-card"><span>جاري التحميل...</span><strong>--:--</strong></div>
                 </div>
-            </div>
-            
+    </div>
+   
             <div class="section-box" id="quran-section">
                 <h2><i class="fas fa-quran"></i> القرآن الكريم (السحابة الشاملة)</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
@@ -173,9 +173,7 @@
         </div>
     </div>
 
-    <!-- ربط ملف البيانات الخارجي الخاص بك -->
-    <script src="data.js"></script>
-
+    <!-- كود الجافاسكريبت الخاص بالمنصة -->
     <script>
         function switchTab(tab) {
             const homeSec = document.getElementById('home-section');
@@ -198,21 +196,18 @@
             }
         }
 
-        // دالة لعرض الأدعية مستمدة من ملف data.js (تأكد أن متغير suppTexts معرف داخل data.js)
         function loadSupplicationText() {
             let key = document.getElementById('suppSelect').value;
             let container = document.getElementById('suppContainer');
             if(!key) return;
             
-            // التحقق من وجود المتجر في ملف data.js الخارجي
             if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
                 container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
             } else {
-                container.innerHTML = `<div style="text-align: justify; line-height: 2.2; padding: 10px; color: #b91c1c;">عذراً، لم يتم العثور على نص الدعاء في ملف data.js. تأكد من إضافة مصفوفة suppTexts هناك.</div>`;
+                container.innerHTML = `<div style="text-align: justify; line-height: 2.2; padding: 10px; color: #b91c1c;">عذراً، لم يتم العثور على نص الدعاء. تأكد من وجود المتغير suppTexts داخل ملف data.js</div>`;
             }
         }
 
-        // التقويم الهجري حصراً وبشكل مؤكد
         async function updateHijriCalendar() {
             try {
                 const now = new Date();
@@ -397,5 +392,8 @@
             alert("لتثبيت التطبيق على هاتفك:\n1. افتح قائمة المتصفح.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home screen).");
         });
     </script>
+
+    <!-- ربط ملف البيانات الخارجي في النهاية تماماً كما طلبت -->
+    <script src="data.js"></script>
 </body>
-</html>
+</html> 
