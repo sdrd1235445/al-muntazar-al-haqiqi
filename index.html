@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المنتظر الحقيقي</title>
     
-    <!-- الأيقونة في شريط المتصفح -->
     <link rel="icon" type="image/png" href="IMG_2260802_010708.png">
     <link rel="apple-touch-icon" href="IMG_2260802_010708.png">
 
@@ -37,14 +36,14 @@
         .btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; }
         .btn:hover { background-color: var(--accent-color); }
         .btn-reset { background-color: #ef4444; margin-right: 10px; }
-        .prayer-select, .surah-select, .supp-select { width: 100%; padding: 10px; font-size: 1rem; border-radius: 8px; border: 1px solid var(--border-color); margin: 15px 0; }
+        .prayer-select, .surah-select, .supp-select { width: 100%; padding: 10px; font-size: 1rem; border-radius: 8px; border: 1px solid var(--border-color); margin: 15px 0; direction: rtl; text-align: right; }
         .prayer-times-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center; }
         .prayer-card { background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); }
         .prayer-card span { display: block; color: #64748b; }
         .prayer-card strong { font-size: 1.1rem; color: var(--primary-color); }
         .challenge-box { background: #fffbef; border: 1px solid #fde68a; border-radius: 10px; padding: 20px; }
         .challenge-text { font-size: 1.2rem; font-family: 'Amiri', serif; color: var(--primary-color); margin-bottom: 15px; }
-        .quran-display, .supp-display { background: #fffdf5; padding: 20px; border-radius: 8px; border: 1px dashed #e2e8f0; }
+        .quran-display, .supp-display { background: #fffdf5; padding: 20px; border-radius: 8px; border: 1px dashed #e2e8f0; direction: rtl; text-align: justify; font-family: 'Amiri', serif; font-size: 1.3rem; }
         .calendar-box { text-align: center; font-size: 1.3rem; font-weight: bold; color: var(--primary-color); background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px; }
         .install-banner { background: linear-gradient(135deg, #0284c7, #0369a1); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-top: 25px; }
         .install-banner a { display: inline-block; background: #fff; color: #0284c7; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; }
@@ -66,7 +65,6 @@
 </nav>
 
 <div class="container">
-    <!-- التقويم الهجري -->
     <div class="calendar-box" id="current-date-display">
         <i class="fas fa-calendar-alt"></i> جاري تحميل التقويم الهجري...
     </div>
@@ -74,7 +72,6 @@
     <!-- 1. الرئيسية -->
     <div id="home-section" class="section-box">
         <div class="grid-sections">
-            <!-- تم حذف قسم أقسام التطبيق وإبقاء زيارة المعصومين فقط هنا -->
             <div class="section-box">
                 <h2><i class="fas fa-hands-praying"></i> زيارة المعصومين</h2>
                 <p>التوسل وزيارة أئمة الهدى سلام الله عليهم أجمعين في أيامهم ووفياتهم.</p>
@@ -83,7 +80,6 @@
         </div>
 
         <div class="grid-sections" style="margin-top: 25px;">
-            <!-- المسبحة الإلكترونية -->
             <div class="section-box" id="tasbeeh-section">
                 <h2><i class="fas fa-circle-dot"></i> المسبحة الإلكترونية</h2>
                 <p>سبح واذكر الله عز وجل</p>
@@ -92,7 +88,6 @@
                 <button class="btn btn-reset" onclick="resetTasbeeh()"><i class="fas fa-rotate-left"></i> إعادة ضبط</button>
             </div>
 
-            <!-- التحدي اليومي -->
             <div class="section-box" id="challenges-section">
                 <h2><i class="fas fa-trophy"></i> تحدي اليوم</h2>
                 <div class="challenge-box">
@@ -102,11 +97,10 @@
             </div>
         </div>
 
-        <!-- تثبيت التطبيق -->
         <div class="install-banner">
             <h3>تحميل صفحة المنتظر الحقيقي على هاتفك</h3>
             <p>استمتع بتجربة سريعة وخفيفة عبر تثبيت التطبيق مباشرة على شاشة هاتفك المحمول.</p>
-            <a href="#" id="installAppBtn"><i class="fas fa-download"></i> تحميل التطبيق / الأيقونة</a>
+            <a href="#" id="installAppBtn"><i class="fas fa-download"></i> التثبيت وإنشاء اختصار</a>
         </div>
     </div>
 
@@ -211,127 +205,12 @@
             </select>
             <button class="btn" onclick="fetchAllQuran()"><i class="fas fa-book-quran"></i> عرض القرآن كاملاً</button>
         </div>
-        <div class="quran-display" id="quranContainer">
+        <div class="quran-display" id="quranContainer" style="direction: rtl; text-align: right;">
             اختر سورة من القائمة أو اضغط على "عرض القرآن كاملاً" لتصفح الآيات الكريمة مباشرة من السحاب.
         </div>
     </div>
                 </div>
-
-        <!-- تثبيت التطبيق -->
-        <div class="install-banner">
-            <h3>تحميل صفحة المنتظر الحقيقي على هاتفك</h3>
-            <p>استمتع بتجربة سريعة وخفيفة عبر تثبيت التطبيق مباشرة على شاشة هاتفك المحمول.</p>
-            <a href="#" id="installAppBtn"><i class="fas fa-download"></i> تحميل التطبيق / الأيقونة</a>
-        </div>
-    </div>
-
-    <!-- 2. الأدعية والزيارات -->
-    <div id="supplications-section" class="section-box hidden-tab">
-        <h2><i class="fas fa-book-open"></i> مكتبة الأدعية والزيارات والتعقيبات</h2>
-        
-        <select id="suppSelect" class="supp-select" onchange="loadSupplicationText()">
-            <option value="">... اختر الدعاء المبارك ...</option>
-            <option value="ahad">دعاء العهد الشريف</option>
-            <option value="kumail">دعاء كميل بن زياد</option>
-            <option value="tawasul">دعاء التوسل</option>
-            <option value="faraj">دعاء الإمام المهدي (عج) - اللهم كن وليك</option>
-            <option value="mashlool">دعاء المشلول</option>
-            <option value="mujather">دعاء المجير</option>
-            <option value="saboah">دعاء الصباح</option>
-            <option value="jawshan_kabir">دعاء الجوشن الكبير</option>
-            <option value="jawshan_sagheer">دعاء الجوشن الصغير</option>
-            <option value="simat">دعاء السمات</option>
-            <option value="kumail_night">أعمال ليلة الجمعة</option>
-            <option value="noor">دعاء النور (هدايا)</option>
-            <option value="kameel_extra">أدعية الأيام المختارة</option>
-            <option value="sahar">دعاء السحر</option>
-            <option value="iftitah">دعاء الافتتاح</option>
-            <option value="abu_hamza">دعاء أبي حمزة الثمالي</option>
-            <option value="tawbah">دعاء التوبة</option>
-            <option value="makarim">دعاء مكارم الأخلاق</option>
-            <option value="adeleh">دعاء العديلة</option>
-            <option value="yastasheer">دعاء يستشير</option>
-            <option value="ahd_morning">دعاء العهد الصباحي</option>
-        </select>
-
-        <select id="ziyaratSelect" class="supp-select" onchange="loadZiyaratText()">
-            <option value="">... اختر زيارة المعصوم (ع) ...</option>
-            <option value="prophet">زيارة النبي محمد صلى الله عليه وآله وسلم</option>
-            <option value="zahra">زيارة السيدة فاطمة الزهراء عليها السلام</option>
-            <option value="imam_ali">زيارة أمير المؤمنين علي بن أبي طالب عليه السلام</option>
-            <option value="imam_hassan">تفضيل بزيارة الحسن المجتبى عليه السلام</option>
-            <option value="imam_hussein">زيارة الإمام الحسين عليه السلام</option>
-            <option value="sajjad">زيارة الإمام علي بن الحسين السجاد عليه السلام</option>
-            <option value="baqir">تفضيل بزيارة محمد بن علي الباقر عليه السلام</option>
-            <option value="sadiq">تفضيل بزيارة جعفر بن محمد الصادق عليه السلام</option>
-            <option value="kazim">زيارة موسى بن جعفر الكاظم عليه السلام</option>
-            <option value="ridha">زيارة علي بن موسى الرضا عليه السلام</option>
-            <option value="jawad">زيارة محمد بن علي الجواد عليه السلام</option>
-            <option value="hadi">تفضيل بزيارة علي بن محمد الهادي عليه السلام</option>
-            <option value="askari">تفضيل بزيارة الحسن بن علي العسكري عليه السلام</option>
-            <option value="mahdi">زيارة صاحب الأمر والزمان الحجة عجل الله فرجه</option>
-        </select>
-
-        <select id="taqyeebSelect" class="supp-select" onchange="loadTaqyeebText()">
-            <option value="">... اختر تعقيب الصلوات ...</option>
-            <option value="alameen">التعقيبات العامة بعد الصلوات</option>
-            <option value="fajr">تعقيب صلاة الفجر</option>
-            <option value="dhuhr">تعقيب صلاة الظهر</option>
-            <option value="asr">تعقيب صلاة العصر</option>
-            <option value="maghrib">تعقيب صلاة المغرب</option>
-            <option value="isha">تعقيب صلاة العشاء</option>
-        </select>
-
-        <div class="supp-display" id="suppContainer">
-            اختر دعاء أو زيارة من القائمة أعلاه لعرض النص المبارك من ملف البيانات الخارجي.
-        </div>
-        <button class="btn" style="margin-top: 15px;" onclick="switchTab('home')"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-    </div>
-
-    <!-- 3. مواقيت الصلاة -->
-    <div id="prayers-section" class="section-box hidden-tab">
-        <h2><i class="fas fa-mosque"></i> مواقيت الصلاة المباشرة في المحافظات العراقية</h2>
-        <select id="governorateSelect" class="prayer-select" onchange="FetchLivePrayerTimes()">
-            <option value="Baghdad" selected>بغداد</option>
-            <option value="Basra">البصرة</option>
-            <option value="Mosul">الموصل</option>
-            <option value="Erbil">أربيل</option>
-            <option value="Najaf">النجف الأشرف</option>
-            <option value="Karbala">كربلاء المقدسة</option>
-            <option value="Sulaymaniyah">السليمانية</option>
-            <option value="Ramadi">الأنبار (الرمادي)</option>
-            <option value="Hillah">بابل (الحلة)</option>
-            <option value="Kirkuk">كركوك</option>
-            <option value="Tikrit">صلاح الدين (تكريت)</option>
-            <option value="Baqubah">ديالى (بعقوبة)</option>
-            <option value="Samawah">المثنى (السماوة)</option>
-            <option value="Diwaniyah">القادسية (الديوانية)</option>
-            <option value="Amarah">ميسان (العمارة)</option>
-            <option value="Nasiriyah">ذي قار (الناصرية)</option>
-            <option value="Kut">واسط (الكوت)</option>
-            <option value="Dohuk">دهوك</option>
-        </select>
-
-        <div class="prayer-times-grid" id="prayerTimesGrid">
-            <div class="prayer-card" style="grid-column: span 6;"><span>جاري جلب مواقيت الصلاة...</span></div>
-        </div>
-    </div>
-
-    <!-- 4. القرآن الكريم -->
-    <div id="quran-section" class="section-box hidden-tab">
-        <h2><i class="fas fa-book-quran"></i> القرآن الكريم (المصحف الشامل)</h2>
-        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-            <select id="surahSelect" class="surah-select" style="flex: 1; margin-bottom: 0;" onchange="fetchSurahData()">
-                <option value="">... اختر سورة محددة ...</option>
-            </select>
-            <button class="btn" onclick="fetchAllQuran()"><i class="fas fa-book-quran"></i> عرض القرآن كاملاً</button>
-        </div>
-        <div class="quran-display" id="quranContainer">
-            اختر سورة من القائمة أو اضغط على "عرض القرآن كاملاً" لتصفح الآيات الكريمة مباشرة من السحاب.
-        </div>
-    </div>
-    </div>
-    <script>
+                <script>
 function switchTab(tab) {
     const homeSec = document.getElementById('home-section');
     const suppSec = document.getElementById('supplications-section');
@@ -369,7 +248,6 @@ function switchTab(tab) {
     window.scrollTo(0, 0);
 }
 
-// دالة جلب الأدعية
 function loadSupplicationText() {
     const select = document.getElementById('suppSelect');
     const container = document.getElementById('suppContainer');
@@ -380,13 +258,12 @@ function loadSupplicationText() {
     if (!key) return;
 
     if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
-        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px; direction: rtl;">${suppTexts[key]}</div>`;
     } else {
         container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من وجود الملف.</div>`;
     }
 }
 
-// دالة جلب الزيارات
 function loadZiyaratText() {
     const select = document.getElementById('ziyaratSelect');
     const container = document.getElementById('suppContainer');
@@ -397,13 +274,12 @@ function loadZiyaratText() {
     if (!key) return;
 
     if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
-        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px; direction: rtl;">${suppTexts[key]}</div>`;
     } else {
         container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً.</div>`;
     }
 }
 
-// دالة جلب التعقيبات
 function loadTaqyeebText() {
     const select = document.getElementById('taqyeebSelect');
     const container = document.getElementById('suppContainer');
@@ -414,13 +290,12 @@ function loadTaqyeebText() {
     if (!key) return;
 
     if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
-        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px;">${suppTexts[key]}</div>`;
+        container.innerHTML = `<div style="text-align: justify; line-height: 2.2; max-height: 350px; overflow-y: auto; padding: 10px; direction: rtl;">${suppTexts[key]}</div>`;
     } else {
         container.innerHTML = `<div style="color: #b91c1c; padding: 10px; text-align: center;">عذراً، النص غير متوفر حالياً.</div>`;
     }
 }
 
-// التقويم الهجري
 async function updateHijriCalendar() {
     try {
         const now = new Date();
@@ -460,7 +335,6 @@ async function fetchHijriFromTimings() {
 }
 updateHijriCalendar();
 
-// أوقات الصلاة
 async function FetchLivePrayerTimes() {
     const city = document.getElementById('governorateSelect').value;
     const grid = document.getElementById('prayerTimesGrid');
@@ -485,7 +359,6 @@ async function FetchLivePrayerTimes() {
 }
 FetchLivePrayerTimes();
 
-// المسبحة الإلكترونية
 let tasbeehCount = parseInt(localStorage.getItem('tasbeeh_count')) || 0;
 document.getElementById('tasbeehCount').innerText = tasbeehCount;
 
@@ -501,7 +374,6 @@ function resetTasbeeh() {
     localStorage.setItem('tasbeeh_count', tasbeehCount);
 }
 
-// التحدي اليومي
 const challengesList = [
     "قراءة سورة الملك قبل النوم مع الاستغفار 70 مرة.",
     "إهداء ركعتين لصاحب الأمر والزمان الإمام المهدي (عج).",
@@ -543,7 +415,6 @@ function completeChallenge() {
 }
 setupDailyChallenge();
 
-// قسم القرآن الكريم
 async function loadSurahsList() {
     try {
         let response = await fetch('https://api.alquran.cloud/v1/surah');
@@ -553,7 +424,7 @@ async function loadSurahsList() {
             data.data.forEach(surah => {
                 let opt = document.createElement('option');
                 opt.value = surah.number;
-                opt.textContent = `${surah.number}. ${surah.name} (${surah.englishName}) - ${surah.numberOfAyahs} آية`;
+                opt.textContent = `${surah.number}. سورة ${surah.name} (${surah.numberOfAyahs} آية)`;
                 select.appendChild(opt);
             });
         }
@@ -571,10 +442,10 @@ async function fetchSurahData() {
         let response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNum}`);
         let data = await response.json();
         if (data.code === 200) {
-            let ayahsText = data.data.ayahs.map(a => `${a.text} (${a.numberInSurah})`).join(' ');
+            let ayahsText = data.data.ayahs.map(a => `${a.text} ﴿${a.numberInSurah}﴾`).join(' ');
             document.getElementById('quranContainer').innerHTML = `
-                <div style="font-weight: bold; margin-bottom: 10px; color: var(--primary-color);">سورة ${data.data.name} (${data.data.revelationType === 'Meccan' ? 'مكية' : 'مدنية'})</div>
-                <div style="max-height: 350px; overflow-y: auto; padding: 10px; text-align: justify; line-height: 2.2;">${ayahsText}</div>
+                <div style="font-weight: bold; margin-bottom: 12px; color: var(--primary-color); font-family: 'Amiri', serif; font-size: 1.4rem; text-align: center;">سورة ${data.data.name} (${data.data.revelationType === 'Meccan' ? 'مكية' : 'مدنية'})</div>
+                <div style="max-height: 400px; overflow-y: auto; padding: 10px; text-align: justify; line-height: 2.4; font-family: 'Amiri', serif; font-size: 1.35rem; direction: rtl;">${ayahsText}</div>
             `;
         }
     } catch (error) {
@@ -590,15 +461,15 @@ async function fetchAllQuran() {
         if (data.code === 200) {
             let fullText = "";
             data.data.surahs.forEach(surah => {
-                let sAyahs = surah.ayahs.map(a => `${a.text} (${a.numberInSurah})`).join(' ');
+                let sAyahs = surah.ayahs.map(a => `${a.text} ﴿${a.numberInSurah}﴾`).join(' ');
                 fullText += `
-                    <div style="margin-bottom: 25px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">
-                        <h3 style="color: var(--accent-color); font-family: 'Amiri', serif; margin-bottom: 10px;">سورة ${surah.name}</h3>
-                        <p style="text-align: justify; line-height: 2.2;">${sAyahs}</p>
+                    <div style="margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                        <h3 style="color: var(--accent-color); font-family: 'Amiri', serif; margin-bottom: 12px; text-align: center; font-size: 1.5rem;">سورة ${surah.name}</h3>
+                        <p style="text-align: justify; line-height: 2.4; font-family: 'Amiri', serif; font-size: 1.35rem; direction: rtl;">${sAyahs}</p>
                     </div>
                 `;
             });
-            document.getElementById('quranContainer').innerHTML = `<div style="max-height: 450px; overflow-y: auto; padding: 15px;">${fullText}</div>`;
+            document.getElementById('quranContainer').innerHTML = `<div style="max-height: 500px; overflow-y: auto; padding: 15px; direction: rtl;">${fullText}</div>`;
         }
     } catch (error) {
         document.getElementById('quranContainer').innerText = "حدث خطأ أثناء جلب المصحف الشامل.";
@@ -607,7 +478,7 @@ async function fetchAllQuran() {
 
 document.getElementById('installAppBtn').addEventListener('click', function(e) {
     e.preventDefault();
-    alert("اضغط 'إضافة إلى الشاشة الرئيسية' (Add to Home screen) من قائمة المتصفح لتثبيت التطبيق على هاتفك.");
+    alert("اضغط 'التثبيت وإنشاء اختصار' من قائمة المتصفح لتثبيت التطبيق على هاتفك.");
 });
 </script>
 
