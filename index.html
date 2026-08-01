@@ -132,8 +132,8 @@
                 <div class="prayer-times-grid" id="prayerTimesGrid">
                     <div class="prayer-card"><span>جاري التحميل...</span><strong>--:--</strong></div>
                 </div>
-    </div>
-   
+                        </div>
+                            <!-- القرآن الكريم كاملاً -->
             <div class="section-box" id="quran-section">
                 <h2><i class="fas fa-quran"></i> القرآن الكريم (السحابة الشاملة)</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
@@ -390,6 +390,39 @@
         document.getElementById('installAppBtn').addEventListener('click', function(e) {
             e.preventDefault();
             alert("لتثبيت التطبيق على هاتفك:\n1. افتح قائمة المتصفح.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home screen).");
+            
+        function loadSupplicationText() {
+            let key = document.getElementById('suppSelect').value;
+            if(!key) return;
+            document.getElementById('ziyaratSelect').value = "";
+            document.getElementById('taqyeebSelect').value = "";
+            renderText(key);
+        }
+
+        function loadZiyaratText() {
+            let key = document.getElementById('ziyaratSelect').value;
+            if(!key) return;
+            document.getElementById('suppSelect').value = "";
+            document.getElementById('taqyeebSelect').value = "";
+            renderText(key);
+        }
+
+        function loadTaqyeebText() {
+            let key = document.getElementById('taqyeebSelect').value;
+            if(!key) return;
+            document.getElementById('suppSelect').value = "";
+            document.getElementById('ziyaratSelect').value = "";
+            renderText(key);
+        }
+
+        function renderText(key) {
+            let container = document.getElementById('suppContainer');
+            if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+                container.innerHTML = `<div style="padding: 10px;">${suppTexts[key]}</div>`;
+            } else {
+                container.innerHTML = `<div style="color: #b91c1c; padding: 10px;">عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من إضافته بالمعرف الصحيح (${key}).</div>`;
+            }
+                }
         });
     </script>
 
