@@ -8,56 +8,45 @@ const appData = {
         quranParts: Array.from({ length: 30 }, (_, i) => ({
             number: i + 1,
             name: `الجزء ${i + 1} المبارك`,
-            surahs: i === 0 ? "من سورة الفاتحة إلى آية 141 من سورة البقرة" : 
-                    i === 1 ? "من آية 142 من سورة البقرة إلى آية 252 من سورة البقرة" :
-                    `تفاصيل سور وآيات الجزء ${i + 1} الكاملة`,
+            surahs: `التلاوة الكاملة والآيات البينات للجزء ${i + 1}`,
             audioUrl: `https://server8.mp3quran.net/afs/${String(i + 1).padStart(3, '0')}.mp3`,
-            text: `بسم الله الرحمن الرحيم\n\nالنص الكامل لآيات وسور الجزء ${i + 1} من القرآن الكريم مبارك تلاوته وفهمه:\n\nيحتوي هذا الجزء على سور مباركة وآيات بينات تهدي قلوب المؤمنين وتُنير درب المنتظرين.\n\n[استمع للتلاوة العطرة عبر المشغل أدناه أو تابع القراءة التدبرية]`
+            juzNumber: i + 1
         })),
         duasCategories: {
             mainDuas: [
-                { title: "دعاء كميل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ، وَبِقُوَّتِكَ الَّتِي قَهَرْتَ بِهَا كُلَّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "دعاء العهد", category: "الأدعية والزيارات", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ ورَبِّ البَحْرِ المَسْجُورِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "دعاء الندبة", category: "الأدعية والزيارات", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَسَلَّمَ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/003.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "حديث الكساء", category: "الأدعية والزيارات", text: "رُوِيَ عَنْ فَاطِمَةَ الزَّهْرَاءِ بِنْتِ رَسُولِ اللَّهِ (ص) قَالَتْ دَخَلَ عَلَيَّ أَبِي رَسُولُ اللَّهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/004.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "دعاء التوسل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ وَأَتَوَسَّلُ إِلَيْكَ بِنَبِيِّكَ نَبِيِّ الرَّحْمَةِ مُحَمَّدٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/005.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "دعاء البهاء", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ بَهَائِكَ بِأَبْهَاهُ وَكُلُّ بَهَائِكَ بَهِيٌّ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/006.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "دعاء المجير", category: "الأدعية والزيارات", text: "سُبْحَانَكَ يَا اللَّهُ، تَعَالَيْتَ يَا رَحْمَنُ، أَجِرْنَا مِنَ النَّارِ يَا مُجِيرُ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/007.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "زيارة الأربعين", category: "الأدعية والزيارات", text: "السَّلَامُ عَلَى وَلِيِّ اللَّهِ وَحَبِيبِهِ، السَّلَامُ عَلَى خَلِيلِ اللَّهِ وَنَجِيبِهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/008.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "زيارة وارث", category: "الأدعية والزيارات", text: "السَّلَامُ عَلَيْكَ يَا وَارِثَ آدَمَ صَفْوَةِ اللَّهِ، السَّلَامُ عَلَيْكَ يَا وَارِثَ نُوحٍ نَبِيِّ اللَّهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/009.mp3", reader: "القارئ أبا ذر الحلواجي" },
-                { title: "زيارة آل ياسين", category: "الأدعية والزيارات", text: "سَلَامٌ عَلَى آلِ يَاسِسُنَ، السَّلَامُ عَلَيْكَ يَا دَاعِيَ اللَّهِ وَرَبَّانِيَّ آيَاتِهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/010.mp3", reader: "القارئ أبا ذر الحلواجي" }
+                { title: "دعاء كميل", category: "الأدعية والزيارات", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. اَللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ، وَبِقُوَّتِكَ الَّتِي قَهَرْتَ بِهَا كُلَّ شَيْءٍ وَخَضَعَ لَهَا كُلُّ شَيْءٍ وَذَلَّ لَهَا كُلُّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء العهد", category: "الأدعية والزيارات", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ ورَبِّ البَحْرِ المَسْجُورِ ومُنْزِلَ التَّوْرَاةِ والإنْجِيلِ والزَّبُورِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء الندبة", category: "الأدعية والزيارات", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَسَلَّمَ، اَللَّهُمَّ لَكَ الحَمْدُ عَلَى مَا جَرَى بِهِ قَضَاؤُكَ فِي أَوْلِيَائِكَ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/003.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "حديث الكساء", category: "الأدعية والزيارات", text: "رُوِيَ عَنْ فَاطِمَةَ الزَّهْرَاءِ بِنْتِ رَسُولِ اللَّهِ (ص) قَالَتْ دَخَلَ عَلَيَّ أَبِي رَسُولُ اللَّهِ فِي بَعْضِ الأَيَّامِ فَقَالَ السَّلَامُ عَلَيْكِ يَا فَاطِمَةُ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/004.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء التوسل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ وَأَتَوَسَّلُ إِلَيْكَ بِنَبِيِّكَ نَبِيِّ الرَّحْمَةِ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ، يَا أَبَا القَاسِمِ يَا رَسُولَ اللَّهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/005.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء المجير", category: "الأدعية والزيارات", text: "سُبْحَانَكَ يَا اَللهُ، تَعَالَيْتَ يَا رَحْمَانُ، أَجِرْنَا مِنَ النَّارِ يَا مُجِيرُ...", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء المشلول", category: "الأدعية والزيارات", text: "اَللَّهُمَّ إِنِّي أَسْأَلُكَ بِاسْمِكَ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ، يَا ذَا الجَلَالِ وَالإِكْرَامِ...", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء الصباح للإمام علي (ع)", category: "الأدعية والزيارات", text: "اَللَّهُمَّ يَا مَنْ دَلَعَ لِسَانَ الصَّباحِ بِنُطْقِ تَبَلُّجِهِ، وَسَرَّحَ قِطَعَ اللَّيْلِ المُظْلِمِ بِغَياهِبِ تَلَجْلُجِهِ...", reader: "القارئ أبا ذر الحلواجي" }
             ],
             imamsVisits: [
-                { title: "زيارة النبي محمد (ص)", text: "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ..." },
-                { title: "زيارة الامام علي (ع)", text: "السَّلَامُ عَلَى أَمِينِ اللَّهِ فِي أَرْضِهِ وَحُجَّتِهِ عَلَى عِبَادِهِ..." },
-                { title: "زيارة السيدة فاطمة الزهراء (ع)", text: "السَّلَامُ عَلَيْكِ يَا مُمْتَحَنَةُ امْتَحَنَكِ الَّذِي خَلَقَكِ قَبْلَ أَنْ يَخْلُقَكِ..." },
-                { title: "زيارة الامام الحسن (ع)", text: "السَّلَامُ عَلَيْكَ يَا ابْنَ رَسُولِ رَبِّ الْعَالَمِينَ، السَّلَامُ عَلَيْكَ يَا ابْنَ أَمِيرِ الْمُؤْمِنِينَ..." },
-                { title: "زيارة الامام الحسين (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ وَعَلَى الأَرْوَاَحِ الَّتِي حَلَّتْ بِفِنائِكَ..." },
-                { title: "زيارة الامام علي بن الحسين السجاد (ع)", text: "السَّلَامُ عَلَيْكَ يَا زَيْنَ الْعَابِدِينَ، السَّلَامُ عَلَيْكَ يَا زَوْجَ الطَّاهِرَاتِ..." },
-                { title: "زيارة الامام محمد الباقر (ع)", text: "السَّلَامُ عَلَيْكَ أَيُّهَا البَاقِرُ لِلْعِلْمِ بَاقِرُهُ، السَّلَامُ عَلَيْكَ أَيُّهَا الصَّادِقُ البَارُّ..." },
-                { title: "زيارة الامام جعفر بن محمد الصادق (ع)", text: "السَّلَامُ عَلَيْكَ أَيُّهَا الصَّادِقُ المَمْدُوحُ، السَّلَامُ عَلَيْكَ أَيُّهَا الوَلِيُّ النَّاصِحُ..." },
-                { title: "زيارة الامام موسى بن جعفر الكاظم (ع)", text: "السَّلَامُ عَلَيْكَ يَا كَاظِمَ الْغَيْظِ، السَّلَامُ عَلَيْكَ يَا مُعْذِبَ الْجُحَّادِ..." },
-                { title: "زيارة علي بن موسى الرضا (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَيُّهَا الرَّضِيُّ الزَّكِيُّ، السَّلَامُ عَلَيْكَ يَا بَدْرَ التُّمَّامِ..." },
-                { title: "زيارة محمد بن علي الجواد (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا جَعْفَرٍ مُحَمَّدَ بْنَ عَلِيٍّ الْجَوَادَ الزَّكِيَّ..." },
-                { title: "زيارة علي بن محمد الهادي (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا الْحَسَنِ عَلِيَّ بْنَ مُحَمَّدٍ النَّقِيَّ الزَّكِيَّ..." },
-                { title: "زيارة الحسن بن علي العسكري (ع)", text: "السَّلَامُ عَلَيْكَ يَا مَوْلَايَ يَا أَبَا مُحَمَّدٍ الْحَسَنَ بْنَ عَلِيٍّ الزَّكِيَّ..." },
-                { title: "زيارة صاحب الزمان (عج)", text: "السَّلَامُ عَلَيْكَ يَا حُجَّةَ اللَّهِ فِي أَرْضِهِ، السَّلَامُ عَلَيْكَ يَا عَيْنَ اللَّهِ فِي خَلْقِهِ..." }
+                { title: "زيارة النبي محمد (ص)", text: "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ، وَأَنَّكَ رَسُولُ اللَّهِ..." },
+                { title: "زيارة الامام علي (ع)", text: "السَّلَامُ عَلَى أَمِينِ اللَّهِ فِي أَرْضِهِ وَحُجَّتِهِ عَلَى عِبَادِهِ، السَّلَامُ عَلَيْكَ يَا أَمِيرَ المُؤْمِنِينَ..." },
+                { title: "زيارة السيدة فاطمة الزهراء (ع)", text: "السَّلَامُ عَلَيْكِ يَا مُمْتَحَنَةُ امْتَحَنَكِ الَّذِي خَلَقَكِ قَبْلَ أَنْ يَخْلُقَكِ فَوَجَدَكِ لِمَا امْتَحَنَكِ صَابِرَةً..." },
+                { title: "زيارة الإمام الحسين (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ وَعَلَى الأَرْوَاحِ الَّتِي حَلَّتْ بِفِنائِكَ وَأَنَخَتْ بِرَحْلِكَ..." },
+                { title: "زيارة وارث", text: "اَلسَّلاُمه عَلَيْكَ يَا وارِثَ آدَمَ صَفْوَةِ اللَّهِ، اَلسَّلاَمُ عَلَيْكَ يَا وارِثَ نُوحٍ نَبِيِّ اللَّهِ..." },
+                { title: "زيارة آل ياسين", text: "سَلَامٌ عَلَى آلِ يَاسِين، اَلسَّلَامُ عَلَيْكَ يَا دَاعِيَ اللَّهِ وَرَبَّانِيَّ آيَاتِهِ..." },
+                { title: "زيارة الإمام المهدي (عج)", text: "اَلسَّلَامُ عَلَيْكَ يَا حُجَّةَ اللَّهِ فِي أَرْضِهِ، اَلسَّلَامُ عَلَيْكَ يَا عَيْنَ اللَّهِ فِي خَلْقِهِ..." }
             ],
             taqibat: [
-                { title: "تعقيبات الصبح", text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ، إِنَّهُ كَانَ غَفَّاراً..." },
-                { title: "تعقيبات الظهر", text: "لَا إِلَهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ، لَا إِلَهَ إِلَّا اللَّهُ الْعَلِيُّ الْعَظِيمُ..." },
-                { title: "تعقيبات العصر", text: "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ..." },
-                { title: "تعقيبات المغرب", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ وَعَزَائِمَ مَغْفِرَتِكَ والنجاة من النار..." },
-                { title: "تعقيبات العشاء", text: "اللَّهُمَّ إِنَّهُ لَيْسَ لِي عِلْمٌ بِمَوْضِعِ رِزْقِي وَإِنَّمَا أْتَطْلُبُهُ بِخَطَرَاتٍ تَخْطُرُ عَلَى قَلْبِي..." }
+                { title: "تعقيبات صلاة الصبح", text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ، إِنَّهُ كَانَ غَفَّاراً. أُعِيذُ نَفْسِي وَدِينِي..." },
+                { title: "تعقيبات صلاة الظهر", text: "لَا إِلَهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ، لَا إِلَهَ إِلَّا اللَّهُ الْعَلِيُّ الْعَظِيمُ، سُبْحَانَ اللَّهِ رَبِّ السَّمَاوَاتِ السَّبْعِ..." },
+                { title: "تعقيبات صلاة العصر", text: "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ذُو الجَلَالِ وَالإِكْرَامِ وَأَتُوبُ إِلَيْهِ..." },
+                { title: "تعقيبات صلاة المغرب", text: "اَللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ وَعَزَائِمَ مَغْفِرَتِكَ، وَالنَّجَاةَ مِنَ كُلِّ إِثْمٍ..." },
+                { title: "تعقيبات صلاة العشاء", text: "اَللَّهُمَّ إِنَّهُ لَيْسَ لِي عِلْمٌ بِمَوْضِعِ رِزْقِي، وَإِنَّمَا أَطْلُبُهُ بِخَطَرَاتٍ تَخْطُرُ عَلَى قَلْبِي..." }
             ],
             daysDuas: [
-                { title: "دعاء يوم السبت وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الْأَوَّلِ قَبْلَ الإنْشَاءِ وَالإِحْيَاءِ..." },
-                { title: "دعاء يوم الأحد وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُشْهِدْ أَحَداً حِينَ فَطَرَ السَّمَاوَاتِ..." },
-                { title: "دعاء يوم الاثنين وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُهْلِكْنِي بِذُنُوبِي فِي اللَّيْلِ..." },
-                { title: "دعاء يوم الثلاثاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ وَالْحَمْدُ حَقُّهُ كَمَا يَسْتَحِقُّهُ..." },
-                { title: "دعاء يوم الأربعاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي جَعَلَ اللَّيْلَ لِبَاساً وَالنَّهَارَ مَعَاشاً..." },
-                { title: "دعاء يوم الخميس وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي أَذْهَبَ اللَّيْلَ مُظْلِماً بِقُدْرَتِهِ..." },
-                { title: "دعاء يوم الجمعة وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الأَوَّلِ قَبْلَ الإِنْشَاءِ وَالإِحْيَاءِ..." }
+                { title: "دعاء يوم السبت وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الْأَوَّلِ قَبْلَ الإنْشَاءِ وَالإِحْيَاءِ، وَالْآخِرِ بَعْدَ فَنَاءِ الأَشْيَاءِ..." },
+                { title: "دعاء يوم الأحد وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُشْهِدْ أَحَداً حِينَ فَطَرَ السَّمَاوَاتِ وَالأَرْضَ..." },
+                { title: "دعاء يوم الاثنين وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُشْهِدْ أَحَداً حِينَ فَطَرَ السَّمَاوَاتِ..." },
+                { title: "دعاء يوم الثلاثاء", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ وَالحَمْدُ حَقُّهُ كَمَا يَسْتَحِقُّهُ، حَمْداً كَثِيراً..." },
+                { title: "دعاء يوم الأربعاء", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - اَلْحَمْدُ لِلَّهِ الّذِي جَعَلَ اللَّيْلَ لِباساً والنَّوْماً سُباتاً..." },
+                { title: "دعاء يوم الخميس", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - اَللَّهُمَّ إِنِّي أَتَوَجَّهُ إِلَيْكَ بِمُحَمَّدٍ نَبِيِّكَ نَبِيِّ الرَّحْمَةِ..." },
+                { title: "دعاء يوم الجمعة وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الأَوَّلِ قَبْلَ اللَّيْلِ وَالنَّهَارِ..." }
             ]
         },
         challenges: [
@@ -74,7 +63,7 @@ const appData = {
             { day: 11, text: "قراءة سورة الملك قبل النوم حفاظاً من عذاب القبر", level: "سهل", points: 10 },
             { day: 12, text: "الإكثار من الصلاة على محمد وآل محمد 100 مرة", level: "سهل", points: 10 },
             { day: 13, text: "زيارة آل ياسين أو دعاء التوسل", level: "متوسط", points: 20 },
-            { day: 14, text: "إدخال السرور على مومن بكلمة طيبة أو هدية", level: "متوسط", points: 20 },
+            { day: 14, text: "إدخال السرور على مؤمن بكلمة طيبة أو هدية", level: "متوسط", points: 20 },
             { day: 15, text: "صيام يوم مستحب (الأبيض أو الخميس أو الاثنين)", level: "صعب", points: 30 },
             { day: 16, text: "قراءة زيارة عاشوراء المباركة", level: "متوسط", points: 20 },
             { day: 17, text: "الاستغفار للمؤمنين والمؤمنات الأحياء والأموات", level: "سهل", points: 10 },
@@ -95,8 +84,7 @@ const appData = {
         prayersList: [
             { title: "صلاة الليل (صلاة الرحمة)", time: "الثلث الأخير من الليل", desc: "11 ركعة: 8 ركعات نافلة الليل، ركعتا الشفع، وركعة الوتر." },
             { title: "صلاة الآيات", time: "عند الكسوف والخسوف والآيات", desc: "ركعتان في كل ركعة خمس ركوعات وسجودان لكل ركوع." },
-            { title: "صلاة الغفيلة", time: "بين صلاتي المغرب والعشاء", desc: "ركعتان يقرأ في الأولى الفاتحة وبدل السورة (وَذَا النُّونِ إِذ ذَّهَبَ مُغَاضِباً)، وفي الثانية الفاتحة وبدل السورة (وَعِندَهُ مَفَاتِحُ الْغَيْبِ)." },
-            { title: "صلاة الحاجة", time: "في أي وقت عند طلب الحاجة", desc: "ركعتان توسلاً إلى الله تعالى لقضاء الحوائج المتعسرة." }
+            { title: "صلاة الغفيلة", time: "بين صلاتي المغرب والعشاء", desc: "ركعتان يقرأ في الأولى الفاتحة وبدل السورة (وَذَا النُّونِ إِذ ذَّهَبَ مُغَاضِباً)، وفي الثانية الفاتحة وبدل السورة (وَعِندَهُ مَفَاتِحُ الْغَيْبِ)." }
         ],
         nawafilList: [
             { title: "نافلة الصبح", time: "قبل صلاة الصبح", desc: "ركعتان." },
@@ -132,7 +120,15 @@ let tasbihCount = 0;
 let currentSelectedGov = "الديوانية";
 let todayTimings = null;
 
-// جلب المواقيت المباشرة مع إمكانية التعديل والتصحيح
+// تفعيل القائمة الجانبية (Sidebar) عند النقر عليها
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar-menu');
+    if (sidebar) {
+        sidebar.classList.toggle('hidden');
+    }
+}
+
+// جلب المواقيت المباشرة من السحابة الفلكية (Aladhan)
 async function fetchLivePrayerTimes(governorateName) {
     currentSelectedGov = governorateName;
     const coords = iraqGovernorates[governorateName] || iraqGovernorates["الديوانية"];
@@ -213,12 +209,11 @@ function updateMainPrayerCard() {
     if (cardTime) cardTime.innerText = activePrayer.time;
 }
 
-// دالة جلب التاريخ الهجري مع إمكانية تعديله يدوياً إن لم يعجبك ضبط السحابة
+// جلب التاريخ الهجري من السحابة مباشرة مع إمكانية التعديل اليدوي
 async function fetchHijriDate() {
     const hijriEl = document.getElementById('hijri-date-display');
     if (!hijriEl) return;
     
-    // إذا كنت قد خزنت تعديلاً يدوياً مسبقاً، اعرضه فوراً
     const manualDate = localStorage.getItem('manual_hijri_date');
     if (manualDate) {
         hijriEl.innerHTML = `${manualDate} <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1 font-normal">(تعديل)</button>`;
@@ -238,7 +233,7 @@ async function fetchHijriDate() {
             const fullStr = `${h.day} ${h.month.ar} ${h.year} هـ`;
             hijriEl.innerHTML = `${fullStr} <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1 font-normal">(تعديل)</button>`;
         }
-    } tky {
+    } catch (e) {
         hijriEl.innerHTML = `التاريخ الهجري غير متصل <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1">(تعديل)</button>`;
     }
 }
@@ -251,7 +246,40 @@ function editHijriManually() {
     }
 }
 
-// دالة عرض التفاصيل مع زر رجوع سليم تماماً
+// جلب نص الجزء كاملاً من سحابة القرآن الرسمية (Quran Cloud API)
+async function loadJuzTextFromCloud(juzNumber, title, audioUrl) {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+
+    area.innerHTML = `
+        <div class="mb-4">
+            <button onclick="switchTab('quran')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 w-fit">
+                <i class="fa-solid fa-arrow-right"></i><span>رجوع للأجزاء</span>
+            </button>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm text-center">
+            <h3 class="font-bold text-emerald-900 text-base mb-3">${title}</h3>
+            <p class="text-xs text-slate-500 py-6">جارٍ جلب نص القرآن الكريم كاملاً من السحابة...</p>
+        </div>`;
+
+    try {
+        const res = await fetch(`https://api.alquran.cloud/v1/juz/${juzNumber}/quran-uthmani`);
+        const data = await res.json();
+        if (data.code === 200 && data.data && data.data.ayahs) {
+            let fullAyahsText = "";
+            data.data.ayahs.forEach(ayah => {
+                fullAyahsText += ` ${ayah.text} (${ayah.numberInSurah}) `;
+            });
+
+            showDetailPage(title, fullAyahsText, audioUrl, "تلاوة الجزء من السحابة");
+        } else {
+            showDetailPage(title, "تعذر تحميل النص من السحابة، يجدر التحقق من الاتصال بالإنترنت.", audioUrl, "تلاوة الجزء");
+        }
+    } catch (err) {
+        showDetailPage(title, "حدث خطأ في الاتصال بسحابة القرآن.", audioUrl, "تلاوة الجزء");
+    }
+}
+
 function showDetailPage(title, text, audioUrl, reader) {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -268,7 +296,7 @@ function showDetailPage(title, text, audioUrl, reader) {
                 ${reader ? `<span class="text-[11px] text-amber-700 font-semibold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">${reader}</span>` : ''}
             </div>
             <div class="max-h-[350px] overflow-y-auto pr-1 mb-4">
-                <p class="text-xs text-slate-700 leading-loose whitespace-pre-line text-justify">${text}</p>
+                <p class="quran-font text-sm text-slate-800 leading-loose text-justify">${text}</p>
             </div>
             ${audioUrl ? `
                 <div class="mt-4 pt-3 border-t border-slate-200">
@@ -316,30 +344,27 @@ function renderQuran(filter = '') {
     if (!area) return;
 
     const filtered = appData.sections.quranParts.filter(p => 
-        p.name.includes(filter) || p.surahs.includes(filter) || String(p.number).includes(filter)
+        p.name.includes(filter) || String(p.number).includes(filter)
     );
 
     let html = `
         <h3 class="text-lg font-bold text-emerald-800 mb-3"><i class="fa-solid fa-book-quran ml-2"></i>القرآن الكريم والأجزاء</h3>
         <div class="mb-3">
-            <input type="text" id="quran-search" oninput="renderQuran(this.value)" value="${filter}" placeholder="ابحث برقم الجزء أو اسم السورة..." class="w-full text-xs p-3 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
+            <input type="text" id="quran-search" oninput="renderQuran(this.value)" value="${filter}" placeholder="ابحث برقم الجزء..." class="w-full text-xs p-3 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
         </div>
         <div class="space-y-2 max-h-[300px] overflow-y-auto pr-1">`;
 
     filtered.forEach(p => {
-        const encodedTitle = encodeURIComponent(p.name);
-        const encodedText = encodeURIComponent(p.text);
-        
         html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center hover:border-emerald-300 transition">
-            <div class="cursor-pointer flex-1" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${p.audioUrl}', 'تلاوة الجزء')">
+            <div class="cursor-pointer flex-1" onclick="loadJuzTextFromCloud(${p.juzNumber}, '${p.name}', '${p.audioUrl}')">
                 <span class="font-bold text-slate-800 text-xs block mb-1">${p.name}</span>
-                <span class="text-[11px] text-slate-500 line-clamp-1">${p.surahs}</span>
+                <span class="text-[11px] text-slate-500 line-clamp-1">انقر لعرض النص الكامل من سحابة القرآن</span>
             </div>
             <div class="flex items-center gap-2">
                 <audio controls class="w-24 h-7">
                     <source src="${p.audioUrl}" type="audio/mpeg">
                 </audio>
-                <button onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${p.audioUrl}', 'تلاوة الجزء')" class="bg-emerald-50 text-emerald-700 p-2 rounded-lg text-xs font-bold">
+                <button onclick="loadJuzTextFromCloud(${p.juzNumber}, '${p.name}', '${p.audioUrl}')" class="bg-emerald-50 text-emerald-700 p-2 rounded-lg text-xs font-bold">
                     <i class="fa-solid fa-book-open"></i>
                 </button>
             </div>
@@ -376,24 +401,20 @@ function renderDuas(filter = '', activeSubTab = 'main') {
         </div>
         <div class="space-y-2 max-h-[220px] overflow-y-auto pr-1">`;
 
-    if (itemsToDisplay.length === 0) {
-        html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على عنصر بهذا الاسم</p>`;
-    } else {
-        itemsToDisplay.forEach(d => {
-            const encodedTitle = encodeURIComponent(d.title);
-            const encodedText = encodeURIComponent(d.text);
-            const audio = d.audio || '';
-            const reader = d.reader || '';
+    itemsToDisplay.forEach(d => {
+        const encodedTitle = encodeURIComponent(d.title);
+        const encodedText = encodeURIComponent(d.text);
+        const audio = d.audio || '';
+        const reader = d.reader || '';
 
-            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer hover:border-emerald-300 transition" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${audio}', '${reader}')">
-                <div>
-                    <h4 class="font-bold text-emerald-900 text-xs mb-1">${d.title}</h4>
-                    <p class="text-[11px] text-slate-500 line-clamp-1">${d.text}</p>
-                </div>
-                <i class="fa-solid fa-angle-left text-slate-400 text-xs mr-2"></i>
-            </div>`;
-        });
-    }
+        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer hover:border-emerald-300 transition" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${audio}', '${reader}')">
+            <div>
+                <h4 class="font-bold text-emerald-900 text-xs mb-1">${d.title}</h4>
+                <p class="text-[11px] text-slate-500 line-clamp-1">${d.text}</p>
+            </div>
+            <i class="fa-solid fa-angle-left text-slate-400 text-xs mr-2"></i>
+        </div>`;
+    });
     html += `</div>`;
     area.innerHTML = html;
 }
@@ -487,29 +508,4 @@ function renderTasbih() {
     const area = document.getElementById('content-area');
     if (!area) return;
     area.innerHTML = `
-        <div class="text-center py-6">
-            <h3 class="font-bold text-emerald-900 text-base mb-2"><i class="fa-solid fa-circle-dot text-purple-600 ml-1"></i>المسبحة الإلكترونية</h3>
-            <div class="my-6"><span id="counter-display" class="text-6xl font-bold text-emerald-800">${tasbihCount}</span></div>
-            <div class="flex justify-center gap-3">
-                <button onclick="incrementTasbih()" class="bg-emerald-700 text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg">تسبيح</button>
-                <button onclick="resetTasbih()" class="bg-slate-200 text-slate-700 px-4 py-4 rounded-2xl font-bold">إعادة</button>
-            </div>
-        </div>`;
-}
-
-function incrementTasbih() {
-    tasbihCount++;
-    const el = document.getElementById('counter-display');
-    if (el) el.innerText = tasbihCount;
-}
-
-function resetTasbih() {
-    tasbihCount = 0;
-    const el = document.getElementById('counter-display');
-    if (el) el.innerText = tasbihCount;
-}
-
-window.onload = function() {
-    fetchHijriDate();
-    fetchLivePrayerTimes("الديوانية");
-};
+        <div class="text-center py
