@@ -14,7 +14,7 @@ const appData = {
             audioUrl: `https://server8.mp3quran.net/afs/${String(i + 1).padStart(3, '0')}.mp3`,
             text: `النص الكامل لآيات وسور الجزء ${i + 1} المبارك... [بسم الله الرحمن الرحيم...]`
         })),
-        duasCategories: {
+        duasCategories: { 
             mainDuas: [
                 { title: "دعاء كميل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3", reader: "القارئ أبا ذر الحلواجي" },
                 { title: "دعاء العهد", category: "الأدعية والزيارات", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3", reader: "القارئ أبا ذر الحلواجي" },
