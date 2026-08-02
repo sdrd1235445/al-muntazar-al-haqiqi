@@ -481,7 +481,43 @@ document.getElementById('installAppBtn').addEventListener('click', function(e) {
     alert("اضغط 'التثبيت وإنشاء اختصار' من قائمة المتصفح لتثبيت التطبيق على هاتفك.");
 });
 </script>
+// دوال جلب وعرض النصوص من ملف data.js الخارجي
+function loadSupplicationText() {
+    const key = document.getElementById('suppSelect').value;
+    const container = document.getElementById('suppContainer');
+    if (!key) {
+        container.innerHTML = "الرجاء اختيار دعاء من القائمة.";
+        return;
+    }
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="font-family: 'Amiri', serif; font-size: 1.3rem; text-align: justify; line-height: 2.2;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = "عذراً، النص غير متوفر حالياً في ملف data.js. تأكد من وجود الملف.";
+    }
+}
 
+function loadZiyaratText() {
+    const key = document.getElementById('ziyaratSelect').value;
+    const container = document.getElementById('suppContainer');
+    if (!key) return;
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="font-family: 'Amiri', serif; font-size: 1.3rem; text-align: justify; line-height: 2.2;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = "عذراً، نص الزيارة غير متوفر حالياً.";
+    }
+}
+
+function loadTagyeebText() {
+    const key = document.getElementById('tagyeebSelect').value;
+    const container = document.getElementById('suppContainer');
+    if (!key) return;
+    if (typeof suppTexts !== 'undefined' && suppTexts[key]) {
+        container.innerHTML = `<div style="font-family: 'Amiri', serif; font-size: 1.3rem; text-align: justify; line-height: 2.2;">${suppTexts[key]}</div>`;
+    } else {
+        container.innerHTML = "عذراً، نص التعقيب غير متوفر حالياً.";
+    }
+}
+</script>
 <script src="data.js"></script>
 </body>
 </html>
