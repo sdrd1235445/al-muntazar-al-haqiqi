@@ -21,7 +21,26 @@
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen pb-20">
-
+<!-- Side Navigation Drawer (القائمة الجانبية) -->
+<div id="sidebar" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity" onclick="toggleSidebar()">
+    <div class="absolute right-0 top-0 bottom-0 w-80 bg-white shadow-2xl p-5 overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 class="font-bold text-emerald-900 text-lg"><i class="fa-solid fa-bars-staggered ml-2"></i>قائمة الخدمات</h3>
+            <button onclick="toggleSidebar()" class="text-slate-400 hover:text-red-500 text-lg"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <!-- العبادات -->
+        <div class="mb-5">
+            <span class="text-xs font-bold text-slate-400 block mb-3">العبادات</span>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+                <button onclick="switchTab('quran'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-50 text-emerald-800 font-semibold"><i class="fa-solid fa-book-quran text-emerald-600"></i> القرآن الكريم</button>
+                <button onclick="switchTab('duas'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50 text-blue-800 font-semibold"><i class="fa-solid fa-hands-praying text-blue-600"></i> الأدعية</button>
+                <button onclick="switchTab('tasbih'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-purple-50 text-purple-800 font-semibold"><i class="fa-solid fa-circle-dot text-purple-600"></i> المسبحة</button>
+                <button onclick="switchTab('monthly_prayers'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-teal-50 text-teal-800 font-semibold"><i class="fa-solid fa-calendar-days text-teal-600"></i> مواقيت الشهر</button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Header / Top Bar -->
     <header class="bg-emerald-800 text-white p-4 shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
