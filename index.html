@@ -4,46 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المنتظر الحقيقي - عجل الله فرجه</title>
-    <meta name="google-site-verification" content="QQ5chiwhodN5xi4gtqx8v5m8AT">
-    <!-- Tailwind CSS for modern responsive styling -->
+    <!-- كود التحقق من ملكية الموقع لجوجل -->
+    <meta name="google-site-verification" content="QQ5chiWhodN5xi4gtqx8v5m8AT-">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap');
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #F8FAFC;
-            color: #1E293B;
-        }
-        .quran-font {
-            font-family: 'Amiri', serif;
-        }
+        body { font-family: 'Cairo', sans-serif; background-color: #F8FAFC; color: #1E293B; }
+        .quran-font { font-family: 'Amiri', serif; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen pb-20">
+<body class="bg-slate-50 min-h-screen pb-24">
 
-    <!-- Side Navigation Drawer (القائمة الجانبية) -->
+    <!-- Side Navigation Drawer -->
     <div id="sidebar" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity" onclick="toggleSidebar()">
         <div class="absolute right-0 top-0 bottom-0 w-80 bg-white shadow-2xl p-5 overflow-y-auto" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center mb-6 border-b pb-3">
-                <h3 class="font-bold text-emerald-900 text-lg"><i class="fa-solid fa-bars-staggered ml-2"></i>الخدمات</h3>
+                <h3 class="font-bold text-emerald-900 text-lg"><i class="fa-solid fa-bars-staggered ml-2"></i>خدمات المنتظر</h3>
                 <button onclick="toggleSidebar()" class="text-slate-400 hover:text-red-500 text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            
-            <!-- القوائم والخيارات -->
-            <div class="mb-5">
-                <span class="text-xs font-bold text-slate-400 block mb-3">العبادات</span>
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                    <button onclick="switchTab('quran'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-50 text-emerald-700 font-semibold"><i class="fa-solid fa-book-quran"></i>القرآن الكريم</button>
-                    <button onclick="switchTab('duas'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50 text-blue-700 font-semibold"><i class="fa-solid fa-hands-praying"></i>الأدعية</button>
-                    <button onclick="switchTab('tasbih'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-purple-50 text-purple-700 font-semibold"><i class="fa-solid fa-circle-dot"></i>المسبحة</button>
-                    <button onclick="switchTab('monthly_prayers'); toggleSidebar();" class="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50 text-amber-700 font-semibold"><i class="fa-solid fa-calendar-days"></i>المواقيت الشهرية</button>
-                </div>
+            <div class="space-y-2 text-xs">
+                <button onclick="switchTab('quran'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-emerald-50 text-emerald-700 font-semibold"><i class="fa-solid fa-book-quran text-base"></i>القرآن الكريم والبحث</button>
+                <button onclick="switchTab('duas'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-blue-50 text-blue-700 font-semibold"><i class="fa-solid fa-hands-praying text-base"></i>الأدعية والزيارات</button>
+                <button onclick="switchTab('tasbih'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-purple-50 text-purple-700 font-semibold"><i class="fa-solid fa-circle-dot text-base"></i>المسبحة الإلكترونية</button>
+                <button onclick="switchTab('challenges'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-amber-50 text-amber-700 font-semibold"><i class="fa-solid fa-bullseye text-base"></i>التحديات الروحية (30 يوماً)</button>
+                <button onclick="switchTab('prayers'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-teal-50 text-teal-700 font-semibold"><i class="fa-solid fa-person-praying text-base"></i>الصلوات المستحبة والنوافل</button>
+                <button onclick="switchTab('monthly_prayers'); toggleSidebar();" class="w-full flex items-center gap-3 p-3 rounded-xl bg-rose-50 text-rose-700 font-semibold"><i class="fa-solid fa-calendar-days text-base"></i>المواقيت الشهرية للمحافظات</button>
             </div>
         </div>
     </div>
 
-    <!-- Header / Top Bar -->
+    <!-- Header -->
     <header class="bg-emerald-800 text-white p-4 shadow-md sticky top-0 z-40">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -51,82 +42,73 @@
                 <i class="fa-solid fa-kaaba text-amber-400 text-xl"></i>
                 <h1 class="font-bold text-lg">المنتظر الحقيقي</h1>
             </div>
-            <div id="hiiri-date" class="text-xs bg-emerald-900/60 px-3 py-1 rounded-full text-amber-200">
-                جاري تحميل التاريخ...
+            <div id="hijri-date-display" class="text-xs bg-emerald-900/60 px-3 py-1 rounded-full text-amber-200 font-semibold">
+                جاري تحديث التاريخ...
             </div>
         </div>
     </header>
 
-    <!-- Main Dynamic Content Container -->
+    <!-- Main Container -->
     <main class="container mx-auto p-4 max-w-md">
         
-        <!-- Prayer Time Card -->
+        <!-- Prayer Time & Location Card -->
         <section class="bg-gradient-to-br from-emerald-700 to-emerald-900 text-white rounded-2xl p-5 shadow-lg mb-5 relative overflow-hidden">
-            <div class="absolute -left-4 -bottom-4 text-emerald-600/20 text-8xl pointer-events-none">
-                <i class="fa-solid fa-kaaba"></i>
-            </div>
             <div class="flex justify-between items-start mb-3">
                 <div>
-                    <span class="text-xs text-amber-300 font-semibold block">مواقيت الصلاة (الديوانية)</span>
-                    <h2 id="current-prayer-name" class="text-xl font-bold mt-1">صلاة المغرب</h2>
+                    <span id="user-location-label" class="text-xs text-amber-300 font-semibold block">جاري تحديد موقعك...</span>
+                    <h2 id="current-prayer-name" class="text-xl font-bold mt-1">صلاة الوقت</h2>
                 </div>
-                <button onclick="openCitySelector()" class="bg-emerald-600/60 hover:bg-emerald-600 text-xs px-3 py-1.5 rounded-lg">
-                    <i class="fa-solid fa-location-dot ml-1"></i>تغيير المدينة
+                <button onclick="detectUserLocation()" class="bg-emerald-600/80 hover:bg-emerald-600 text-[11px] px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-location-crosshairs"></i>تحديث الموقع
                 </button>
             </div>
-            <div class="text-3xl font-bold tracking-wider text-amber-200" id="current-prayer-time">
-                ٠٧:١٣ م
-            </div>
+            <div class="text-3xl font-bold tracking-wider text-amber-200" id="current-prayer-time">--:--</div>
         </section>
 
-        <!-- Quick Access Navigation Grid -->
+        <!-- Quick Nav Grid -->
         <div class="grid grid-cols-4 gap-3 mb-6">
             <button onclick="switchTab('quran')" class="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg mb-1.5">
-                    <i class="fa-solid fa-book-quran"></i>
-                </div>
+                <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg mb-1.5"><i class="fa-solid fa-book-quran"></i></div>
                 <span class="text-xs font-semibold text-slate-700">القرآن</span>
             </button>
             <button onclick="switchTab('duas')" class="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-lg mb-1.5">
-                    <i class="fa-solid fa-hands-praying"></i>
-                </div>
+                <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-lg mb-1.5"><i class="fa-solid fa-hands-praying"></i></div>
                 <span class="text-xs font-semibold text-slate-700">الأدعية</span>
             </button>
             <button onclick="switchTab('tasbih')" class="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                <div class="w-12 h-12 rounded-full bg-purple-50 text-purple-700 flex items-center justify-center text-lg mb-1.5">
-                    <i class="fa-solid fa-circle-dot"></i>
-                </div>
+                <div class="w-12 h-12 rounded-full bg-purple-50 text-purple-700 flex items-center justify-center text-lg mb-1.5"><i class="fa-solid fa-circle-dot"></i></div>
                 <span class="text-xs font-semibold text-slate-700">المسبحة</span>
             </button>
-            <button onclick="switchTab('monthly_prayers')" class="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-700 flex items-center justify-center text-lg mb-1.5">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </div>
-                <span class="text-xs font-semibold text-slate-700">المواقيت</span>
+            <button onclick="switchTab('challenges')" class="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-700 flex items-center justify-center text-lg mb-1.5"><i class="fa-solid fa-bullseye"></i></div>
+                <span class="text-xs font-semibold text-slate-700">التحديات</span>
             </button>
         </div>
 
-        <!-- Dynamic Content View Area -->
-        <div id="content-area" class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 min-h-[300px]">
-            <!-- Content will be injected dynamically from data.js -->
+        <!-- Dynamic Content Area -->
+        <div id="content-area" class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 min-h-[350px]">
+            <!-- Content injected dynamically -->
         </div>
 
     </main>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-6 flex justify-around items-center z-40">
+    <!-- Bottom Nav Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-6 flex justify-around items-center z-40 shadow-lg">
         <button onclick="switchTab('home')" class="flex flex-col items-center text-emerald-700">
             <i class="fa-solid fa-house text-lg"></i>
-            <span class="text-[10px] mt-1">الرئيسية</span>
+            <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
         </button>
         <button onclick="switchTab('quran')" class="flex flex-col items-center text-slate-400 hover:text-emerald-700">
             <i class="fa-solid fa-book-open text-lg"></i>
             <span class="text-[10px] mt-1">القرآن</span>
         </button>
         <button onclick="switchTab('duas')" class="flex flex-col items-center text-slate-400 hover:text-emerald-700">
-            <i class="fa-solid fa-book-bookmark text-lg"></i>
+            <i class="fa-solid fa-hands-praying text-lg"></i>
             <span class="text-[10px] mt-1">الأدعية</span>
+        </button>
+        <button onclick="switchTab('challenges')" class="flex flex-col items-center text-slate-400 hover:text-emerald-700">
+            <i class="fa-solid fa-bullseye text-lg"></i>
+            <span class="text-[10px] mt-1">التحدي</span>
         </button>
         <button onclick="switchTab('tasbih')" class="flex flex-col items-center text-slate-400 hover:text-emerald-700">
             <i class="fa-solid fa-circle-dot text-lg"></i>
@@ -134,7 +116,6 @@
         </button>
     </nav>
 
-    <!-- External Data Script -->
-    <script src="data.js?v=3"></script>
+    <script src="data.js?v=8"></script>
 </body>
-</html>
+                    </html>
