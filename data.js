@@ -15,35 +15,46 @@ const appData = {
         })),
         duasCategories: {
             mainDuas: [
-                { title: "دعاء كميل", category: "أدعية وليالي", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3" },
-                { title: "دعاء العهد", category: "أدعية مهدوية", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3" },
-                { title: "دعاء الندبة", category: "أدعية الجمعة", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/003.mp3" },
-                { title: "حديث الكساء", category: "فضائل أهل البيت", text: "رُوِيَ عَنْ فَاطِمَةَ الزَّهْرَاءِ بِنْتِ رَسُولِ اللَّهِ (ص) قَالَتْ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/004.mp3" },
-                { title: "زيارة عاشوراء", category: "زيارات", text: "اَسْلَامُ عَلَيْكَ ياَ اَبَا عَبْدِ اللَّهِ وَعَلَى الأَرْوَاَحِ الَّتِي حَلَّتْ بِفِنائِكَ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/005.mp3" },
-                { title: "زيارة الأربعين", category: "زيارات", text: "اَسْلَامُ عَلَى وَلِيِّ اللَّهِ وَحَبِيبِهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/006.mp3" },
-                { title: "دعاء البهاء", category: "أدعية الأسحار", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ بَهَائِكَ بِأَبْهَاهُ وَكُلُّ بَهَائِكَ بَهِيٌّ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/007.mp3" },
-                { title: "دعاء المشلول", category: "أدعية الاستشفاء", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِاسْمِكَ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/008.mp3" },
-                { title: "دعاء يستشير", category: "أدعية مباركة", text: "الْحَمْدُ لِلَّهِ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/009.mp3" },
-                { title: "دعاء المجير", category: "أدعية الأيام البيض", text: "سُبْحَانَكَ يَا اللَّهُ، تَعَالَيْتَ يَا رَحْمَنُ، أَجِرْنَا مِنَ النَّارِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/010.mp3" }
+                { title: "دعاء كميل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء العهد", category: "الأدعية والزيارات", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء الندبة", category: "الأدعية والزيارات", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/003.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "حديث الكساء", category: "الأدعية والزيارات", text: "رُوِيَ عَنْ فَاطِمَةَ الزَّهْرَاءِ بِنْتِ رَسُولِ اللَّهِ (ص) قَالَتْ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/004.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء التوسل", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ وَأَتَوَسَّلُ إِلَيْكَ بِنَبِيِّكَ نَبِيِّ الرَّحْمَةِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/005.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء البهاء", category: "الأدعية والزيارات", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ بَهَائِكَ بِأَبْهَاهُ وَكُلُّ بَهَائِكَ بَهِيٌّ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/006.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "دعاء المجير", category: "الأدعية والزيارات", text: "سُبْحَانَكَ يَا اللَّهُ، تَعَالَيْتَ يَا رَحْمَنُ، أَجِرْنَا مِنَ النَّارِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/007.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "زيارة الأربعين", category: "الأدعية والزيارات", text: "اَسْلَامُ عَلَى وَلِيِّ اللَّهِ وَحَبِيبِهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/008.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "زيارة وارث", category: "الأدعية والزيارات", text: "اَسْلَامُ عَلَيْكَ يَا وَارِثَ آدَمَ صَفْوَةِ اللَّهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/009.mp3", reader: "القارئ أبا ذر الحلواجي" },
+                { title: "زيارة آل ياسين", category: "الأدعية والزيارات", text: "سَلَامٌ عَلَى آلِ يَاسِسُنَ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/010.mp3", reader: "القارئ أبا ذر الحلواجي" }
             ],
             imamsVisits: [
-                { title: "زيارة الإمام علي بن أبي طالب (ع)", text: "السَّلَامُ عَلَى أَمِينِ اللَّهِ فِي أَرْضِهِ..." },
-                { title: "زيارة الإمام الحسين (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ..." },
-                { title: "زيارة الإمام المهدي (عج)", text: "السَّلَامُ عَلَيْكَ يَا شَرِيكَ الْقُرْآنِ..." }
+                { title: "زيارة النبي محمد (ص)", text: "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ..." },
+                { title: "زيارة الامام علي (ع)", text: "السَّلَامُ عَلَى أَمِينِ اللَّهِ فِي أَرْضِهِ..." },
+                { title: "زيارة السيدة فاطمة الزهراء (ع)", text: "السَّلَامُ عَلَيْكِ يَا مُمْتَحَنَةُ امْتَحَنَكِ الَّذِي خَلَقَكِ..." },
+                { title: "زيارة الامام الحسن (ع)", text: "السَّلَامُ عَلَيْكَ يَا ابْنَ رَسُولِ رَبِّ الْعَالَمِينَ..." },
+                { title: "زيارة الامام الحسين (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ وَعَلَى الأَرْوَاَحِ الَّتِي حَلَّتْ بِفِنائِكَ..." },
+                { title: "زيارة الامام علي بن الحسين السجاد (ع)", text: "السَّلَامُ عَلَيْكَ يَا زَيْنَ الْعَابِدِينَ..." },
+                { title: "زيارة الامام محمد الباقر (ع)", text: "السَّلَامُ عَلَيْكَ أَيُّهَا البَاقِرُ لِلْعِلْمِ..." },
+                { title: "زيارة الامام جعفر بن محمد الصادق (ع)", text: "السَّلَامُ عَلَيْكَ أَيُّهَا الصَّادِقُ البَارُّ..." },
+                { title: "زيارة الامام موسى بن جعفر الكاظم (ع)", text: "السَّلَامُ عَلَيْكَ يَا كَاظِمَ الْغَيْظِ..." },
+                { title: "زيارة علي بن موسى الرضا (ع)", text: "السَّلَامُ عَلَيْكَ يَا ثُلْثَ الرَّحْمَةِ..." },
+                { title: "زيارة محمد بن علي الجواد (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا جَعْفَرٍ مُحَمَّدَ بْنَ عَلِيٍّ الْجَوَادَ..." },
+                { title: "زيارة علي بن محمد الهادي (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا الْحَسَنِ عَلِيَّ بْنَ مُحَمَّدٍ النَّقِيَّ..." },
+                { title: "زيارة الحسن بن علي العسكري (ع)", text: "السَّلَامُ عَلَيْكَ يَا مَوْلَايَ يَا أَبَا مُحَمَّدٍ الْحَسَنَ بْنَ عَلِيِّ..." },
+                { title: "زيارة صاحب الزمان (عج)", text: "السَّلَامُ عَلَيْكَ يَا حُجَّةَ اللَّهِ فِي أَرْضِهِ..." }
             ],
             taqibat: [
-                { title: "تعقيب صلاة الصبح", text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ أَسْتَغْفِرُ اللَّهَ..." },
-                { title: "تعقيب صلاة الظهر", text: "لَا إِلَهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ..." },
-                { title: "تعقيب صلاة العصر", text: "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ..." },
-                { title: "تعقيب صلاة المغرب", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ..." },
-                { title: "تعقيب صلاة العشاء", text: "اللَّهُمَّ إِنَّهُ لَيْسَ لِي عِلْمٌ بِمَوْضِعِ رِزْقِي..." }
+                { title: "تعقيبات الصبح", text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ أَسْتَغْفِرُ اللَّهَ..." },
+                { title: "تعقيبات الظهر", text: "لَا إِلَهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ..." },
+                { title: "تعقيبات العصر", text: "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ..." },
+                { title: "تعقيبات المغرب", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ..." },
+                { title: "تعقيبات العشاء", text: "اللَّهُمَّ إِنَّهُ لَيْسَ لِي عِلْمٌ بِمَوْضِعِ رِزْقِي..." }
             ],
             daysDuas: [
                 { title: "دعاء يوم السبت وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الْأَوَّلِ قَبْلَ الإنْشَاءِ..." },
                 { title: "دعاء يوم الأحد وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُشْهِدْ أَحَداً حِينَ فَطَرَ..." },
                 { title: "دعاء يوم الاثنين وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُهْلِكْنِي بِذُنُوبِي..." },
                 { title: "دعاء يوم الثلاثاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ وَالْحَمْدُ حَقُّهُ..." },
-                { title: "دعاء يوم الأربعاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي جَعَعَلَ اللَّيْلَ لِبَاساً..." },
+                { title: "دعاء يوم الأربعاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي جَعَلَ اللَّيْلَ لِبَاساً..." },
                 { title: "دعاء يوم الخميس وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي أَذْهَبَ اللَّيْلَ مُظْلِماً..." },
                 { title: "دعاء يوم الجمعة وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الأَوَّلِ قَبْلَ الإِنْشَاءِ..." }
             ]
@@ -81,20 +92,83 @@ const appData = {
             { day: 30, text: "تجديد العهد والميثاق مع صاحب الزمان (عج)", level: "صعب", points: 30 }
         ],
         prayersList: [
-            { title: "صلاة الليل", time: "الثلث الأخير من الليل", desc: "11 ركعة: 8 ركعات نافلة الليل، ركعتا الشفع، وركعة الوتر." },
-            { title: "صلاة الغفيلة", time: "بين المغرب والعشاء", desc: "ركعتان تقرأ في الأولى الفاتحة والإنشراح، وفي الثانية الفاتحة والتكاثر." },
+            { title: "صلاة الليل (صلاة الرحمة)", time: "الثلث الأخير من الليل", desc: "11 ركعة: 8 ركعات نافلة الليل، ركعتا الشفع، وركعة الوتر." },
+            { title: "صلاة الآيات", time: "عند الكسوف والخسوف والآيات", desc: "ركعتان في كل ركعة خمس ركوعات." },
             { title: "صلاة الوتيرة", time: "بعد صلاة العشاء", desc: "ركعتان من جلوس تعدل ركعة من قيام." },
-            { title: "نافلة الصبح والظهر والعصر", time: "أوقاتها الخاصة", desc: "رواتب النوافل اليومية المعروفة لتكامل الصلوات." }
+            { title: "صلاة العيد", time: "أيام الأعياد المباركة", desc: "صلوات الأعياد المخصوصة." }
+        ],
+        nawafilList: [
+            { title: "نافلة الصبح", time: "قبل صلاة الصبح", desc: "ركعتان." },
+            { title: "نافلة الظهر", time: "قبل صلاة الظهر", desc: "ثماني ركعات." },
+            { title: "نافلة العصر", time: "قبل صلاة العصر", desc: "ثماني ركعات." },
+            { title: "نافلة المغرب", time: "بعد صلاة المغرب", desc: "ركعتان." },
+            { title: "نافلة العشاء", time: "بعد صلاة العشاء", desc: "ركعتان من جلوس (الوتيرة)." }
         ]
     }
 };
+
+const iraqGovernorates = {
+    "الديوانية": { lat: 31.9966, lon: 45.9189 },
+    "البصرة": { lat: 30.5085, lon: 47.7835 },
+    "بغداد": { lat: 33.3152, lon: 44.3661 },
+    "النجف الأشرف": { lat: 32.0000, lon: 44.3333 },
+    "كربلاء المقدسة": { lat: 32.6160, lon: 44.0240 },
+    "بابل": { lat: 32.4727, lon: 44.4225 },
+    "الأنبار": { lat: 33.4250, lon: 41.8460 },
+    "ديالى": { lat: 33.7558, lon: 45.1556 },
+    "صلاح الدين": { lat: 34.6000, lon: 43.6833 },
+    "كركوك": { lat: 35.4681, lon: 44.3922 },
+    "الموصل (نينوى)": { lat: 36.3400, lon: 43.1300 },
+    "أربيل": { lat: 36.1901, lon: 44.0091 },
+    "السليمانية": { lat: 35.5572, lon: 45.4363 },
+    "دهوك": { lat: 36.8679, lon: 42.9885 },
+    "العمارة (ميسان)": { lat: 31.8423, lon: 47.1444 },
+    "الكوت (واسط)": { lat: 32.5029, lon: 45.8164 },
+    "الناصرية (ذي قار)": { lat: 31.0583, lon: 46.2558 },
+    "السماوة (المثنى)": { lat: 31.3275, lon: 45.2917 }
+};
 let tasbihCount = 0;
 
-function changeGovernorate(city) {
+async function fetchLivePrayerTimes(governorateName) {
+    const coords = iraqGovernorates[governorateName] || iraqGovernorates["الديوانية"];
+    const tbody = document.getElementById('monthly-prayer-tbody');
     const label = document.getElementById('user-location-label');
-    if (label) {
-        label.innerText = `مواقيت الصلاة (${city})`;
+    
+    if (label) label.innerText = `جارٍ جلب المواقيت المباشرة لـ (${governorateName})...`;
+    if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">جاري الاتصال بالسحابة الفلكية...</td></tr>`;
+
+    try {
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1;
+        const year = dateObj.getFullYear();
+        
+        const response = await fetch(`https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${coords.lat}&longitude=${coords.lon}&method=4`);
+        const data = await response.json();
+
+        if (data.code === 200 && data.data) {
+            let html = '';
+            data.data.forEach((dayData, index) => {
+                const timings = dayData.timings;
+                const gregorianDate = dayData.date.gregorian.date;
+                html += `<tr class="hover:bg-slate-50">
+                    <td class="p-2 font-bold">${index + 1} (${gregorianDate})</td>
+                    <td class="p-2">${timings.Fajr.split(' ')[0]}</td>
+                    <td class="p-2">${timings.Sunrise.split(' ')[0]}</td>
+                    <td class="p-2">${timings.Dhuhr.split(' ')[0]}</td>
+                    <td class="p-2">${timings.Maghrib.split(' ')[0]}</td>
+                </tr>`;
+            });
+            if (tbody) tbody.innerHTML = html;
+            if (label) label.innerText = `مواقيت الصلاة المباشرة - محافظة ${governorateName}`;
+        }
+    } catch (error) {
+        if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-500">تعذر الاتصال بالإنترنت لجلب المواقيت</td></tr>`;
+        if (label) label.innerText = `خطأ في الاتصال بالسحابة لـ (${governorateName})`;
     }
+}
+
+function changeGovernorate(city) {
+    fetchLivePrayerTimes(city);
 }
 
 function getHijriDateString() {
@@ -195,12 +269,13 @@ function renderDuas(filter = '', activeSubTab = 'main') {
         <div class="space-y-2 max-h-[220px] overflow-y-auto pr-1">`;
 
     if (itemsToDisplay.length === 0) {
-        html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على دعاء بهذا الاسم</p>`;
+        html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على عنصر بهذا الاسم</p>`;
     } else {
         itemsToDisplay.forEach(d => {
             html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
                 <div class="flex justify-between items-center mb-1">
                     <h4 class="font-bold text-emerald-900 text-xs">${d.title}</h4>
+                    ${d.reader ? `<span class="text-[9px] text-amber-700 font-semibold">${d.reader}</span>` : ''}
                 </div>
                 <p class="text-[11px] text-slate-600 mb-2">${d.text}</p>`;
             if (d.audio) {
@@ -244,18 +319,35 @@ function renderPrayers() {
 
     let html = `
         <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-person-praying ml-2"></i>الصلوات المستحبة والنوافل</h3>
-        <div class="space-y-2 max-h-[320px] overflow-y-auto pr-1">`;
-
+        
+        <div class="mb-4">
+            <h4 class="font-bold text-emerald-900 text-xs mb-2">الصلوات المستحبة وتشمل:</h4>
+            <div class="space-y-2">`;
     appData.sections.prayersList.forEach(p => {
-        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+        html += `<div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
             <div class="flex justify-between items-center mb-1">
-                <h4 class="font-bold text-slate-900 text-xs">${p.title}</h4>
+                <h5 class="font-bold text-slate-900 text-xs">${p.title}</h5>
                 <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">${p.time}</span>
             </div>
-            <p class="text-[11px] text-slate-600 leading-relaxed">${p.desc}</p>
+            <p class="text-[11px] text-slate-600">${p.desc}</p>
         </div>`;
     });
-    html += `</div>`;
+    html += `</div></div>`;
+
+    html += `<div>
+            <h4 class="font-bold text-emerald-900 text-xs mb-2">النوافل وتشمل:</h4>
+            <div class="space-y-2">`;
+    appData.sections.nawafilList.forEach(n => {
+        html += `<div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div class="flex justify-between items-center mb-1">
+                <h5 class="font-bold text-slate-900 text-xs">${n.title}</h5>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-semibold">${n.time}</span>
+            </div>
+            <p class="text-[11px] text-slate-600">${n.desc}</p>
+        </div>`;
+    });
+    html += `</div></div>`;
+
     area.innerHTML = html;
 }
 
@@ -263,26 +355,35 @@ function renderMonthlyPrayers() {
     const area = document.getElementById('content-area');
     if (!area) return;
 
+    let governoratesOptions = '';
+    Object.keys(iraqGovernorates).forEach(gov => {
+        governoratesOptions += `<option value="${gov}">${gov}</option>`;
+    });
+
     let html = `
-        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-calendar-days ml-2"></i>المواقيت الشهرية</h3>
-        <div class="max-h-[320px] overflow-y-auto border rounded-xl">
+        <div class="flex justify-between items-center mb-3">
+            <h3 class="text-lg font-bold text-emerald-800"><i class="fa-solid fa-calendar-days ml-2"></i>المواقيت الشهرية</h3>
+            <div class="text-[11px] font-bold text-slate-700">
+                المحافظة: 
+                <select onchange="changeGovernorate(this.value)" class="p-1 border rounded bg-slate-50 text-emerald-900 font-bold">
+                    ${governoratesOptions}
+                </select>
+            </div>
+        </div>
+        <div id="user-location-label" class="text-xs text-emerald-700 font-semibold mb-2">مواقيت الصلاة المباشرة لجميع المحافظات الـ 18</div>
+        <div class="max-h-[300px] overflow-y-auto border rounded-xl">
             <table class="w-full text-[11px] text-right">
                 <thead class="bg-emerald-800 text-white sticky top-0">
-                    <tr><th class="p-2">اليوم</th><th class="p-2">الصبح</th><th class="p-2">الشروق</th><th class="p-2">الظهر</th><th class="p-2">المغرب</th></tr>
+                    <tr><th class="p-2">التاريخ</th><th class="p-2">الصبح</th><th class="p-2">الشروق</th><th class="p-2">الظهر</th><th class="p-2">المغرب</th></tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">`;
+                <tbody id="monthly-prayer-tbody" class="divide-y divide-slate-100">
+                    <tr><td colspan="5" class="p-4 text-center text-slate-500">اختر المحافظة لعرض المواقيت...</td></tr>
+                </tbody>
+            </table>
+        </div>`;
     
-    for (let i = 1; i <= 30; i++) {
-        html += `<tr class="hover:bg-slate-50">
-            <td class="p-2 font-bold">${i} أغسطس</td>
-            <td class="p-2">٠٣:٤٣ ص</td>
-            <td class="p-2">٠٥:١٦ ص</td>
-            <td class="p-2">١٢:٠٧ م</td>
-            <td class="p-2">٠٧:١٣ م</td>
-        </tr>`;
-    }
-    html += `</tbody></table></div>`;
     area.innerHTML = html;
+    fetchLivePrayerTimes("الديوانية");
 }
 
 function renderTasbih() {
