@@ -7,28 +7,58 @@ const appData = {
         },
         quranParts: Array.from({ length: 30 }, (_, i) => ({
             number: i + 1,
-            name: `الجزء ${i + 1}`,
-            surahs: `يضم سور وأيات الجزء ${i + 1} المبارك`,
+            name: `الجزء ${i + 1} المبارك`,
+            surahs: i === 0 ? "من سورة الفاتحة إلى آية 141 من سورة البقرة" : 
+                    i === 1 ? "من آية 142 من سورة البقرة إلى آية 252 من سورة البقرة" :
+                    `تفاصيل سور وآيات الجزء ${i + 1} الكاملة`,
             audioUrl: `https://server8.mp3quran.net/afs/${String(i + 1).padStart(3, '0')}.mp3`
         })),
-        duas: [
-            { title: "دعاء العهد", category: "أدعية مهدوية", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ..." },
-            { title: "دعاء التوسل", category: "أدعية الأيام", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ وَأَتَوَجَّهُ إِلَيْكَ بِنَبِيِّكَ نَبِيِّ الرَّحْمَةِ..." },
-            { title: "دعاء كميل", category: "أدعية الليالي", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ..." },
-            { title: "دعاء الندبة", category: "أدعية يوم الجمعة", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ..." },
-            { title: "دعاء الصباح للإمام علي (ع)", category: "أدعية يومية", text: "اللَّهُمَّ يَا مَنْ دَلَعَ لِسَانَ الصَّبَاحِ بِنُتْقِ تَلَجُّلِهِ..." }
-        ],
+        duasCategories: {
+            mainDuas: [
+                { title: "دعاء كميل", category: "أدعية وليالي", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/001.mp3" },
+                { title: "دعاء العهد", category: "أدعية مهدوية", text: "اللَّهُمَّ رَبِّ النُّورِ العَظِيمِ ورَبِّ الكُرْسِيِّ الرَّفِيعِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/002.mp3" },
+                { title: "دعاء الندبة", category: "أدعية الجمعة", text: "الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ وَصَلَّى للَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/003.mp3" },
+                { title: "حديث الكساء", category: "فضائل أهل البيت", text: "رُوِيَ عَنْ فَاطِمَةَ الزَّهْرَاءِ بِنْتِ رَسُولِ اللَّهِ (ص) قَالَتْ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/004.mp3" },
+                { title: "زيارة عاشوراء", category: "زيارات", text: "اَسْلَامُ عَلَيْكَ ياَ اَبَا عَبْدِ اللَّهِ وَعَلَى الأَرْوَاَحِ الَّتِي حَلَّتْ بِفِنائِكَ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/005.mp3" },
+                { title: "زيارة الأربعين", category: "زيارات", text: "اَسْلَامُ عَلَى وَلِيِّ اللَّهِ وَحَبِيبِهِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/006.mp3" },
+                { title: "دعاء البهاء", category: "أدعية الأسحار", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ بَهَائِكَ بِأَبْهَاهُ وَكُلُّ بَهَائِكَ بَهِيٌّ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/007.mp3" },
+                { title: "دعاء المشلول", category: "أدعية الاستشفاء", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِاسْمِكَ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/008.mp3" },
+                { title: "دعاء يستشير", category: "أدعية مباركة", text: "الْحَمْدُ لِلَّهِ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/009.mp3" },
+                { title: "دعاء المجير", category: "أدعية الأيام البيض", text: "سُبْحَانَكَ يَا اللَّهُ، تَعَالَيْتَ يَا رَحْمَنُ، أَجِرْنَا مِنَ النَّارِ...", audio: "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/010.mp3" }
+            ],
+            imamsVisits: [
+                { title: "زيارة الإمام علي بن أبي طالب (ع)", text: "السَّلَامُ عَلَى أَمِينِ اللَّهِ فِي أَرْضِهِ..." },
+                { title: "زيارة الإمام الحسين (ع)", text: "السَّلَامُ عَلَيْكَ يَا أَبَا عَبْدِ اللَّهِ..." },
+                { title: "زيارة الإمام المهدي (عج)", text: "السَّلَامُ عَلَيْكَ يَا شَرِيكَ الْقُرْآنِ..." }
+            ],
+            taqibat: [
+                { title: "تعقيب صلاة الصبح", text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ أَسْتَغْفِرُ اللَّهَ..." },
+                { title: "تعقيب صلاة الظهر", text: "لَا إِلَهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ..." },
+                { title: "تعقيب صلاة العصر", text: "أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ..." },
+                { title: "تعقيب صلاة المغرب", text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ..." },
+                { title: "تعقيب صلاة العشاء", text: "اللَّهُمَّ إِنَّهُ لَيْسَ لِي عِلْمٌ بِمَوْضِعِ رِزْقِي..." }
+            ],
+            daysDuas: [
+                { title: "دعاء يوم السبت وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الْأَوَّلِ قَبْلَ الإنْشَاءِ..." },
+                { title: "دعاء يوم الأحد وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُشْهِدْ أَحَداً حِينَ فَطَرَ..." },
+                { title: "دعاء يوم الاثنين وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي لَمْ يُهْلِكْنِي بِذُنُوبِي..." },
+                { title: "دعاء يوم الثلاثاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ وَالْحَمْدُ حَقُّهُ..." },
+                { title: "دعاء يوم الأربعاء وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي جَعَعَلَ اللَّيْلَ لِبَاساً..." },
+                { title: "دعاء يوم الخميس وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الَّذي أَذْهَبَ اللَّيْلَ مُظْلِماً..." },
+                { title: "دعاء يوم الجمعة وزيارته", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ - الْحَمْدُ لِلَّهِ الأَوَّلِ قَبْلَ الإِنْشَاءِ..." }
+            ]
+        },
         challenges: [
             { day: 1, text: "قراءة صفحة من القرآن الكريم مع التدبر", level: "سهل", points: 10 },
             { day: 2, text: "صلاة ركعتين هدية لإمام الزمان (عج)", level: "سهل", points: 10 },
             { day: 3, text: "قراءة دعاء العهد صباحاً", level: "سهل", points: 10 },
             { day: 4, text: "الاستغفار 100 مرة", level: "سهل", points: 10 },
             { day: 5, text: "إطعام محتاج أو مساعدة شخص محتاج", level: "متوسط", points: 20 },
-            { day: 6, text: "محافظة على الصلوات في أول وقتها", level: "متوسط", points: 20 },
+            { day: 6, text: "المحافظة على الصلوات في أول وقتها", level: "متوسط", points: 20 },
             { day: 7, text: "قراءة سورة يس وتهدئة ثوابها للزهراء (ع)", level: "متوسط", points: 20 },
             { day: 8, text: "صلة الرحم والاتصال بقريب مقطوع", level: "متوسط", points: 20 },
             { day: 9, text: "أداء صلاة الليل كاملة", level: "صعب", points: 30 },
-            { day: 10, text: "الصدقة السرية لو لوالدينا أو للأيتام", level: "متوسط", points: 20 },
+            { day: 10, text: "الصدقة السرية لوالدينا أو للأيتام", level: "متوسط", points: 20 },
             { day: 11, text: "قراءة دعاء التوسل كاملاً", level: "سهل", points: 10 },
             { day: 12, text: "صيام يوم مستحب (كالخميس أو الأيام البيض)", level: "صعب", points: 30 },
             { day: 13, text: "حفظ 3 آيات جديدة من القرآن الكريم", level: "متوسط", points: 20 },
@@ -51,85 +81,34 @@ const appData = {
             { day: 30, text: "تجديد العهد والميثاق مع صاحب الزمان (عج)", level: "صعب", points: 30 }
         ],
         prayersList: [
-            { title: "صلاة الليل", time: "الثلث الأخير من الليل", desc: "11 ركعة: 8 ركعات نافلة الليل (مثنى مثنى)، ركعتا الشفع، وركعة الوتر القنوت فيها طويل." },
-            { title: "صلاة الغفيلة", time: "بين المغرب والعشاء", desc: "ركعتان خفيفتان تقرأ في الأولى الفاتحة وسورة الإنشراح، وفي الثانية الفاتحة وسورة التكاثر." },
-            { title: "صلاة الوتيرة", time: "بعد صلاة العشاء", desc: "ركعتان من جلوس تعدل ركعة من قيام، تقرأ فيهما الفاتحة وسورة الإخلاص وآية الكرسي." },
-            { title: "صلاة العيد", time: "يومي العيدين الفطر والأضحى", desc: "ركعتان يكبر في الأولى 5 وفي الثانية 4 يكبر بعدها ويدعو بالقنوت المخصوص." },
-            { title: "نافلة الصبح", time: "قبل صلاة الصبح", desc: "ركعتان تقرأ فيهما سورة الفاتحة وسورة الكافرون والإخلاص." },
-            { title: "نافلة الظهر", time: "قبل فريضة الظهر", desc: "8 ركعات تصلى ركعتين ركعتين (4 تسليمات)." },
-            { title: "نافلة العصر", time: "قبل فريضة العصر", desc: "8 ركعات تصلى ركعتين ركعتين قبل صلاة العصر." },
-            { title: "نافلة المغرب", time: "بعد فريضة المغرب", desc: "ركعتان تقرأ بعد صلاة المغرب مباشرة." },
-            { title: "نافلة العشاء", time: "بعد فريضة العشاء", desc: "ركعتان من جلوس تعدلان ركعة واحدة." }
+            { title: "صلاة الليل", time: "الثلث الأخير من الليل", desc: "11 ركعة: 8 ركعات نافلة الليل، ركعتا الشفع، وركعة الوتر." },
+            { title: "صلاة الغفيلة", time: "بين المغرب والعشاء", desc: "ركعتان تقرأ في الأولى الفاتحة والإنشراح، وفي الثانية الفاتحة والتكاثر." },
+            { title: "صلاة الوتيرة", time: "بعد صلاة العشاء", desc: "ركعتان من جلوس تعدل ركعة من قيام." },
+            { title: "نافلة الصبح والظهر والعصر", time: "أوقاتها الخاصة", desc: "رواتب النوافل اليومية المعروفة لتكامل الصلوات." }
         ]
     }
 };
-
 let tasbihCount = 0;
-let userCustomDuas = JSON.parse(localStorage.getItem('user_custom_duas') || '[]');
 
-// تحديد موقع المستخدم الجغرافي وتعيين المحافظة
-function detectUserLocation() {
+function changeGovernorate(city) {
     const label = document.getElementById('user-location-label');
-    if (navigator.geolocation) {
-        label.innerText = "جاري تحديد الموقع بدقة...";
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                // افتراض الموقع في العراق / الديوانية أو المحافظة القريبة حسب الإحداثيات
-                label.innerText = "مواقيت الصلاة (الديوانية - موقعك الحالي)";
-                updatePrayerTimesDisplay("الديوانية");
-            },
-            (error) => {
-                label.innerText = "مواقيت الصلاة (الديوانية - الافتراضي)";
-                updatePrayerTimesDisplay("الديوانية");
-            }
-        );
-    } else {
-        label.innerText = "مواقيت الصلاة (الديوانية)";
+    if (label) {
+        label.innerText = `مواقيت الصلاة (${city})`;
     }
 }
 
-function updatePrayerTimesDisplay(city) {
-    document.getElementById('current-prayer-name').innerText = "صلاة المغرب";
-    document.getElementById('current-prayer-time').innerText = "٠٧:١٣ م";
-}
-
-// حساب التاريخ الهجري المضبوط
 function getHijriDateString() {
     return "٢٢ محرم ١٤٤٨ هـ";
 }
 
 function switchTab(tabId) {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-
-    if (tabId === 'home' || tabId === 'main') {
-        renderHome();
-        return;
-    }
-    if (tabId === 'tasbih') {
-        renderTasbih();
-        return;
-    }
-    if (tabId === 'quran') {
-        renderQuran();
-        return;
-    }
-    if (tabId === 'duas') {
-        renderDuas();
-        return;
-    }
-    if (tabId === 'challenges') {
-        renderChallenges();
-        return;
-    }
-    if (tabId === 'prayers') {
-        renderPrayers();
-        return;
-    }
-    if (tabId === 'monthly_prayers') {
-        renderMonthlyPrayers();
-        return;
-    }
+    if (tabId === 'home' || tabId === 'main') { renderHome(); return; }
+    if (tabId === 'tasbih') { renderTasbih(); return; }
+    if (tabId === 'quran') { renderQuran(); return; }
+    if (tabId === 'duas') { renderDuas(); return; }
+    if (tabId === 'challenges') { renderChallenges(); return; }
+    if (tabId === 'prayers') { renderPrayers(); return; }
+    if (tabId === 'monthly_prayers') { renderMonthlyPrayers(); return; }
     renderHome();
 }
 
@@ -149,132 +128,122 @@ function renderHome() {
         </div>`;
 }
 
-// القرآن الكريم مع البحث والاستماع
 function renderQuran(filter = '') {
     const area = document.getElementById('content-area');
     if (!area) return;
 
-    const filteredParts = appData.sections.quranParts.filter(p => 
+    const filtered = appData.sections.quranParts.filter(p => 
         p.name.includes(filter) || p.surahs.includes(filter) || String(p.number).includes(filter)
     );
 
     let html = `
         <h3 class="text-lg font-bold text-emerald-800 mb-3"><i class="fa-solid fa-book-quran ml-2"></i>القرآن الكريم والأجزاء</h3>
         <div class="mb-3">
-            <input type="text" id="quran-search" oninput="renderQuran(this.value)" value="${filter}" placeholder="ابحث عن رقم الجزء أو السورة..." class="w-full text-xs p-3 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
+            <input type="text" id="quran-search" oninput="renderQuran(this.value)" value="${filter}" placeholder="ابحث برقم الجزء أو اسم السورة..." class="w-full text-xs p-3 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
         </div>
         <div class="space-y-2 max-h-[300px] overflow-y-auto pr-1">`;
 
-    if (filteredParts.length === 0) {
-        html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على نتائج للبحث</p>`;
-    } else {
-        filteredParts.forEach(p => {
-            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex flex-col gap-2">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-slate-800 text-xs">${p.name}</span>
-                    <span class="text-[10px] text-slate-500">${p.surahs}</span>
-                </div>
-                <audio controls class="w-full h-8 mt-1">
-                    <source src="${p.audioUrl}" type="audio/mpeg">
-                    متصفحك لا يدعم تشغيل الصوت
-                </audio>
-            </div>`;
-        });
-    }
-    html += `</div>`;
-    area.innerHTML = html;
-}
-
-// الأدعية مع البحث وخانة إضافة دعاء خاص
-function renderDuas(filter = '') {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-
-    const allDuas = [...appData.sections.duas, ...userCustomDuas];
-    const filtered = allDuas.filter(d => d.title.includes(filter) || d.text.includes(filter));
-
-    let html = `
-        <h3 class="text-lg font-bold text-emerald-800 mb-3"><i class="fa-solid fa-hands-praying ml-2"></i>الأدعية والزيارات</h3>
-        
-        <!-- خانة البحث -->
-        <div class="mb-3">
-            <input type="text" id="duas-search" oninput="renderDuas(this.value)" value="${filter}" placeholder="ابحث عن أي دعاء..." class="w-full text-xs p-2.5 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
-        </div>
-
-        <!-- إضافة دعاء خاص -->
-        <div class="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100 mb-3">
-            <span class="text-[11px] font-bold text-emerald-800 block mb-1">أضف دعاءك الخاص أو المفضل:</span>
-            <input type="text" id="custom-duas-title" placeholder="عنوان الدعاء..." class="w-full text-xs p-2 border rounded-lg bg-white mb-2">
-            <textarea id="custom-duas-text" placeholder="اكتب نص الدعاء هنا..." class="w-full text-xs p-2 border rounded-lg bg-white h-16 resize-none mb-2"></textarea>
-            <button onclick="saveUserDua()" class="w-full bg-emerald-700 text-white text-xs font-semibold py-2 rounded-lg hover:bg-emerald-800">حفظ وحفظ الدعاء</button>
-        </div>
-
-        <div class="space-y-2 max-h-[220px] overflow-y-auto pr-1" id="duas-list-container">`;
-
-    if (filtered.length === 0) {
-        html += `<p class="text-center text-xs text-slate-400 py-4">لا توجد أدعية تطابق بحثك</p>`;
-    } else {
-        filtered.forEach(d => {
-            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                <div class="flex justify-between items-center mb-1">
-                    <h4 class="font-bold text-emerald-900 text-xs">${d.title}</h4>
-                    <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">${d.category || 'خاص'}</span>
-                </div>
-                <p class="text-[11px] text-slate-600 line-clamp-2">${d.text}</p>
-            </div>`;
-        });
-    }
-    html += `</div>`;
-    area.innerHTML = html;
-}
-
-function saveUserDua() {
-    const titleInput = document.getElementById('custom-duas-title');
-    const textInput = document.getElementById('custom-duas-text');
-    if (!titleInput.value || !textInput.value) {
-        alert("يرجى ملء عنوان النص ومحتوى الدعاء");
-        return;
-    }
-    userCustomDuas.push({ title: titleInput.value, category: "أدعية خاصة", text: textInput.value });
-    localStorage.setItem('user_custom_duas', JSON.stringify(userCustomDuas));
-    renderDuas();
-}
-
-// تحديات 30 يوماً
-function renderChallenges() {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-
-    let html = `
-        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-bullseye ml-2"></i>التحديات الروحية (30 يوماً)</h3>
-        <p class="text-[11px] text-slate-500 mb-3">تحدي يومي ثابت ومدروس للارتقاء الروحي (لا يمكن تعديله)</p>
-        <div class="space-y-2 max-h-[320px] overflow-y-auto pr-1">`;
-
-    appData.sections.challenges.forEach(c => {
-        let badgeColor = c.level === 'سهل' ? 'bg-emerald-100 text-emerald-800' : c.level === 'متوسط' ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800';
-        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center">
-            <div>
-                <span class="text-[10px] font-bold text-emerald-700 block">اليوم ${c.day}</span>
-                <p class="text-xs text-slate-800 font-semibold mt-0.5">${c.text}</p>
+    filtered.forEach(p => {
+        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="flex justify-between items-center cursor-pointer mb-1" onclick="toggleQuranDetail(${p.number})">
+                <span class="font-bold text-slate-800 text-xs">${p.name}</span>
+                <span class="text-[10px] text-emerald-700 font-semibold underline">عرض السور والآيات</span>
             </div>
-            <div class="flex flex-col items-end gap-1">
-                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${badgeColor}">${c.level}</span>
-                <span class="text-[10px] text-slate-400">+${c.points} نقطة</span>
+            <div id="quran-detail-${p.number}" class="hidden text-[11px] text-slate-600 bg-emerald-50/50 p-2 rounded-lg mb-2">
+                <p>${p.surahs}</p>
             </div>
+            <audio controls class="w-full h-8 mt-1">
+                <source src="${p.audioUrl}" type="audio/mpeg">
+                متصفحك لا يدعم تشغيل الصوت
+            </audio>
         </div>`;
     });
     html += `</div>`;
     area.innerHTML = html;
 }
 
-// الصلوات المستحبة والنوافل وتעليمها
+function toggleQuranDetail(num) {
+    const el = document.getElementById(`quran-detail-${num}`);
+    if (el) el.classList.toggle('hidden');
+}
+
+function renderDuas(filter = '', activeSubTab = 'main') {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+
+    let itemsToDisplay = [];
+    if (activeSubTab === 'main') itemsToDisplay = appData.sections.duasCategories.mainDuas;
+    else if (activeSubTab === 'visits') itemsToDisplay = appData.sections.duasCategories.imamsVisits;
+    else if (activeSubTab === 'taqibat') itemsToDisplay = appData.sections.duasCategories.taqibat;
+    else if (activeSubTab === 'days') itemsToDisplay = appData.sections.duasCategories.daysDuas;
+
+    if (filter) {
+        itemsToDisplay = itemsToDisplay.filter(d => d.title.includes(filter));
+    }
+
+    let html = `
+        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-hands-praying ml-2"></i>الأدعية والزيارات</h3>
+        <div class="mb-3">
+            <input type="text" id="duas-search" oninput="renderDuas(this.value, '${activeSubTab}')" value="${filter}" placeholder="ابحث باسم الدعاء أو الزيارة..." class="w-full text-xs p-2.5 border rounded-xl focus:outline-none focus:border-emerald-600 bg-slate-50">
+        </div>
+        <div class="grid grid-cols-2 gap-1.5 mb-3 text-[10px] font-bold">
+            <button onclick="renderDuas('', 'main')" class="p-2 rounded-lg ${activeSubTab === 'main' ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700'}">الأدعية والزيارات</button>
+            <button onclick="renderDuas('', 'visits')" class="p-2 rounded-lg ${activeSubTab === 'visits' ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700'}">زيارة المعصومين</button>
+            <button onclick="renderDuas('', 'taqibat')" class="p-2 rounded-lg ${activeSubTab === 'taqibat' ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700'}">تعقيبات الصلاة</button>
+            <button onclick="renderDuas('', 'days')" class="p-2 rounded-lg ${activeSubTab === 'days' ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700'}">أدعية الأيام والزيارات</button>
+        </div>
+        <div class="space-y-2 max-h-[220px] overflow-y-auto pr-1">`;
+
+    if (itemsToDisplay.length === 0) {
+        html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على دعاء بهذا الاسم</p>`;
+    } else {
+        itemsToDisplay.forEach(d => {
+            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <div class="flex justify-between items-center mb-1">
+                    <h4 class="font-bold text-emerald-900 text-xs">${d.title}</h4>
+                </div>
+                <p class="text-[11px] text-slate-600 mb-2">${d.text}</p>`;
+            if (d.audio) {
+                html += `<audio controls class="w-full h-7">
+                    <source src="${d.audio}" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت
+                </audio>`;
+            }
+            html += `</div>`;
+        });
+    }
+    html += `</div>`;
+    area.innerHTML = html;
+}
+
+function renderChallenges() {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+
+    const todayIndex = new Date().getDate() % appData.sections.challenges.length;
+    const c = appData.sections.challenges[todayIndex];
+    let badgeColor = c.level === 'سهل' ? 'bg-emerald-100 text-emerald-800' : c.level === 'متوسط' ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800';
+
+    let html = `
+        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-bullseye ml-2"></i>التحدي الروحي اليومي</h3>
+        <p class="text-[11px] text-slate-500 mb-4">تحدي واحد مختار خصيصاً لك لهذا اليوم:</p>
+        <div class="bg-gradient-to-br from-amber-50 to-emerald-50 p-5 rounded-2xl border border-amber-200 text-center shadow-sm">
+            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-3">تحدي اليوم</span>
+            <p class="text-sm text-slate-800 font-bold mb-4 leading-relaxed">${c.text}</p>
+            <div class="flex justify-center items-center gap-2">
+                <span class="text-xs px-3 py-1 rounded-full font-bold ${badgeColor}">${c.level}</span>
+                <span class="text-xs text-slate-500 font-semibold">+${c.points} نقطة روحية</span>
+            </div>
+        </div>`;
+    area.innerHTML = html;
+}
+
 function renderPrayers() {
     const area = document.getElementById('content-area');
     if (!area) return;
 
     let html = `
         <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-person-praying ml-2"></i>الصلوات المستحبة والنوافل</h3>
-        <p class="text-[11px] text-slate-500 mb-3">مع بيان أوقاتها وكيفية أدائها بدقة</p>
         <div class="space-y-2 max-h-[320px] overflow-y-auto pr-1">`;
 
     appData.sections.prayersList.forEach(p => {
@@ -290,14 +259,12 @@ function renderPrayers() {
     area.innerHTML = html;
 }
 
-// المواقيت الشهرية لجميع المحافظات
 function renderMonthlyPrayers() {
     const area = document.getElementById('content-area');
     if (!area) return;
 
     let html = `
-        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-calendar-days ml-2"></i>مواقيت الصلاة الشهرية</h3>
-        <p class="text-[11px] text-slate-500 mb-3">جدول تفصيلي لمواقيت الصلاة لعموم المحافظات العراقية</p>
+        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-calendar-days ml-2"></i>المواقيت الشهرية</h3>
         <div class="max-h-[320px] overflow-y-auto border rounded-xl">
             <table class="w-full text-[11px] text-right">
                 <thead class="bg-emerald-800 text-white sticky top-0">
@@ -318,7 +285,6 @@ function renderMonthlyPrayers() {
     area.innerHTML = html;
 }
 
-// المسبحة الإلكترونية
 function renderTasbih() {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -355,6 +321,5 @@ function toggleSidebar() {
 window.onload = function() {
     const hijriEl = document.getElementById('hijri-date-display');
     if (hijriEl) hijriEl.innerText = getHijriDateString();
-    detectUserLocation();
     renderHome();
 };
