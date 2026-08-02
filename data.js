@@ -132,7 +132,7 @@ let tasbihCount = 0;
 let currentSelectedGov = "الديوانية";
 let todayTimings = null;
 
-// سحابة جلب المواقيت وتحديث المستطيل في الصفحة الرئيسية والجدول الشهري
+// جلب المواقيت المباشرة مع إمكانية التعديل والتصحيح
 async function fetchLivePrayerTimes(governorateName) {
     currentSelectedGov = governorateName;
     const coords = iraqGovernorates[governorateName] || iraqGovernorates["الديوانية"];
@@ -181,7 +181,6 @@ function changeGovernorate(city) {
     fetchLivePrayerTimes(city);
 }
 
-// تحديث مستطيل الصلاة بالصفحة الرئيسية بناءً على الوقت الحقيقي والمحافظة وانتقاله للوقت التالي تلقائياً
 function updateMainPrayerCard() {
     const cardTitle = document.getElementById('main-prayer-title');
     const cardTime = document.getElementById('main-prayer-time');
@@ -214,10 +213,18 @@ function updateMainPrayerCard() {
     if (cardTime) cardTime.innerText = activePrayer.time;
 }
 
-// سحابة جلب التاريخ الهجري الحقيقي والمضبوط
+// دالة جلب التاريخ الهجري مع إمكانية تعديله يدوياً إن لم يعجبك ضبط السحابة
 async function fetchHijriDate() {
     const hijriEl = document.getElementById('hijri-date-display');
     if (!hijriEl) return;
+    
+    // إذا كنت قد خزنت تعديلاً يدوياً مسبقاً، اعرضه فوراً
+    const manualDate = localStorage.getItem('manual_hijri_date');
+    if (manualDate) {
+        hijriEl.innerHTML = `${manualDate} <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1 font-normal">(تعديل)</button>`;
+        return;
+    }
+
     try {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -228,14 +235,23 @@ async function fetchHijriDate() {
         const data = await res.json();
         if (data.code === 200 && data.data) {
             const h = data.data.hijri;
-            hijriEl.innerText = `${h.day} ${h.month.ar} ${h.year} هـ`;
+            const fullStr = `${h.day} ${h.month.ar} ${h.year} هـ`;
+            hijriEl.innerHTML = `${fullStr} <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1 font-normal">(تعديل)</button>`;
         }
-    } catch (e) {
-        hijriEl.innerText = "التاريخ الهجري غير متصل";
+    } tky {
+        hijriEl.innerHTML = `التاريخ الهجري غير متصل <button onclick="editHijriManually()" class="text-[10px] text-amber-300 underline mr-1">(تعديل)</button>`;
     }
 }
 
-// دالة عرض صفحة التفاصيل مع زر رجوع سليم تماماً
+function editHijriManually() {
+    const newDate = prompt("أدخل التاريخ الهجري الصحيح بالصيغة التي تريدها (مثال: 18 صفر 1448 هـ):");
+    if (newDate) {
+        localStorage.setItem('manual_hijri_date', newDate);
+        fetchHijriDate();
+    }
+}
+
+// دالة عرض التفاصيل مع زر رجوع سليم تماماً
 function showDetailPage(title, text, audioUrl, reader) {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -390,9 +406,9 @@ function renderChallenges() {
     let badgeColor = c.level === 'سهل' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800';
 
     area.innerHTML = `
-        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-bullseye ml-2"></i>التحدي الروحي اليومي</h3>
-        <div class="bg-gradient-to-br from-amber-50 to-emerald-50 p-5 rounded-2xl border border-amber-200 text-center shadow-sm">
-            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-3">تحدي اليوم</span>
+        <h3 class="text-lg font-bold text-emerald-800 mb-2"><i class="fa-solid fa-bullseye ml-2"></i>التحدي الروحي اليومي (30 تحدياً)</h3>
+        <div class="bg-gradient-to-br from-amber-50 to-emerald-50 p-5 rounded-2xl border border-amber-200 text-center shadow-sm mb-3">
+            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-3">تحدي اليوم رقم ${c.day}</span>
             <p class="text-sm text-slate-800 font-bold mb-4 leading-relaxed">${c.text}</p>
             <div class="flex justify-center items-center gap-2">
                 <span class="text-xs px-3 py-1 rounded-full font-bold ${badgeColor}">${c.level}</span>
@@ -432,7 +448,6 @@ function renderPrayers() {
     area.innerHTML = html;
 }
 
-// عرض المواقيت الشهرية للـ 18 محافظة بخط مكبر وواضح
 function renderMonthlyPrayers() {
     const area = document.getElementById('content-area');
     if (!area) return;
