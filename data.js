@@ -241,3 +241,57 @@ function openCitySelector() {
 window.onload = function() {
     document.getElementById('hijri-date').innerText = "٢١ محرم ١٤٤٨ هـ";
     renderHome();
+    // مصفوفة مواقيت الصلاة الشهرية
+const monthlyPrayersData = Array.from({ length: 30 }, (_, i) => ({
+    day: `${i + 1} أغسـسطس`,
+    fajr: "٠٣:٤٣ ص",
+    sunrise: "٠٥:١٦ ص",
+    dhuhr: "١٢:٠٧ م",
+    asr: "٠٣:٤٧ م",
+    maghrib: "٠٧:١٣ م"
+}));
+
+let tasbihCount = 0;
+
+// دالة عرض المسبحة الإلكترونية
+function renderTasbih() {
+    document.getElementById('content-area').innerHTML = `
+        <div class="text-center py-6">
+            <h3 class="font-bold text-emerald-900 text-base mb-2"><i class="fa-solid fa-circle-dot text-purple-600 ml-1"></i>المسبحة الإلكترونية</h3>
+            <div class="my-6">
+                <span id="counter-display" class="text-6xl font-bold text-emerald-800">${tasbihCount}</span>
+            </div>
+            <div class="flex justify-center gap-3">
+                <button onclick="incrementTasbih()" class="bg-emerald-700 text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg active:scale-95 transition">تسبيح</button>
+                <button onclick="resetTasbih()" class="bg-slate-200 text-slate-700 px-4 py-4 rounded-2xl font-bold">إعادة</button>
+            </div>
+        </div>`;
+}
+
+function incrementTasbih() {
+    tasbihCount++;
+    document.getElementById('counter-display').innerText = tasbihCount;
+}
+
+function resetTasbih() {
+    tasbihCount = 0;
+    document.getElementById('counter-display').innerText = tasbihCount;
+}
+
+// دالة عرض جدول مواقيت الصلاة للشهر الكامل
+function renderMonthlyPrayers() {
+    let html = `<h3 class="text-lg font-bold text-emerald-800 mb-3"><i class="fa-solid fa-calendar-days ml-2"></i>مواقيت الصلاة الشهرية</h3>
+    <div class="max-h-[380px] overflow-y-auto border rounded-xl"><table class="w-full text-xs text-right">
+    <thead class="bg-emerald-800 text-white sticky top-0"><tr><th class="p-2">اليوم</th><th class="p-2">الصبح</th><th class="p-2">الشروق</th><th class="p-2">الظهر</th><th class="p-2">العصر</th><th class="p-2">المغرب</th></tr></thead>
+    <tbody class="divide-y divide-slate-100">`;
+    monthlyPrayersData.forEach(p => {
+        html += `<tr class="hover:bg-slate-50"><td class="p-2 font-bold">${p.day}</td><td class="p-2">${p.fajr}</td><td class="p-2">${p.sunrise}</td><td class="p-2">${p.dhuhr}</td><td class="p-2">${p.asr}</td><td class="p-2">${p.maghrib}</td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+    document.getElementById('content-area').innerHTML = html;
+}
+
+// دالة فتح القائمة الجانبية
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('hidden');
+}
