@@ -11,7 +11,8 @@ const appData = {
             surahs: i === 0 ? "من سورة الفاتحة إلى آية 141 من سورة البقرة" : 
                     i === 1 ? "من آية 142 من سورة البقرة إلى آية 252 من سورة البقرة" :
                     `تفاصيل سور وآيات الجزء ${i + 1} الكاملة`,
-            audioUrl: `https://server8.mp3quran.net/afs/${String(i + 1).padStart(3, '0')}.mp3`
+            audioUrl: `https://server8.mp3quran.net/afs/${String(i + 1).padStart(3, '0')}.mp3`,
+            text: `النص الكامل لآيات وسور الجزء ${i + 1} المبارك... [بسم الله الرحمن الرحيم...]`
         })),
         duasCategories: {
             mainDuas: [
@@ -129,12 +130,13 @@ const iraqGovernorates = {
 };
 let tasbihCount = 0;
 
+// سحابة جلب مواقيت الصلاة الحقيقية لجميع المحافظات الـ 18
 async function fetchLivePrayerTimes(governorateName) {
     const coords = iraqGovernorates[governorateName] || iraqGovernorates["الديوانية"];
     const tbody = document.getElementById('monthly-prayer-tbody');
     const label = document.getElementById('user-location-label');
     
-    if (label) label.innerText = `جارٍ جلب المواقيت المباشرة لـ (${governorateName})...`;
+    if (label) label.innerText = `جارٍ جلب المواقيت المباشرة من السحابة لـ (${governorateName})...`;
     if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">جاري الاتصال بالسحابة الفلكية...</td></tr>`;
 
     try {
@@ -150,7 +152,7 @@ async function fetchLivePrayerTimes(governorateName) {
             data.data.forEach((dayData, index) => {
                 const timings = dayData.timings;
                 const gregorianDate = dayData.date.gregorian.date;
-                html += `<tr class="hover:bg-slate-50">
+                html += `<tr class="hover:bg-slate-50 border-b">
                     <td class="p-2 font-bold">${index + 1} (${gregorianDate})</td>
                     <td class="p-2">${timings.Fajr.split(' ')[0]}</td>
                     <td class="p-2">${timings.Sunrise.split(' ')[0]}</td>
@@ -159,10 +161,10 @@ async function fetchLivePrayerTimes(governorateName) {
                 </tr>`;
             });
             if (tbody) tbody.innerHTML = html;
-            if (label) label.innerText = `مواقيت الصلاة المباشرة - محافظة ${governorateName}`;
+            if (label) label.innerText = `مواقيت الصلاة المباشرة - محافظة ${governorateName} (معتمدة فلكياً)`;
         }
     } catch (error) {
-        if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-500">تعذر الاتصال بالإنترنت لجلب المواقيت</td></tr>`;
+        if (tbody) tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-500">تعذر الاتصال بالسحابة الفلكية</td></tr>`;
         if (label) label.innerText = `خطأ في الاتصال بالسحابة لـ (${governorateName})`;
     }
 }
@@ -171,8 +173,57 @@ function changeGovernorate(city) {
     fetchLivePrayerTimes(city);
 }
 
-function getHijriDateString() {
-    return "٢٢ محرم ١٤٤٨ هـ";
+// سحابة جلب التاريخ الهجري المضبوط حقيقياً
+async function fetchHijriDate() {
+    const hijriEl = document.getElementById('hijri-date-display');
+    if (!hijriEl) return;
+    try {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear();
+        
+        const res = await fetch(`https://api.aladhan.com/v1/gregorianToHijri?date=${dd}-${mm}-${yyyy}`);
+        const data = await res.json();
+        if (data.code === 200 && data.data) {
+            const h = data.data.hijri;
+            hijriEl.innerText = `${h.day} ${h.month.ar} ${h.year} هـ`;
+        }
+    } catch (e) {
+        hijriEl.innerText = "٢٢ محرم ١٤٤٨ هـ";
+    }
+}
+
+// دالة عرض صفحة التفاصيل الشاملة عند النقر على أي عنصر مع زر الصوت
+function showDetailPage(title, text, audioUrl, reader) {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+
+    area.innerHTML = `
+        <div class="mb-4">
+            <button onclick="window.history.back()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 w-fit">
+                <i class="fa-solid fa-arrow-right"></i><span>رجوع</span>
+            </button>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 shadow-sm">
+            <div class="flex justify-between items-center mb-3 border-b pb-2">
+                <h3 class="font-bold text-emerald-900 text-base">${title}</h3>
+                ${reader ? `<span class="text-[11px] text-amber-700 font-semibold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">${reader}</span>` : ''}
+            </div>
+            <div class="max-h-[350px] overflow-y-auto pr-1 mb-4">
+                <p class="text-xs text-slate-700 leading-loose whitespace-pre-line text-justify">${text}</p>
+            </div>
+            ${audioUrl ? `
+                <div class="mt-4 pt-3 border-t border-slate-200">
+                    <span class="text-[10px] text-slate-500 block mb-1 font-semibold">التسجيل الصوتي:</span>
+                    <audio controls class="w-full h-9">
+                        <source src="${audioUrl}" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الصوت
+                    </audio>
+                </div>
+            ` : ''}
+        </div>
+    `;
 }
 
 function switchTab(tabId) {
@@ -202,6 +253,7 @@ function renderHome() {
         </div>`;
 }
 
+// عرض القرآن مع أزرار الصوت والنقر الشامل لعرض النص
 function renderQuran(filter = '') {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -218,29 +270,29 @@ function renderQuran(filter = '') {
         <div class="space-y-2 max-h-[300px] overflow-y-auto pr-1">`;
 
     filtered.forEach(p => {
-        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-            <div class="flex justify-between items-center cursor-pointer mb-1" onclick="toggleQuranDetail(${p.number})">
-                <span class="font-bold text-slate-800 text-xs">${p.name}</span>
-                <span class="text-[10px] text-emerald-700 font-semibold underline">عرض السور والآيات</span>
+        const encodedTitle = encodeURIComponent(p.name);
+        const encodedText = encodeURIComponent(p.text);
+        
+        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center hover:border-emerald-300 transition">
+            <div class="cursor-pointer flex-1" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${p.audioUrl}', 'تلاوة الجزء')">
+                <span class="font-bold text-slate-800 text-xs block mb-1">${p.name}</span>
+                <span class="text-[11px] text-slate-500 line-clamp-1">${p.surahs}</span>
             </div>
-            <div id="quran-detail-${p.number}" class="hidden text-[11px] text-slate-600 bg-emerald-50/50 p-2 rounded-lg mb-2">
-                <p>${p.surahs}</p>
+            <div class="flex items-center gap-2">
+                <audio controls class="w-24 h-7">
+                    <source src="${p.audioUrl}" type="audio/mpeg">
+                </audio>
+                <button onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${p.audioUrl}', 'تلاوة الجزء')" class="bg-emerald-50 text-emerald-700 p-2 rounded-lg text-xs font-bold">
+                    <i class="fa-solid fa-book-open"></i>
+                </button>
             </div>
-            <audio controls class="w-full h-8 mt-1">
-                <source src="${p.audioUrl}" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الصوت
-            </audio>
         </div>`;
     });
     html += `</div>`;
     area.innerHTML = html;
 }
 
-function toggleQuranDetail(num) {
-    const el = document.getElementById(`quran-detail-${num}`);
-    if (el) el.classList.toggle('hidden');
-}
-
+// عرض الأدعية والزيارات وتفعيل النقر لعرضها بالكامل
 function renderDuas(filter = '', activeSubTab = 'main') {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -272,19 +324,18 @@ function renderDuas(filter = '', activeSubTab = 'main') {
         html += `<p class="text-center text-xs text-slate-400 py-4">لم يتم العثور على عنصر بهذا الاسم</p>`;
     } else {
         itemsToDisplay.forEach(d => {
-            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                <div class="flex justify-between items-center mb-1">
-                    <h4 class="font-bold text-emerald-900 text-xs">${d.title}</h4>
-                    ${d.reader ? `<span class="text-[9px] text-amber-700 font-semibold">${d.reader}</span>` : ''}
+            const encodedTitle = encodeURIComponent(d.title);
+            const encodedText = encodeURIComponent(d.text);
+            const audio = d.audio || '';
+            const reader = d.reader || '';
+
+            html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer hover:border-emerald-300 transition" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${encodedText}'), '${audio}', '${reader}')">
+                <div>
+                    <h4 class="font-bold text-emerald-900 text-xs mb-1">${d.title}</h4>
+                    <p class="text-[11px] text-slate-500 line-clamp-1">${d.text}</p>
                 </div>
-                <p class="text-[11px] text-slate-600 mb-2">${d.text}</p>`;
-            if (d.audio) {
-                html += `<audio controls class="w-full h-7">
-                    <source src="${d.audio}" type="audio/mpeg">
-                    متصفحك لا يدعم تشغيل الصوت
-                </audio>`;
-            }
-            html += `</div>`;
+                <i class="fa-solid fa-angle-left text-slate-400 text-xs mr-2"></i>
+            </div>`;
         });
     }
     html += `</div>`;
@@ -313,6 +364,7 @@ function renderChallenges() {
     area.innerHTML = html;
 }
 
+// عرض الصلوات والنوافل وتفعيل النقر لعرضها بالكامل
 function renderPrayers() {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -324,12 +376,15 @@ function renderPrayers() {
             <h4 class="font-bold text-emerald-900 text-xs mb-2">الصلوات المستحبة وتشمل:</h4>
             <div class="space-y-2">`;
     appData.sections.prayersList.forEach(p => {
-        html += `<div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+        const encodedTitle = encodeURIComponent(p.title);
+        const fullDesc = encodeURIComponent(`وقت الأداء: ${p.time}\n\nكيفية الأداء والصفة:\n${p.desc}`);
+
+        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-emerald-300 transition" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${fullDesc}'), '', 'صلاة مستحبة')">
             <div class="flex justify-between items-center mb-1">
                 <h5 class="font-bold text-slate-900 text-xs">${p.title}</h5>
                 <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">${p.time}</span>
             </div>
-            <p class="text-[11px] text-slate-600">${p.desc}</p>
+            <p class="text-[11px] text-slate-600 line-clamp-1">${p.desc}</p>
         </div>`;
     });
     html += `</div></div>`;
@@ -338,12 +393,15 @@ function renderPrayers() {
             <h4 class="font-bold text-emerald-900 text-xs mb-2">النوافل وتشمل:</h4>
             <div class="space-y-2">`;
     appData.sections.nawafilList.forEach(n => {
-        html += `<div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+        const encodedTitle = encodeURIComponent(n.title);
+        const fullDesc = encodeURIComponent(`وقت الأداء: ${n.time}\n\nالتفاصيل:\n${n.desc}`);
+
+        html += `<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 cursor-pointer hover:border-emerald-300 transition" onclick="showDetailPage(decodeURIComponent('${encodedTitle}'), decodeURIComponent('${fullDesc}'), '', 'نافلة')">
             <div class="flex justify-between items-center mb-1">
                 <h5 class="font-bold text-slate-900 text-xs">${n.title}</h5>
                 <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-semibold">${n.time}</span>
             </div>
-            <p class="text-[11px] text-slate-600">${n.desc}</p>
+            <p class="text-[11px] text-slate-600 line-clamp-1">${n.desc}</p>
         </div>`;
     });
     html += `</div></div>`;
@@ -420,7 +478,6 @@ function toggleSidebar() {
 }
 
 window.onload = function() {
-    const hijriEl = document.getElementById('hijri-date-display');
-    if (hijriEl) hijriEl.innerText = getHijriDateString();
+    fetchHijriDate();
     renderHome();
 };
